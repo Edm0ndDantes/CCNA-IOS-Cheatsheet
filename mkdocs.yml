@@ -8,9 +8,34 @@ theme:
   favicon: assets/Router-Firewall.svg
   features:
     - navigation.footer
+    - navigation.path
+    - navigation.indexes
+    - toc.follow
+    - navigation.expand
+    - navigation.sections
   palette:
     scheme: slate
     primary: green
+nav: 
+  - Home: index.md
+  - Basics and Navigation:
+      - "IOS CLI Navigation": navigation.md
+      - "Basic Device Configuration": basic-device-config.md
+      - "Interface Configuration": interface-config.md
+  - Security Hardening: security-hardening.md
+  - VLANs and Trunking: vlans.md
+  - Spanning Tree Protocol: stp.md
+  - EtherChannel: etherchannel.md
+  - IPv6: ipv6.md
+  - Routing:
+      - "Static Routing": static-routing.md
+      - "Dynamic Routing - OSPF": dynamic-routing.md
+  - Access Control Lists: acl.md
+  - NAT: nat.md
+  - DHCP: dhcp.md
+  - First Hop Redundancy Protocols: fhrp.md
+  - Troubleshooting: troubleshooting.md
+  - Miscellaneous: misc.md
 
 markdown_extensions:
   - attr_list

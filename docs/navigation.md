@@ -1,4 +1,4 @@
-# 1. Navigation & Basics
+# Navigation & Basics
 
 | Command | Explanation |
 |---|---|

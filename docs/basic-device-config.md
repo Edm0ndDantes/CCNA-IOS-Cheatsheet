@@ -1,4 +1,4 @@
-# 2. Basic Device Configuration
+# Basic Device Configuration
 
 ## Global settings
 
