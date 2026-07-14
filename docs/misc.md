@@ -40,7 +40,7 @@ IOS treats storage locations as file systems: `flash:` (IOS images, local files)
 
 **Procedure:** check space → copy the new image → verify its hash → point the boot variable at it → save → reload → confirm.
 
-```
+``` linenums="1"
 show version
 show flash:
 copy tftp: flash:
@@ -76,7 +76,7 @@ On newer platforms in **install mode** (Catalyst 9k, ISR/Cat8k):
 
 **ROMMON rescue** — if the device won't boot (bad/deleted image), from the `rommon >` prompt:
 
-```
+``` linenums="1"
 dir flash:
 boot flash:known-good.bin
 ```
@@ -86,7 +86,7 @@ boot flash:known-good.bin
 
 Or stage a TFTP recovery from ROMMON:
 
-```
+``` linenums="1"
 IP_ADDRESS=10.1.1.2
 IP_SUBNET_MASK=255.255.255.0
 DEFAULT_GATEWAY=10.1.1.1
@@ -115,7 +115,7 @@ tftpdnld
 
 #### Archive & rollback (automatic config versioning)
 
-```
+``` linenums="1"
 configure terminal
  archive
   path flash:backups/R1-config
@@ -173,7 +173,7 @@ Requires physical console access — this is why console ports must be physicall
 
 **Catalyst switch variant** — hold the **Mode** button while powering on to reach the `switch:` prompt, then:
 
-```
+``` linenums="1"
 flash_init
 rename flash:config.text flash:config.old
 boot
@@ -187,7 +187,7 @@ To defeat this procedure on stolen devices: `no service password-recovery` (dras
 
 ### Factory reset / configuration reset
 
-```
+``` linenums="1"
 erase startup-config
 delete vlan.dat
 reload

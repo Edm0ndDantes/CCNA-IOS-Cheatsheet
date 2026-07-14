@@ -15,7 +15,7 @@
 
 ### SSH setup (complete recipe)
 
-```
+``` linenums="1"
 hostname R1
 ip domain-name example.com
 crypto key generate rsa
@@ -46,7 +46,7 @@ AAA replaces per-line passwords with a centralized policy framework. Authenticat
 
 #### Enable AAA with local authentication
 
-```
+``` linenums="1"
 username admin privilege 15 secret StrongPass123
 aaa new-model
 aaa authentication login default local
@@ -63,7 +63,7 @@ line console 0
 
 #### TACACS+ server (Cisco-preferred for device administration)
 
-```
+``` linenums="1"
 tacacs server TAC1
  address ipv4 10.1.1.50
  single-connection
@@ -81,7 +81,7 @@ aaa group server tacacs+ TAC-GROUP
 
 #### RADIUS server (common for network access / 802.1X)
 
-```
+``` linenums="1"
 radius server RAD1
  address ipv4 10.1.1.60 auth-port 1812 acct-port 1813
  key RadiusSharedKey
@@ -124,7 +124,7 @@ aaa group server radius RAD-GROUP
 
 Combines the SSH setup above with AAA-based login — the production-grade remote access config:
 
-```
+``` linenums="1"
 hostname R1
 ip domain-name example.com
 crypto key generate rsa modulus 2048
@@ -178,7 +178,7 @@ line vty 0 4
 
 Limits which/how many MAC addresses may use an access port:
 
-```
+``` linenums="1"
 interface f0/1
  switchport mode access
  switchport port-security
@@ -210,7 +210,7 @@ Recovering an err-disabled port: `shutdown` then `no shutdown` on the interface,
 
 ### DHCP snooping & Dynamic ARP Inspection (switch)
 
-```
+``` linenums="1"
 ip dhcp snooping
 ip dhcp snooping vlan 10,20
 interface g0/1

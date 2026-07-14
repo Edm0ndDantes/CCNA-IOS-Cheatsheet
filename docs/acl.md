@@ -1,8 +1,14 @@
 # Access Control Lists (ACLs)
 
 ## Numbered standard ACL (filters by SOURCE only; 1–99, 1300–1999)
-
+Global command syntax for standard numbered access lists.
+``` linenums="1"
+access-list <access-list-number> {deny | permit} <source> [<source-wildcard>] [log]
 ```
+
+Examples:
+
+``` linenums="1"
 access-list 10 permit 192.168.10.0 0.0.0.255
 access-list 10 deny host 192.168.20.5
 access-list 10 permit any
@@ -12,9 +18,14 @@ access-list 10 permit any
 - `access-list 10 deny host 192.168.20.5` — `host` = wildcard `0.0.0.0` (one address)
 - `access-list 10 permit any` — allow everything else (**every ACL ends with an implicit deny all**)
 
+Command syntax that defines a remark to help remember what the ACL is supposed to do:
+``` linenums="1"
+access-list <access-list-number> remark <text>
+```
+
 ## Numbered extended ACL (source, destination, protocol, ports; 100–199, 2000–2699)
 
-```
+``` linenums="1"
 access-list 100 permit tcp 192.168.10.0 0.0.0.255 any eq 443
 access-list 100 permit tcp 192.168.10.0 0.0.0.255 any eq 80
 access-list 100 deny   tcp any host 10.1.1.5 eq 23
@@ -33,7 +44,7 @@ access-list 100 deny   ip any any log
 
 ## Named ACLs (editable, self-documenting — preferred)
 
-```
+``` linenums="1"
 ip access-list extended BLOCK-WEB
  10 deny tcp 192.168.10.0 0.0.0.255 any eq 80
  20 permit ip any any
@@ -59,7 +70,7 @@ ip access-list extended BLOCK-WEB
 
 ## IPv6 ACLs
 
-```
+``` linenums="1"
 ipv6 access-list BLOCK-V6
  deny tcp 2001:db8:acad:1::/64 any eq 23
  permit ipv6 any any

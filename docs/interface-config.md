@@ -1,6 +1,6 @@
 ## Router interface (routed port)
 
-```
+``` linenums="1"
 interface GigabitEthernet0/0
  description LINK-TO-LAN
  ip address 192.168.1.1 255.255.255.0
@@ -20,7 +20,7 @@ interface GigabitEthernet0/0
 
 Switches are layer 2 — they get a management address on a VLAN interface, not a physical port:
 
-```
+``` linenums="1"
 interface vlan 1
  ip address 192.168.1.2 255.255.255.0
  no shutdown
@@ -35,7 +35,7 @@ ip default-gateway 192.168.1.1
 
 # Loopback interface
 
-```
+``` linenums="1"
 interface loopback 0
  ip address 10.0.0.1 255.255.255.255
 ```

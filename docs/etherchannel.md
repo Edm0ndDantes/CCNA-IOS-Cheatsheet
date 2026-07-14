@@ -2,7 +2,7 @@
 
 Bundles multiple physical links into one logical link (more bandwidth, no STP blocking between them).
 
-```
+``` linenums="1"
 interface range g0/1 - 2
  channel-group 1 mode active
 interface port-channel 1

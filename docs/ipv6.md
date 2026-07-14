@@ -2,7 +2,7 @@
 
 ## Enabling and addressing
 
-```
+``` linenums="1"
 ipv6 unicast-routing
 interface g0/0
  ipv6 address 2001:db8:acad:1::1/64

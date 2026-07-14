@@ -2,7 +2,7 @@
 
 ## OSPFv2 (IPv4) basic setup
 
-```
+``` linenums="1"
 router ospf 1
  router-id 1.1.1.1
  network 192.168.10.0 0.0.0.255 area 0
@@ -100,7 +100,7 @@ Verification:
 
 ## OSPF authentication (hardening)
 
-```
+``` linenums="1"
 interface g0/1
  ip ospf message-digest-key 1 md5 SecretKey
 router ospf 1
@@ -112,7 +112,7 @@ router ospf 1
 
 ## OSPFv3 (IPv6)
 
-```
+``` linenums="1"
 ipv6 unicast-routing
 ipv6 router ospf 1
  router-id 1.1.1.1

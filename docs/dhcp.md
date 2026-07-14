@@ -2,7 +2,7 @@
 
 ## DHCPv4 server (on a router)
 
-```
+``` linenums="1"
 ip dhcp excluded-address 192.168.10.1 192.168.10.10
 ip dhcp pool LAN10
  network 192.168.10.0 255.255.255.0
@@ -39,7 +39,7 @@ ip dhcp pool LAN10
 
 ## DHCPv6 — stateless (SLAAC address + DHCP options)
 
-```
+``` linenums="1"
 ipv6 unicast-routing
 ipv6 dhcp pool STATELESS
  dns-server 2001:db8::8
@@ -56,7 +56,7 @@ interface g0/0
 
 ## DHCPv6 — stateful (server assigns addresses)
 
-```
+``` linenums="1"
 ipv6 dhcp pool STATEFUL
  address prefix 2001:db8:acad:1::/64
  dns-server 2001:db8::8

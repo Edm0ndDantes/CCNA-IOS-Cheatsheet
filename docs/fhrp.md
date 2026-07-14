@@ -1,10 +1,8 @@
-
-
-## 15. First-Hop Redundancy — HSRP
+## First-Hop Redundancy — HSRP
 
 Two routers share a virtual gateway IP so hosts survive a router failure.
 
-```
+``` linenums="1"
 interface g0/0
  ip address 192.168.10.2 255.255.255.0
  standby version 2

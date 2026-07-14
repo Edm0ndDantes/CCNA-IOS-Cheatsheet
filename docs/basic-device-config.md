@@ -12,7 +12,7 @@
 
 ## Console line setup
 
-```
+``` linenums="1"
 line console 0
  password cisco
  login
@@ -28,7 +28,7 @@ line console 0
 
 ## VTY lines setup (Telnet/SSH)
 
-```
+``` linenums="1"
 line vty 0 4
  password cisco
  login

@@ -4,7 +4,7 @@ Terminology: **inside local** = private IP of a host; **inside global** = its pu
 
 ## Mark the interfaces (required for every NAT type)
 
-```
+``` linenums="1"
 interface g0/0
  ip nat inside
 interface g0/1
@@ -22,7 +22,7 @@ interface g0/1
 
 ## Dynamic NAT (pool of public addresses)
 
-```
+``` linenums="1"
 access-list 1 permit 192.168.10.0 0.0.0.255
 ip nat pool PUBLIC 203.0.113.10 203.0.113.20 netmask 255.255.255.0
 ip nat inside source list 1 pool PUBLIC
@@ -34,7 +34,7 @@ ip nat inside source list 1 pool PUBLIC
 
 ## PAT / NAT overload (many-to-one; the typical home/office setup)
 
-```
+``` linenums="1"
 access-list 1 permit 192.168.10.0 0.0.0.255
 ip nat inside source list 1 interface g0/1 overload
 ```

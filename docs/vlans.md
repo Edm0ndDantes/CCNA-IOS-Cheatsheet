@@ -1,6 +1,6 @@
 ## Creating VLANs
 
-```
+``` linenums="1"
 vlan 10
  name SALES
 vlan 20
@@ -14,7 +14,7 @@ vlan 99
 
 ## Access ports (end devices)
 
-```
+``` linenums="1"
 interface f0/5
  switchport mode access
  switchport access vlan 10
@@ -31,7 +31,7 @@ interface range f0/6 - 10
 
 ## Trunk ports (switch-to-switch / switch-to-router)
 
-```
+``` linenums="1"
 interface g0/1
  switchport mode trunk
  switchport trunk native vlan 99
@@ -70,7 +70,7 @@ interface g0/1
 
 ### Router-on-a-stick (subinterfaces)
 
-```
+``` linenums="1"
 interface g0/0
  no shutdown
 interface g0/0.10
@@ -92,7 +92,7 @@ interface g0/0.99
 
 ### Layer 3 switch (SVIs)
 
-```
+``` linenums="1"
 ip routing
 interface vlan 10
  ip address 192.168.10.1 255.255.255.0

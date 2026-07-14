@@ -4,7 +4,7 @@ Realistic output from the most important verification commands, with explanation
 
 ## `show ip route`
 
-```
+``` linenums="1"
 R1# show ip route
 Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
        D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
@@ -32,7 +32,7 @@ L        192.168.10.1/32 is directly connected, GigabitEthernet0/0
 
 ## `show ip interface brief`
 
-```
+``` linenums="1"
 R1# show ip interface brief
 Interface              IP-Address      OK? Method Status                Protocol
 GigabitEthernet0/0     192.168.10.1    YES manual up                    up
@@ -55,7 +55,7 @@ Vlan1                  unassigned      YES unset  down                  down
 
 ## `show interfaces g0/0` (key excerpts)
 
-```
+``` linenums="1"
 GigabitEthernet0/0 is up, line protocol is up
   Hardware is iGbE, address is 0c1a.2b3c.4d00
   MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec,
@@ -77,7 +77,7 @@ GigabitEthernet0/0 is up, line protocol is up
 
 ## `show vlan brief`
 
-```
+``` linenums="1"
 S1# show vlan brief
 VLAN Name                             Status    Ports
 ---- -------------------------------- --------- -------------------------------
@@ -96,7 +96,7 @@ VLAN Name                             Status    Ports
 
 ## `show interfaces trunk`
 
-```
+``` linenums="1"
 S1# show interfaces trunk
 Port        Mode         Encapsulation  Status        Native vlan
 Gi0/1       on           802.1q         trunking      99
@@ -118,7 +118,7 @@ Gi0/1       10,20
 
 ## `show spanning-tree vlan 10`
 
-```
+``` linenums="1"
 S2# show spanning-tree vlan 10
 VLAN0010
   Spanning tree enabled protocol rstp
@@ -146,7 +146,7 @@ Fa0/5               Desg FWD 19        128.7    P2p Edge
 
 ## `show ip ospf neighbor`
 
-```
+``` linenums="1"
 R1# show ip ospf neighbor
 Neighbor ID     Pri   State           Dead Time   Address         Interface
 2.2.2.2           1   FULL/DR         00:00:35    10.1.1.2        GigabitEthernet0/1
@@ -163,7 +163,7 @@ Neighbor ID     Pri   State           Dead Time   Address         Interface
 
 ## `show ip nat translations`
 
-```
+``` linenums="1"
 R1# show ip nat translations
 Pro  Inside global       Inside local        Outside local       Outside global
 tcp  203.0.113.5:34122   192.168.10.11:34122 198.51.100.7:443    198.51.100.7:443
@@ -179,7 +179,7 @@ icmp 203.0.113.5:1       192.168.10.11:1     8.8.8.8:1           8.8.8.8:1
 
 ## `show access-lists`
 
-```
+``` linenums="1"
 R1# show access-lists
 Extended IP access list BLOCK-WEB
     10 deny tcp 192.168.10.0 0.0.0.255 any eq www (152 matches)
@@ -193,7 +193,7 @@ Extended IP access list BLOCK-WEB
 
 ## `show port-security interface f0/5`
 
-```
+``` linenums="1"
 S1# show port-security interface f0/5
 Port Security              : Enabled
 Port Status                : Secure-shutdown
@@ -212,7 +212,7 @@ Security Violation Count   : 1
 
 ## `show etherchannel summary`
 
-```
+``` linenums="1"
 S1# show etherchannel summary
 Flags:  D - down        P - bundled in port-channel
         S - Layer2      U - in use      s - suspended
@@ -230,7 +230,7 @@ Group  Port-channel  Protocol    Ports
 
 ## `show standby brief` (HSRP)
 
-```
+``` linenums="1"
 R1# show standby brief
                      P indicates configured to preempt.
 Interface   Grp  Pri P State   Active          Standby         Virtual IP
