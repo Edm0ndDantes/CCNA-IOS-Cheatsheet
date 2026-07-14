@@ -13,6 +13,9 @@ theme:
     - toc.follow
     - navigation.expand
     - navigation.sections
+    - content.code.copy
+    - content.code.select
+    - content.code.annotate
   palette:
     scheme: slate
     primary: green

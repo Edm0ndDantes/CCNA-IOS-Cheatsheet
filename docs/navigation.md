@@ -13,4 +13,6 @@
 | `terminal length 0` | Disable `--More--` paging for the session |
 | `no <command>` | Negate/remove a command (e.g. `no shutdown`) |
 
-**Tip:** Commands can be abbreviated as long as they're unambiguous (`conf t` = `configure terminal`, `sh ip int br` = `show ip interface brief`). Use **Tab** to auto-complete.
+**Tip:** Commands can be abbreviated as long as they're unambiguous (`conf t` = `configure terminal`, `sh ip int br` = `show ip interface brief`). 
+
+Use **Tab** to auto-complete.
