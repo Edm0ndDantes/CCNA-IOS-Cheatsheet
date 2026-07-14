@@ -30,9 +30,8 @@ nav:
   - Spanning Tree Protocol: stp.md
   - EtherChannel: etherchannel.md
   - IPv6: ipv6.md
-  - Routing:
-      - "Static Routing": static-routing.md
-      - "Dynamic Routing - OSPF": dynamic-routing.md
+  - Static Routing: static-routing.md
+  - Dynamic Routing - OSPF: dynamic-routing.md
   - Access Control Lists: acl.md
   - NAT: nat.md
   - DHCP: dhcp.md
