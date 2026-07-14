@@ -172,7 +172,7 @@ Step 2 — ESP transport mode wraps it (reuses the GRE packet's header):
 ```text linenums="1"
 interface tunnel0
  ip address 172.16.0.1 255.255.255.252
- tunnel source g0/1
+ tunnel source g0/1 !or tunnel source 203.0.113.1
  tunnel destination 198.51.100.2
  keepalive 5 3
  ip mtu 1400
@@ -184,7 +184,7 @@ interface tunnel0
 ```text linenums="1"
 interface tunnel0
  ip address 172.16.0.2 255.255.255.252
- tunnel source g0/1
+ tunnel source g0/1 !or tunnel source 198.51.100.2
  tunnel destination 203.0.113.1
  keepalive 5 3
  ip mtu 1400
