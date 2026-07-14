@@ -22,6 +22,25 @@ router ospf 1
 - `default-information originate` — advertise your default route to the rest of the OSPF domain
 - `auto-cost reference-bandwidth 10000` — reference bandwidth in Mb/s so fast links get distinct costs (details next section) — set the **same** value on all routers
 
+### Passive Interface
+By default, OSPF messages are forwarded out all OSPF-enabled interfaces. 
+However, these messages really only need to be sent out interfaces that are connecting to other OSPF-enabled routers. 
+Sending out unneeded messages on a LAN affects the network in three ways, as follows:
+- Inefficient Use of Bandwidth: Available bandwidth is consumed transporting unnecessary messages.
+- Inefficient Use of Resources: All devices on the LAN must process and eventually discard the message.
+- Increased Security Risk: Without additional OSPF security configurations, OSPF messages can be intercepted with packet sniffing software. 
+Routing updates can be modified and sent back to the router, corrupting the routing table with false metrics that misdirect traffic.
+Use the `passive-interface router` configuration mode command to prevent the transmission of routing messages through a router interface, but still allow that network to be advertised to other routers. 
+
+!!! note
+
+    In production networks, loopback interfaces do not require to be passive.
+
+The network of this interface is still included as a route entry in OSPFv2 updates that are sent to neighbors.
+
+As an alternative, all interfaces can be made passive using the `passive-interface default` command. 
+Interfaces that should not be passive can be re-enabled using the `no passive-interface` command.
+
 ## OSPF cost & reference bandwidth (metric tuning)
 
 OSPF picks paths by **lowest total cost**, and each interface's cost is calculated as:
