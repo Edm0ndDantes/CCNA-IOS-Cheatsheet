@@ -37,6 +37,7 @@ nav:
   - NAT: nat.md
   - DHCP: dhcp.md
   - First Hop Redundancy Protocols: fhrp.md
+  - Tunnels and VPNs: vpn-tunnels.md
   - Troubleshooting: troubleshooting.md
   - Miscellaneous: misc.md
 
