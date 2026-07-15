@@ -24,10 +24,15 @@ L        192.168.10.1/32 is directly connected, GigabitEthernet0/0
 ```
 
 **How to read it:**
+
 - **The letter code** is the route's source: `C` = directly connected network, `L` = the router's own address on that link (always /32), `S` = static, `O` = OSPF-learned, `S*` = a static route that is also the **default** route.
+
 - `Gateway of last resort is 203.0.113.1` — a default route exists; anything not matching a more specific route goes there. If this says *"is not set"*, unknown destinations are dropped.
+
 - `[110/2]` = **[administrative distance / metric]**. AD 110 identifies OSPF; metric 2 is the OSPF cost of the path. When two sources offer the same prefix, lower AD wins; between routes from the same protocol, lower metric wins.
+
 - `via 10.1.1.2` — the next-hop address; `00:12:45` — how long the route has been stable (a young timer on an "old" route hints at flapping); `GigabitEthernet0/1` — the exit interface.
+
 - **Longest prefix wins:** a packet to 192.168.20.5 matches `192.168.20.0/24` (specific) over `0.0.0.0/0` (default), regardless of AD or metric.
 
 ## `show ip interface brief`
@@ -70,9 +75,13 @@ GigabitEthernet0/0 is up, line protocol is up
 ```
 
 **What to look for:**
+
 - `Full-duplex, 1000Mb/s` — verify both ends agree. A **duplex mismatch** classically shows as *CRC/late collisions* on the half-duplex side and runts on the other.
+
 - `input errors` / `CRC` climbing → bad cable, bad SFP, or duplex mismatch. Re-run the command twice; what matters is whether counters are *increasing*, not their absolute value (use `clear counters` first).
+
 - `output drops` (in the queue line, not shown here) → congestion: traffic exceeds the interface's capacity.
+
 - `BW 1000000 Kbit/sec` — the bandwidth value OSPF/EIGRP use for metrics; it can be set with the `bandwidth` command without changing real speed.
 
 ## `show vlan brief`
@@ -89,9 +98,13 @@ VLAN Name                             Status    Ports
 ```
 
 **How to read it:**
+
 - Only **access** ports are listed — trunks don't appear here (they carry all VLANs; see `show interfaces trunk`).
+
 - A host in the wrong VLAN? This is the first place to look: find its port in the wrong row.
+
 - A VLAN that exists but shows no ports (like 99 here) is fine for SVI-only/management VLANs.
+
 - VLANs 1002–1005 are legacy FDDI/Token-Ring placeholders — ignore them; they can't be deleted.
 
 ## `show interfaces trunk`
@@ -112,8 +125,11 @@ Gi0/1       10,20
 ```
 
 **How to read it:**
+
 - Mode `on` = statically configured trunk; `desirable`/`auto` mean DTP negotiated it (harden this).
+
 - `Native vlan 99` — must match on both ends or you'll see CDP "native VLAN mismatch" log messages and inter-VLAN leakage.
+
 - The three VLAN lists narrow down: *allowed* (your config) → *active* (VLAN actually exists) → *forwarding* (STP isn't blocking it). **A VLAN missing from a lower list than the one above it is your fault line:** allowed but not active = VLAN not created; active but not forwarding = STP blocking or pruned (here VLAN 99 is not forwarding — it has no member ports, which is normal).
 
 ## `show spanning-tree vlan 10`
@@ -139,9 +155,13 @@ Fa0/5               Desg FWD 19        128.7    P2p Edge
 ```
 
 **How to read it:**
+
 - **Root ID vs Bridge ID:** Root ID is the elected root bridge; Bridge ID is *this* switch. If they showed the same MAC, you'd see `This bridge is the root` instead of a Cost/Port line. Here, this switch is NOT the root.
+
 - Root priority `24586` = 24576 + VLAN 10 → someone configured `spanning-tree vlan 10 root primary`. This switch's `32778` = default 32768 + 10.
+
 - **Port roles:** `Root`/`FWD` = best path toward the root; `Desg`/`FWD` = designated (forwarding) for its segment; `Altn`/`BLK` = the **blocked redundant link** — this is the loop prevention working. If a "missing bandwidth" mystery arises, this blocked port is usually why.
+
 - `P2p Edge` on Fa0/5 = PortFast is active (host port, skips listening/learning).
 
 ## `show ip ospf neighbor`
@@ -156,9 +176,13 @@ Neighbor ID     Pri   State           Dead Time   Address         Interface
 ```
 
 **How to read it:**
+
 - `FULL` = healthy adjacency, databases synchronized. `FULL/ -` (dash) = point-to-point link, where no DR/BDR is elected — also healthy.
+
 - `2WAY/DROTHER` is **normal, not broken**, on a multi-access segment: two non-DR routers stay at 2WAY with each other and only go FULL with the DR and BDR. (Pri `0` = that router refuses to be DR.)
+
 - **Genuinely broken states:** stuck in `INIT` = your hellos reach them, theirs don't return (ACL? unidirectional link?); stuck in `EXSTART`/`EXCHANGE` = classic **MTU mismatch**; neighbor missing entirely = subnet/area/timer/authentication mismatch or `passive-interface`.
+
 - **Dead Time** counts down from the dead interval and resets with each hello — it should hover, never reach zero.
 
 ## `show ip nat translations`
@@ -173,8 +197,11 @@ icmp 203.0.113.5:1       192.168.10.11:1     8.8.8.8:1           8.8.8.8:1
 ```
 
 **How to read it (each row left→right is "outside view → inside truth"):**
+
 - **Inside local** = the host's real private IP; **inside global** = what the outside world sees. Rows sharing one inside-global IP with different ports (first three rows) = **PAT/overload** at work.
+
 - The last row with no protocol/ports and no outside addresses = a **static NAT** entry — it exists permanently, even with no traffic.
+
 - Empty table when you expect translations? Check: interfaces marked `ip nat inside`/`ip nat outside`, the ACL actually matches the source, and remember translations only appear when traffic flows.
 
 ## `show access-lists`
@@ -188,7 +215,9 @@ Extended IP access list BLOCK-WEB
 ```
 
 **How to read it:**
+
 - `(152 matches)` — the counters are the whole point: they prove the line is actually catching traffic. A rule you expect to fire showing **no counter at all** = never matched — likely ordered below a broader line that grabs the traffic first, applied to the wrong interface/direction, or the traffic isn't what you think.
+
 - Matches only count on the interface(s) where the ACL is applied, and the implicit deny at the end has **no counter** — add an explicit `deny ip any any log` line to see what's being silently dropped.
 
 ## `show port-security interface f0/5`
@@ -206,8 +235,11 @@ Security Violation Count   : 1
 ```
 
 **How to read it:**
+
 - `Secure-shutdown` = the port is **err-disabled** right now — a violation occurred. (Healthy states: `Secure-up`; `Secure-down` just means the port is down/idle.)
+
 - `Last Source Address` = the MAC that triggered the violation — your evidence of *what* was plugged in.
+
 - Recover: fix the physical issue, then `shutdown` / `no shutdown` on the interface (the violation count survives; clear with `clear port-security sticky`).
 
 ## `show etherchannel summary`
@@ -225,7 +257,9 @@ Group  Port-channel  Protocol    Ports
 ```
 
 **How to read it:**
+
 - `Po1(SU)` = Layer-2 channel, **U**p and in use, with both members `(P)` bundled — healthy.
+
 - `Po2(SD)` is down: `Gi0/3(I)` = operating stand-alone (LACP got no response — is the far side configured?), `Gi0/4(s)` = **suspended**, almost always a **member mismatch** (VLAN list, speed, duplex, or mode differs from the channel). Fix the member config or the far end.
 
 ## `show standby brief` (HSRP)
@@ -238,8 +272,11 @@ Gi0/0       1    150 P Active  local           192.168.10.3    192.168.10.1
 ```
 
 **How to read it:**
+
 - State `Active` + Active = `local` → this router currently owns the virtual IP 192.168.10.1. The peer at `.3` is `Standby`, ready to take over.
+
 - `P` = preempt is on — after recovering from a failure, this higher-priority (150) router will reclaim the Active role. Without preempt it would wait as Standby forever.
+
 - Both routers showing `Active` = **split brain**: they can't hear each other's hellos — check the link/VLAN between them.
 
 ---
