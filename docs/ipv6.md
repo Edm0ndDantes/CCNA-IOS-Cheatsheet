@@ -214,6 +214,3 @@ GigabitEthernet0/0 is up, line protocol is up
 - `ND DAD is enabled` — duplicate address detection runs on every new address; an address flagged `[DUP]` in `show ipv6 interface brief` lost that check and is unusable.
 
 - `Hosts use stateless autoconfig` — the current A/O/M flag outcome in words; after setting `ipv6 nd managed-config-flag` this line changes to "Hosts use DHCP to obtain routable addresses" — a quick way to confirm your RA flags without a packet capture.
-
-!!! note
-    Notes on the addition: it replaces the old Section 10 wholesale and keeps its four original blocks (enabling/addressing, static routing, RA control, verification) as §6–9, expanded — the RA-control table gained `prefix default no-autoconfig` and `ra interval`, the static-route table gained the floating static, and verification gained `show ipv6 routers`, link-local ping, and `debug ipv6 nd`. The new theory (§1–5) covers the CCNA checklist: compression rules, prefix anatomy and why /64 is mandatory for SLAAC, all address types with the multicast groups table, EUI-64 with the bit-flip, NDP message types including DAD, and the A/O/M flag matrix that ties RA flags to the DHCPv6 chapter. The annotated `show ipv6 interface` example (§10) follows your Section 18 style — if you keep annotated outputs centralized there instead, that block can be moved.
