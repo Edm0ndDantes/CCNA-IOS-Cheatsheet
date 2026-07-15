@@ -58,3 +58,68 @@ ip nat inside source list 1 interface g0/1 overload
 | `debug ip nat` | Watch translations happen live (lab use; `undebug all` to stop) |
 
 ---
+
+## NAT64 (IPv6 ↔ IPv4 translation)
+
+### Theory
+
+IPv6 hosts and IPv4 servers can't talk directly — the headers are incompatible. During the (long) transition period there are three coexistence strategies: **dual stack** (run both protocols everywhere — preferred), **tunneling** (carry IPv6 inside IPv4, e.g., GRE), and **translation** — rewriting one protocol into the other. NAT64 is the translation approach; it replaced the deprecated NAT-PT.
+
+- **How it works:** an IPv6-only client sends traffic to a special IPv6 address that *embeds* the IPv4 destination. The NAT64 router extracts the IPv4 address, translates the whole packet (headers, checksums), and sources it from an IPv4 pool — classic NAT bookkeeping, but across protocol families.
+- **The NAT64 prefix:** IPv4 destinations are embedded in a /96 prefix — 96 prefix bits + 32 IPv4 bits = 128. The IANA **well-known prefix is `64:ff9b::/96`**, so IPv4 host `198.51.100.10` becomes `64:ff9b::198.51.100.10` (IOS displays it in hex: `64:ff9b::c633:640a`). An organization can use its own /96 (an *NSP*, network-specific prefix) instead.
+- **DNS64 — the missing half:** clients don't know to use the prefix. A DNS64 server intercepts AAAA queries: when a name has only an A record (IPv4-only site), it *synthesizes* a fake AAAA answer by embedding the A record into the NAT64 prefix. The client then innocently connects "over IPv6" and lands on the NAT64 router. **NAT64 without DNS64 only works for hand-typed embedded addresses.** (DNS64 runs on the DNS server, not on the router.)
+- **Stateful vs stateless:**
+
+| Mode | How | Scale | Use case |
+|---|---|---|---|
+| **Stateful NAT64** | Per-session translation state, many-to-one onto an IPv4 pool (PAT-style, RFC 6146) | Thousands of IPv6 clients share few IPv4 addresses | The normal deployment: IPv6-only clients → IPv4 Internet |
+| **Stateless NAT64** | Algorithmic 1:1 mapping, no state (RFC 7915) | One IPv4 address consumed per IPv6 host | Small, static cases; IPv4 clients → IPv6 servers |
+
+- **Direction matters:** stateful NAT64 is designed for sessions **initiated from the IPv6 side** (like PAT, the return path exists only after state is created). Unsolicited IPv4→IPv6 requires static mappings.
+- **Limitations:** anything embedding literal IP addresses in the payload breaks or needs an ALG (old FTP, SIP); end-to-end IPsec through the translator fails (the header rewrite invalidates it); ICMP is translated to/from ICMPv6 but some types don't map.
+
+### Stateful NAT64 configuration
+
+IPv6-only LAN on `g0/0`, IPv4 Internet on `g0/1`, translating clients onto pool `203.0.113.100–110`:
+
+```text linenums="1"
+ipv6 unicast-routing
+interface g0/0
+ ipv6 address 2001:db8:acad:1::1/64
+ nat64 enable
+interface g0/1
+ ip address 203.0.113.2 255.255.255.0
+ nat64 enable
+ipv6 access-list NAT64-CLIENTS
+ permit ipv6 2001:db8:acad:1::/64 any
+nat64 prefix stateful 64:ff9b::/96
+nat64 v4 pool POOL4 203.0.113.100 203.0.113.110
+nat64 v6v4 list NAT64-CLIENTS pool POOL4 overload
+```
+
+- `nat64 enable` — mark **both** the IPv6-facing and IPv4-facing interfaces; the NAT64 analogue of `ip nat inside`/`outside` (one command for both sides — direction is inferred from the traffic)
+- `permit ipv6 2001:db8:acad:1::/64 any` — the ACL defines **which IPv6 sources** may be translated (the analogue of the NAT source list)
+- `nat64 prefix stateful 64:ff9b::/96` — the translation prefix: traffic *destined to* this prefix is what triggers NAT64; the embedded IPv4 address is extracted from the last 32 bits
+- `nat64 v4 pool POOL4 203.0.113.100 203.0.113.110` — the IPv4 addresses translations are sourced from
+- `nat64 v6v4 list NAT64-CLIENTS pool POOL4 overload` — glue it together; `overload` = PAT-style port multiplexing, so the whole IPv6 LAN shares a few IPv4 addresses (omit it and each IPv6 host consumes a pool address 1:1)
+- Routing sanity: the IPv4 side needs a route back to the pool (connected here), and the IPv6 side needs a route for `64:ff9b::/96` pointing at this router — typically the clients' default route already handles it
+
+Static mapping (let IPv4 users reach an IPv6-only server):
+
+| Command | Explanation |
+|---|---|
+| `nat64 v6v4 static 2001:db8:acad:1::10 203.0.113.50` | Permanently bind the IPv6 server to a public IPv4 address — inbound IPv4-initiated sessions now work for this host |
+
+### Verification
+
+| Command | Explanation |
+|---|---|
+| `show nat64 translations` | The active translation table — IPv6 client ↔ IPv4 pool bindings per session |
+| `show nat64 statistics` | Packets translated per direction, active sessions, drops — the counters prove it's working |
+| `show nat64 prefix stateful` | The configured translation prefix and where it applies |
+| `show nat64 pools` | Pool usage |
+| `clear nat64 statistics` | Reset counters before a test |
+| `debug nat64` | Watch translations live (lab use; `undebug all` to stop) |
+
+!!! note
+    **Quick test without DNS64:** from an IPv6-only client, ping the embedded form of a known IPv4 address — e.g., `ping 64:ff9b::8.8.8.8`. If that works but browsing by name fails, NAT64 is fine and **DNS64 is what's missing**.
