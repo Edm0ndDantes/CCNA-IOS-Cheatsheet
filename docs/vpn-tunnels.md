@@ -15,7 +15,11 @@ A **tunnel** encapsulates one protocol inside another so traffic can cross a net
 | **MPLS** | Label switching in a provider core; L3VPNs via VRFs + MP-BGP | No (separation, not secrecy) | Yes (within a VPN) | Carrier backbone, enterprise WAN (provider-managed) |
 | **DMVPN** | Multipoint GRE + NHRP + IPsec | Yes | Yes | Hub-and-spoke that builds dynamic spoke-to-spoke tunnels |
 
-**Overhead planning:** every layer of encapsulation adds header bytes and eats into the 1500-byte Ethernet MTU. GRE adds 24 bytes; IPsec ESP (tunnel mode, AES) adds roughly 50–73. This is why tunnel interfaces almost always carry `ip mtu` and `ip tcp adjust-mss` commands — forgetting them is the #1 cause of "ping works but HTTPS hangs" over tunnels.
+**Overhead planning:** every layer of encapsulation adds header bytes and eats into the 1500-byte Ethernet MTU. 
+- GRE adds 24 bytes; 
+- IPsec ESP (tunnel mode, AES) adds roughly 50–73. 
+
+This is why tunnel interfaces almost always carry `ip mtu` and `ip tcp adjust-mss` commands — forgetting them is the #1 cause of "ping works but HTTPS hangs" over tunnels.
 
 ### 1.1 Packet anatomy — before & after encapsulation
 
@@ -258,7 +262,13 @@ Tunnel0 is up, line protocol is up
 
 ### 3.1 Theory
 
-IPsec is a framework of protocols that provides **confidentiality** (encryption), **integrity** (hashing), **authentication** (peer identity), and **anti-replay** (sequence numbers) at the IP layer.
+IPsec is a framework of protocols that provides 
+- **confidentiality** (encryption), 
+- **integrity** (hashing), 
+- **authentication** (peer identity), and 
+- **anti-replay** (sequence numbers) 
+
+at the IP layer.
 
 **The two traffic protocols:**
 
@@ -281,7 +291,7 @@ IPsec is a framework of protocols that provides **confidentiality** (encryption)
 
 **Algorithm quick guidance:** prefer `aes 256` / AES-GCM, `sha256` or better, DH group `14`+ (or 19/20 ECDH); avoid DES/3DES, MD5, SHA-1, and groups 1/2/5 — they appear in old examples and exams but are broken or deprecated.
 
-### 3.2 Site-to-site IPsec, IKEv1 with crypto map (the classic)
+### 3.2 Site-to-site IPsec, IKEv1 with crypto map
 
 **R1 (203.0.113.1), protecting LAN 192.168.1.0/24 ↔ remote LAN 192.168.2.0/24:**
 
