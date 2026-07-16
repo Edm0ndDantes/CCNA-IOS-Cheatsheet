@@ -57,3 +57,7 @@ It is a standardized protocol similar to Cisco Discovery Protocol (CDP).
 | `show clock` | Lists the time of day and the date per the local device |
 | `show ntp associations` | Shows all NTP clients and servers with which the local device is attempting to synchronize with NTP |
 | `show ntp status` | Shows current NTP client status in detail|
+
+
+## Network Management Resources
+[LibreNMS](https://www.librenms.org/#downloads)

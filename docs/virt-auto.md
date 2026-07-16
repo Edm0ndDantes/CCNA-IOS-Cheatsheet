@@ -263,3 +263,9 @@ resource "iosxe_vlan" "iot" {
 | `show platform software yang-management process` | Are the model-driven-API daemons actually running |
 | `crypto key generate rsa` + `username ... privilege 15` | The SSH/local-auth groundwork Ansible's connection uses |
 | `show sdm prefer` | (Switch) TCAM template — relevant when fabric/SGT features need a different one |
+
+
+## V.10 Network Automation Resources
+
+[Netmiko](https://python-automation-book.readthedocs.io/en/1.0/12_netmiko/01_netmiko.html)
+[NAPALM](https://napalm.readthedocs.io/en/latest/)
