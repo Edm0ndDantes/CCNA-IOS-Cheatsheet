@@ -38,7 +38,7 @@ nav:
   - First Hop Redundancy Protocols: fhrp.md
   - Tunnels and VPNs: vpn-tunnels.md
   - Dynamic Routing over VPN: dynamic-routing-vpn.md
-  - WLANs: wlans.md
+  - WLANs: wlan.md
   - Frame Forwarding and Packet Switching: forwarding.md
   - Management and Monitoring: management.md
   - Troubleshooting: troubleshooting.md
