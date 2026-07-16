@@ -10,7 +10,9 @@ interface port-channel 1
  switchport trunk allowed vlan 10,20,99
 ```
 
-- `channel-group 1 mode active` — LACP active, actively negotiates (best practice). Other modes: `passive` = LACP, waits for the other side; `desirable` / `auto` = PAgP (Cisco proprietary); `on` = static bundle, no protocol (both sides must be `on`)
+- `channel-group 1 mode active` — LACP active, actively negotiates (best practice). Other modes: `passive` = LACP, waits for the other side; 
+    - `desirable` / `auto` = PAgP (Cisco proprietary); 
+    - `on` = static bundle, no protocol (both sides must be `on`)
 - `interface port-channel 1` — configure the logical interface; settings apply to all members
 - `switchport mode trunk` / `switchport trunk allowed vlan 10,20,99` — trunk settings applied to the bundle as a whole
 
