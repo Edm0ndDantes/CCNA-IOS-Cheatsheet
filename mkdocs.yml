@@ -41,6 +41,7 @@ nav:
   - WLANs: wlan.md
   - Frame Forwarding and Packet Switching: forwarding.md
   - Management and Monitoring: management.md
+  - Virtualization and Automation: virt-auto.md
   - Troubleshooting: troubleshooting.md
   - Miscellaneous: misc.md
 
