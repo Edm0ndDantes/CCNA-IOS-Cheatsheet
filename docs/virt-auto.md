@@ -267,5 +267,6 @@ resource "iosxe_vlan" "iot" {
 
 ## V.10 Network Automation Resources
 
-[Netmiko](https://python-automation-book.readthedocs.io/en/1.0/12_netmiko/01_netmiko.html)
-[NAPALM](https://napalm.readthedocs.io/en/latest/)
+- [Netmiko](https://python-automation-book.readthedocs.io/en/1.0/12_netmiko/01_netmiko.html)
+
+- [NAPALM](https://napalm.readthedocs.io/en/latest/)
