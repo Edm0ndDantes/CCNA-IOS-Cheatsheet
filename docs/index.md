@@ -1,4 +1,4 @@
-# Cisco Handbook IOS Command Cheatsheet for CCNA
+# Handbook & Cisco IOS Command Cheatsheet for CCNA
 
 A practical reference for configuring Cisco routers and switches. 
 Single commands are presented in tables; multi-step setup processes are shown as code blocks with each command explained below.
