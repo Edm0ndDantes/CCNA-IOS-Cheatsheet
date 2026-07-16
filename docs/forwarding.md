@@ -55,6 +55,7 @@ The buffer memory that absorbs this is organized in one of two architectures:
 Two further details worth knowing:
 
 - **Ingress vs egress queueing:** frames can queue at the input (before the forwarding decision/fabric) and at the output (waiting for the wire). Output queues dominate in practice — congestion is almost always an *egress* phenomenon (the decision is fast; the transmit is the bottleneck). Pure ingress queueing suffers **head-of-line blocking**: a frame stuck waiting for a busy output port blocks frames behind it that are bound for idle ports — one reason shared-memory/pointer designs and virtual output queues won.
+
 - **When the buffer is full, frames drop** — this is a *tail drop*, and it's normal behavior under sustained oversubscription, not a fault. Buffers absorb **bursts**; they cannot fix a link that is simply too small (a bigger buffer there just adds delay — bufferbloat). Persistent drops are a capacity or QoS problem: QoS is precisely the toolset that decides *which* frames enter *which* queue and *what* drops first.
 
 Where you see all of this in IOS:
@@ -113,7 +114,7 @@ For every packet, conceptually:
 
 ## F.7 Annotated example — `show ip cef` and the adjacency
 
-```
+```text linenums="1"
 R1# show ip cef 192.168.20.5 detail
 192.168.20.0/24, epoch 2
   nexthop 10.1.1.2 GigabitEthernet0/1
@@ -126,6 +127,9 @@ IP       GigabitEthernet0/1        10.1.1.2(11)
 ```
 
 **How to read it:**
+
 - The FIB entry answers step 4 of §F.4 in one line: packets to `192.168.20.5` matched `/24`, exit `g0/1`, next-hop `10.1.1.2`. If this disagrees with `show ip route`, the FIB is stale — `clear ip route *` or investigate.
+
 - The adjacency hex is the **pre-built frame header**: destination MAC `0c1a.2b3c.4d5e` (next-hop), source MAC `0c1a.2b3c.4d00` (this router's `g0/1`), EtherType `0800` (IPv4). Forwarding a packet = FIB lookup + prepend these 14 bytes + fix TTL/checksum. That's the whole trick.
+
 - `ARP 03:12:44` — the rewrite was learned from ARP and ages with it. A missing adjacency (`glean`) here + working route = ARP problem, not routing problem.
