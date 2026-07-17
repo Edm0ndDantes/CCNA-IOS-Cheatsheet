@@ -1,5 +1,93 @@
 # OSPF (Open Shortest Path First)
 
+## OSPF theory — link-state fundamentals
+
+Distance-vector protocols (RIP) learn *rumors*: "network X is 3 hops that way, trust me." Link-state protocols work like navigation apps: every router obtains **the full map** and computes its own routes:
+
+1. **Meet the neighbors** — Hello packets discover adjacent routers and keep the relationship alive.
+2. **Flood the topology** — each router describes its links in **LSAs** (Link-State Advertisements); LSAs are flooded reliably until **every router in the area holds an identical LSDB** (Link-State Database). This is why `show ip ospf database` looks the same on every router in area 0.
+3. **Compute independently** — each router runs **Dijkstra's SPF algorithm** on the LSDB, building a shortest-path tree with *itself* as the root; the best (lowest total cost) path per destination goes to the routing table.
+
+Consequences worth internalizing: OSPF routers don't exchange *routes*, they exchange *topology* — so a lying/misconfigured router corrupts the shared map (the argument for OSPF authentication); and any link change forces a partial or full SPF re-run on every router in the area — the argument for **areas** (contain the flooding/recalculation) on large networks.
+
+**Router ID selection** (evaluated once, at process start): explicit `router-id` command → else highest **loopback** IP → else highest active physical interface IP. Always set it manually — and remember a new RID takes effect only after `clear ip ospf process`.
+
+### The five OSPF packet types
+
+All ride directly on IP **protocol 89** (no TCP/UDP) — reliability is built in via acknowledgments:
+
+| # | Packet | Role |
+|---|---|---|
+| 1 | **Hello** | Discover/keepalive neighbors; carries the parameters that must match (see below). Multicast to `224.0.0.5` (all OSPF routers) |
+| 2 | **DBD** (Database Description) | A *table of contents* of the sender's LSDB — headers only — exchanged when synchronizing |
+| 3 | **LSR** (Link-State Request) | "Send me the full copy of these LSAs I'm missing/have stale" |
+| 4 | **LSU** (Link-State Update) | The actual LSAs — both the answer to an LSR and the flooding vehicle for changes |
+| 5 | **LSAck** | Acknowledges LSUs — makes flooding reliable |
+
+(`224.0.0.6` is the *DR/BDR-only* group — DROthers send their LSUs there; the DR re-floods to `224.0.0.5`.)
+
+### The neighbor state machine — what each state means
+
+The states from `show ip ospf neighbor` in order, with what's happening (the troubleshooting map in §18.7 tells you which *stuck* state implies which fault — this is the theory behind it):
+
+| State | Meaning |
+|---|---|
+| **Down** | No Hellos heard from this neighbor |
+| **Init** | I hear your Hellos, but they don't list *my* RID yet (one-way) |
+| **2-Way** | Both Hellos list each other — bidirectional confirmed. **DR/BDR election happens here.** Non-DR pairs on a LAN *stay* here by design |
+| **ExStart** | Master/slave negotiation (higher RID = master) for the DBD exchange; MTU mismatch traps adjacencies here |
+| **Exchange** | DBDs (LSDB summaries) flow |
+| **Loading** | LSRs sent for missing entries; LSUs arriving |
+| **Full** | LSDBs identical — true adjacency. Routes can now be computed through this neighbor |
+
+**Hello requirements — the mismatch checklist.** Two routers become neighbors only if these agree: same **subnet** and mask, same **area** ID, same **Hello/Dead timers**, same **authentication**, same area type (stub flags), unique **RIDs**, and matching **MTU** (checked at ExStart, not in the Hello). Timers by network type: Ethernet/broadcast **10/40 s**, point-to-point 10/40, NBMA 30/120 — and the dead interval is simply 4× hello unless set.
+
+### DR/BDR — why and how
+
+On a multi-access segment (Ethernet), *n* routers forming full adjacencies with each other would mean **n(n−1)/2** adjacency pairs all flooding to all — a mess. Instead the segment elects a **Designated Router** (and a **Backup DR** that maintains full adjacencies but stays quiet): everyone forms Full only with the DR/BDR, DROthers stay at 2-Way with each other, and all flooding goes *through* the DR. Adjacencies drop from n(n−1)/2 to 2(n−2)+1.
+
+**Election rules (the exam favorites):**
+
+- Highest **interface priority** wins (default 1; `ip ospf priority 0` = refuses the role; range 0–255)
+- Tie → highest **Router ID**
+- **No preemption:** a "better" router joining later does *not* take over — the DR keeps the job until it dies (then the BDR is promoted and a new BDR is elected). To force a re-election after changing priorities: `clear ip ospf process` on the segment's routers, or bounce the interfaces
+- Point-to-point links skip the election entirely — no DR/BDR (`FULL/ -` in the neighbor table), which is why `ip ospf network point-to-point` on router-to-router Ethernet links is a common optimization (faster adjacency, one less thing to elect)
+
+### Cost calculation — worked end-to-end example
+
+The formula and reference-bandwidth mechanics are in the tuning subsection above; here is how the *route metric* is actually assembled. Cost is counted on **outgoing interfaces only, along the direction of travel**:
+
+```
+R1 ----GigE---- R2 ----FastE---- R3 ----GigE---- 192.168.20.0/24
+     cost 1          cost 10           cost 1     (ref-bw 1000 Mb/s everywhere)
+
+R1's metric to 192.168.20.0/24:
+  R1's outgoing GigE (1) + R2's outgoing FastE (10) + R3's outgoing GigE (1) = 12
+  → show ip route on R1:  O 192.168.20.0/24 [110/12] via ...
+```
+
+- The *inbound* interfaces contribute nothing; costs are asymmetric if link speeds differ per direction of the path — R3's metric back toward R1's LAN can legitimately differ.
+- Equal total cost to the same prefix → **ECMP**: OSPF installs up to 4 equal-cost routes by default (`maximum-paths` raises it) and CEF load-shares per-destination across them. To *prefer* one path, break the tie with `ip ospf cost` on an interface.
+- Practical debugging order: `show ip route ospf` (the total) → `show ip ospf interface` at each hop along the path (the per-hop terms) — the sum must reconcile, and the hop where it doesn't is where someone tuned `bandwidth`/`cost`/reference inconsistently.
+
+### Areas, LSA types, and router roles (multi-area concepts)
+
+CCNA configures single-area OSPF but expects the multi-area vocabulary:
+
+- **Why areas:** bound the LSDB size and the SPF blast radius — a flapping link in area 1 doesn't force SPF runs in area 2. All areas must touch **area 0** (the backbone); inter-area traffic transits it.
+- **Router roles:**
+
+| Role | Definition |
+|---|---|
+| **Internal router** | All interfaces in one area |
+| **Backbone router** | At least one interface in area 0 |
+| **ABR** (Area Border Router) | Interfaces in ≥2 areas — holds an LSDB *per area*, summarizes between them |
+| **ASBR** (Autonomous System Boundary Router) | Injects external routes into OSPF (redistribution; `default-information originate` makes you one) |
+
+- **LSA types to recognize** (deep detail is CCNP, the mapping is CCNA-adjacent): **Type 1** Router-LSA (every router describes its own links, flooded within the area), **Type 2** Network-LSA (generated by the DR for its segment), **Type 3** Summary-LSA (ABR advertises one area's prefixes into another — shows as `O IA` in the routing table), **Type 5** External-LSA (ASBR's redistributed routes — `O E2` by default: metric does *not* accumulate internal cost; `O E1` adds it).
+- Route preference when several OSPF flavors offer the same prefix: `O` (intra-area) > `O IA` > `O E1` > `O E2` — intra-area wins even at a higher metric.
+
+
 ## OSPFv2 (IPv4) basic setup
 
 ``` linenums="1"
@@ -139,3 +227,5 @@ interface g0/0
 **Neighbors stuck / not forming?** Check: mismatched hello/dead timers, different areas, different subnets, `passive-interface`, mismatched authentication, or MTU mismatch (stuck in EXSTART).
 
 ---
+
+
