@@ -9,6 +9,19 @@ A **hypervisor** lets one physical server run many isolated **virtual machines**
 | **Type 1 (bare-metal)** | Directly on hardware | ESXi, Hyper-V, KVM, Proxmox | Data centers — efficiency, production |
 | **Type 2 (hosted)** | As an app on a normal OS | VirtualBox, VMware Workstation | Labs, desktops (your CML/EVE-NG labs) |
 
+**Hypervisors:**
+
+| | Type 1 (bare-metal) | Type 2 (hosted) |
+|---|---|---|
+| Installs on | **Directly on hardware** | On top of a **host OS** |
+| Hardware access | **Direct** | Through the host OS |
+| Needs a **management console**? | **Yes** | No |
+| Best for | Enterprise/data-center **server consolidation** | Labs, desktops (VMware Fusion/Workstation, VirtualBox) |
+
+- A **hypervisor's** main job: **create and manage multiple VM instances** on a host, each able to run a different OS on one CPU — the essence of **virtualization**.
+- **Virtualization aids disaster recovery** via **live migration** and **hardware abstraction** — the recovery site **need not have identical hardware** to production.
+
+
 **Containers** virtualize at the OS level instead: all containers share the host's kernel, packaging only the app + dependencies (Docker; orchestrated at scale by Kubernetes):
 
 | | VM | Container |
@@ -46,6 +59,13 @@ Every network device has three **planes**:
 
 **Cisco's controllers:** **Catalyst Center** (formerly DNA Center) for the enterprise campus; **ACI/APIC** in the data center; **Meraki dashboard** and **vManage (SD-WAN)** in the cloud.
 
+**Cisco ACI:**
+
+- **APIC** (Application Policy Infrastructure Controller) = the "brain": **translates application policies into network programming**.
+
+- **Spine-leaf** two-tier fabric: **every leaf connects to every spine; leaves never connect to each other**, spines never to each other → every endpoint is **one hop** away.
+
+
 ## V.3 Intent-Based Networking (IBN)
 
 IBN is the layer *above* SDN: you declare the **business intent**, the system translates, deploys, and — the part that makes it IBN rather than just automation — **continuously verifies** the network still fulfills it. The canonical loop:
@@ -70,7 +90,19 @@ IBN is the layer *above* SDN: you declare the **business intent**, the system tr
 
 Same underlay/overlay logic as the GRE/IPsec chapter, applied network-wide and automated. In SD-Access the VXLAN header carries an **SGT** (security group tag), enabling policy independent of IP addressing; edge switches encapsulate, the controller orchestrates.
 
+**SDN / controller APIs:**
+
+| API | Direction | Talks to |
+|---|---|---|
+| **Northbound (NBI)** | Controller ↔ **applications** (upstream) | REST APIs to business/SDN apps |
+| **Southbound (SBI)** | Controller ↔ **network devices** (downstream) | OpenFlow/NETCONF to switches/routers |
+
 ## V.5 REST APIs
+
+**REST API request anatomy** — the **query portion** contains three components: **format** (JSON/XML/YAML), **key** (authentication), and **parameters**.
+
+**API access types:** **open/public** (anyone), **partner** (specific business partners), **private/internal** (in-org only — e.g. salespeople reaching internal data from mobile).
+
 
 A **REST API** exchanges structured data over HTTP(S). The verbs map to **CRUD**:
 
@@ -122,6 +154,14 @@ The token workflow, using Catalyst Center as the example:
 - `401` mid-script almost always = expired token, not wrong credentials — re-authenticate and retry.
 
 ## V.6 Data formats — JSON, XML, YAML
+
+**Data formats:**
+
+- **JSON** — objects in `{ }` as `"key": value` pairs (keys are quoted strings); arrays in `[ ]`, comma-separated. **JSON array rules:** values in **square brackets**, separated by **commas**.
+
+- **XML** — data wrapped in tag pairs `<tag>data</tag>`.
+
+- **YAML** — `key: value` pairs, **indentation-based**, no brackets/quotes/commas.
 
 ### JSON (what APIs speak — interpreting it is an exam certainty)
 
@@ -270,3 +310,11 @@ resource "iosxe_vlan" "iot" {
 - [Netmiko](https://python-automation-book.readthedocs.io/en/1.0/12_netmiko/01_netmiko.html)
 
 - [NAPALM](https://napalm.readthedocs.io/en/latest/)
+
+
+
+
+
+
+
+

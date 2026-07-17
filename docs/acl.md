@@ -1,5 +1,21 @@
 # Access Control Lists (ACLs)
 
+**The "three Ps":** one ACL **per protocol, per direction, per interface**. → A 2-interface router routing IPv4 **and** IPv6 can have 2 × 2 × 2 = **8** ACLs applied.
+
+**Placement:**
+- **Standard ACL** (filters **source IP only**) → place **close to the destination**.
+- **Extended ACL** (source + dest + protocol + ports) → place **close to the source** to drop unwanted traffic early.
+
+**`access-class` on VTY lines:** applies an ACL to **who can Telnet/SSH into the device**. Match counters on the permit line = accepted management attempts; the deny line = blocked attempts from other networks.
+
+**Evaluation logic:**
+- ACEs are processed **top-down**; first match wins.
+- Every ACL ends in an **implicit `deny any`** (no counter shown).
+- A **protocol mismatch** (e.g. ACL says `tcp eq dns` but the packet is `udp`, or vice-versa) means the packet **doesn't match** and falls through to the implicit deny.
+- **Named/sequenced editing:** you can delete a single line (`no 20`) and insert one (`5 permit …`); lower sequence numbers are evaluated first — inserting `5 permit tcp any any eq 22` **before** a `10 deny tcp any any` is what lets SSH through while Telnet is still blocked.
+
+**Reading a wildcard range in an ACE:** e.g. `172.18.20.0 0.0.0.31` = addresses `.0`–`.31`. A non-contiguous wildcard like `0.0.2.255` only matches third-octet values where the relevant bit is 0 (matches .100 and .102 but **not** .101).
+
 ## Numbered standard ACL (filters by SOURCE only; 1–99, 1300–1999)
 Global command syntax for standard numbered access lists.
 ``` linenums="1"

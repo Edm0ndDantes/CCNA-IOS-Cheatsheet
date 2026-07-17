@@ -1,3 +1,61 @@
+# Network Security & Hardening
+
+## Network Security Fundamentals
+
+### S.1 Malware types
+
+| Type | Defining trait |
+|---|---|
+| **Virus** | Malicious code that **requires end-user activation** (open a file/app, power on); can lie **dormant** then trigger on a date; spreads by infecting other files |
+| **Worm** | Self-replicates and spreads **independently**, exploiting vulnerabilities with no user action |
+| **Trojan horse** | Malware hidden inside a **seemingly legitimate** program |
+| **Botnet / zombies** | A network of infected hosts ("zombies") remotely **controlled by an attacker** to attack others or steal data |
+| **Spyware / rootkit** | Covertly gathers data / hides deep in the OS to retain privileged access |
+
+*(Note: the courseware also lists "enabling vulnerability + propagation mechanism + payload" as the anatomy of a **worm**, not a virus.)*
+
+### S.2 Attack categories
+
+- **Reconnaissance** — information gathering: **scan for accessibility**, map devices/services (precursor to an attack).
+- **Access** — gain/escalate unauthorized access, **retrieve or modify data**, privilege escalation.
+- **DoS / DDoS** — overwhelm a host/interface with **extreme volumes of data** to deny service (DDoS uses a botnet).
+
+### S.3 Specific L2/infrastructure attacks
+
+| Attack | Mechanism | Mitigation |
+|---|---|---|
+| **DHCP spoofing** | Rogue DHCP server hands clients a **false default gateway** to intercept traffic | **DHCP snooping** |
+| **ARP cache poisoning** | Forged ARP maps attacker's MAC to a legitimate IP | Dynamic ARP Inspection |
+| **DNS attacks on open resolvers** | **Amplification & reflection** (mask/inflate the attack), and **resource-utilization** DoS; also **cache poisoning** | Restrict/secure resolvers |
+| **TCP SYN flood** | Half-open connections exhaust the server | — |
+
+### S.4 Penetration-testing tool categories
+
+| Tool type | Purpose | Examples |
+|---|---|---|
+| **Password crackers** | Repeatedly **guess/crack passwords** | John the Ripper, THC Hydra, RainbowCrack, Medusa |
+| **Packet sniffers** | **Capture & analyze** LAN/WLAN traffic | Wireshark, tcpdump |
+| **Debuggers** | **Reverse-engineer binaries** to write exploits / analyze malware | GDB, WinDbg, IDA Pro |
+| Fuzzers / packet crafters | Probe robustness with forged packets | — |
+
+### S.5 The four goals of secure communication
+
+| Goal | Guarantees |
+|---|---|
+| **Confidentiality** | Only authorized parties can read it — via **encryption** |
+| **Integrity** | The message wasn't altered — via a **hash** (MD5, SHA) |
+| **Origin authentication** | It genuinely came from the claimed sender — hash recalculated with a **predetermined/secret key** (HMAC) |
+| **Non-repudiation** | The sender can't later deny sending it |
+
+### S.6 Symmetric vs asymmetric keys
+
+- **Symmetric** — one shared secret key encrypts and decrypts (fast; AES, 3DES). Used for **bulk data confidentiality**.
+- **Asymmetric** — a **public/private key pair**; the *complementary* key decrypts:
+  - **Public key encrypts → private key decrypts** (confidentiality to the key owner)
+  - **Private key encrypts → public key decrypts** (origin authentication / signatures)
+  - Keys are **not** interchangeable — you can't decrypt with the same key that encrypted.
+- **Common algorithm roles** (as IPsec uses them): **AES** = encryption (confidentiality); **MD5 / SHA** = hashing (integrity); **DH** = key exchange; **RSA** = authentication.
+
 ## Security Hardening
 
 ### Passwords & encryption

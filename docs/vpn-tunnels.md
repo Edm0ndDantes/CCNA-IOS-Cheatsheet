@@ -1,9 +1,44 @@
 # VPNs & Tunnels
-Covers **GRE** (theory + commands), **IPsec** (theory + commands), and **MPLS** (theory + core commands).
+## VPN Types & Classification
 
+### VP.1 What a VPN is
+
+A VPN creates a **private network across a public network** using **virtual (logical) connections** instead of dedicated physical links — carrying traffic securely over the shared Internet.
+
+### VP.2 The two fundamental types
+
+| Type | Connects | "Always on"? | Client needed? |
+|---|---|---|---|
+| **Site-to-site** | **Entire networks** (site ↔ site) via VPN gateways | Yes, static | No — transparent to end hosts |
+| **Remote-access** | **Individual users** to a network | On demand | Yes — VPN client (or clientless browser) on the user device |
+
+- **Remote-access examples:** a mobile sales agent connecting from a hotel; an employee running VPN client software from home.
+- **Site-to-site examples:** a branch office ASA tunneling to HQ; a permanent tunnel to a supplier; connecting two merged companies' networks **without leased-line cost** → site-to-site VPN is the cost-effective answer.
+
+### VP.3 Enterprise-managed vs provider-managed
+
+| Managed by | Site-to-site | Remote-access |
+|---|---|---|
+| **Enterprise** | **IPsec VPN**, **GRE over IPsec**, **DMVPN**, IPsec VTI | Clientless SSL VPN, client-based IPsec/SSL (AnyConnect) |
+| **Service provider** | **Layer 3 MPLS VPN**, Layer 2 VPN | — |
+
+### VP.4 Remote-access technologies
+
+- **SSL/TLS VPN** — connects using **Transport Layer Security**; works through a standard **web browser**. If a user's host lacks the **Cisco AnyConnect** client, they start a **clientless SSL VPN** in a compliant browser and download/install the client from there.
+- **IPsec remote-access** — client-based, stronger for full network-layer access.
+
+### VP.5 DMVPN & mGRE
+
+- **DMVPN** builds many site-to-site tunnels **dynamically and scalably** from three components: **mGRE + NHRP + IPsec**.
+- **mGRE** (multipoint GRE) provides a **permanent tunnel source at the hub** with **dynamically allocated tunnel destinations at the spokes** — one hub interface serves all spokes, enabling on-demand spoke-to-spoke tunnels.
+- **NHRP** is the distributed **address-mapping** database (spoke public IPs); **IPsec** encrypts.
+
+### VP.6 Why GRE-over-IPsec for routing protocols
+
+Pure **IPsec carries unicast only** — it can't transport the **multicast/broadcast** that OSPF/EIGRP rely on. **GRE encapsulates multicast/broadcast**, and IPsec then encrypts the GRE packet → **GRE over IPsec** is the standard for running a routing protocol across an encrypted site-to-site link.
 ---
 
-## 1. Tunneling & VPN Concepts
+## Tunneling & VPN Concepts
 
 A **tunnel** encapsulates one protocol inside another so traffic can cross a network that couldn't otherwise carry it (private addresses across the Internet, IPv6 across IPv4, multicast across a unicast-only core). A **VPN** is a tunnel with privacy expectations — though not every tunnel encrypts (GRE and MPLS do **not**).
 
@@ -21,7 +56,7 @@ A **tunnel** encapsulates one protocol inside another so traffic can cross a net
 
 This is why tunnel interfaces almost always carry `ip mtu` and `ip tcp adjust-mss` commands — forgetting them is the #1 cause of "ping works but HTTPS hangs" over tunnels.
 
-### 1.1 Packet anatomy — before & after encapsulation
+### VP.7 Packet anatomy — before & after encapsulation
 
 Reference topology used in all diagrams below (the same one as the config sections):
 
@@ -158,9 +193,9 @@ Step 2 — ESP transport mode wraps it (reuses the GRE packet's header):
 
 ---
 
-## 2. GRE (Generic Routing Encapsulation)
+## GRE (Generic Routing Encapsulation)
 
-### 2.1 Theory
+### VP.8 Theory
 
 - GRE wraps an inner packet (IPv4, IPv6, or even non-IP) in a new IP header (protocol **47**) plus a 4-byte GRE header. Total overhead: **24 bytes** (20 IP + 4 GRE).
 - The tunnel appears as a **point-to-point interface** (`tunnel0`). Anything routable over an interface is routable over a GRE tunnel — including **routing protocols and multicast**, which plain IPsec can't carry. This is GRE's main selling point.
@@ -169,7 +204,7 @@ Step 2 — ESP transport mode wraps it (reuses the GRE packet's header):
 - **Recursive routing** — the classic GRE failure: if the router learns the route to the *tunnel destination itself* **through the tunnel**, the tunnel collapses (it would need itself to reach itself). IOS detects it and logs `%TUN-5-RECURDOWN`, flapping the tunnel. Prevention: reach the tunnel destination via a static route or a routing process that never runs inside the tunnel.
 - Tunnel state logic: the interface is `up/up` if it has a source, a destination, and a route to the destination — **it does not verify the far end is alive**. Add `keepalive` to detect a dead peer.
 
-### 2.2 Configuration (point-to-point GRE between two sites)
+### VP.9 Configuration (point-to-point GRE between two sites)
 
 **R1 (site A, public IP 203.0.113.1):**
 
@@ -222,7 +257,7 @@ router ospf 1
 - `network 192.168.1.0 0.0.0.255 area 0` — advertise the local LAN into it
 - **Never** advertise the tunnel destination's public network into this process, or recursive routing kills the tunnel
 
-### 2.3 Verification
+### VP.10 Verification
 
 | Command | Explanation |
 |---|---|
@@ -233,7 +268,7 @@ router ospf 1
 | `ping 192.168.2.1 source g0/0` | Test end-to-end, sourced from the LAN (proves routing, not just the tunnel) |
 | `debug tunnel` | Watch encapsulation events (lab use) |
 
-### 2.4 Annotated example — `show interfaces tunnel0`
+### VP.11 Annotated example — `show interfaces tunnel0`
 
 ```text linenums="1"
 R1# show interfaces tunnel0
@@ -258,9 +293,9 @@ Tunnel0 is up, line protocol is up
 
 ---
 
-## 3. IPsec
+## IPsec
 
-### 3.1 Theory
+### VP.12 Theory
 
 IPsec is a framework of protocols that provides 
 - **confidentiality** (encryption), 
@@ -291,7 +326,7 @@ at the IP layer.
 
 **Algorithm quick guidance:** prefer `aes 256` / AES-GCM, `sha256` or better, DH group `14`+ (or 19/20 ECDH); avoid DES/3DES, MD5, SHA-1, and groups 1/2/5 — they appear in old examples and exams but are broken or deprecated.
 
-### 3.2 Site-to-site IPsec, IKEv1 with crypto map
+### VP.13 Site-to-site IPsec, IKEv1 with crypto map
 
 **R1 (203.0.113.1), protecting LAN 192.168.1.0/24 ↔ remote LAN 192.168.2.0/24:**
 
@@ -328,7 +363,7 @@ interface g0/1
 
 **Gotcha — NAT vs VPN:** if the same router also does PAT to the Internet, the NAT ACL must **deny** the VPN traffic first (`deny ip 192.168.1.0 0.0.0.255 192.168.2.0 0.0.0.255` above the `permit`), otherwise packets are translated before encryption and never match the crypto ACL.
 
-### 3.3 IPsec verification
+### VP.14 IPsec verification
 
 | Command | Explanation |
 |---|---|
@@ -341,7 +376,7 @@ interface g0/1
 | `debug crypto isakmp` | Watch Phase 1 negotiate — the #1 tool for "tunnel won't come up" (lab/maintenance window) |
 | `debug crypto ipsec` | Watch Phase 2 / SA installation |
 
-### 3.4 Modern equivalent: IKEv2 with SVTI (route-based VPN)
+### VP.15 Modern equivalent: IKEv2 with SVTI (route-based VPN)
 
 Instead of a crypto map + ACL ("policy-based"), modern IOS builds the VPN as a **virtual tunnel interface** — anything *routed into the tunnel* gets encrypted ("route-based"). Cleaner, supports routing protocols natively, no mirror-image ACLs.
 
@@ -379,7 +414,7 @@ interface tunnel0
 - `tunnel protection ipsec profile IPSEC-PROF` — encrypt everything entering this interface
 - Now simply **route** through `tunnel0` (static or OSPF/EIGRP/BGP) — the routing table decides what's encrypted
 
-### 3.5 GRE over IPsec (encrypted tunnel that carries routing protocols)
+### VP.16 GRE over IPsec (encrypted tunnel that carries routing protocols)
 
 Take the GRE tunnel from §2.2 and add protection — two extra blocks:
 
@@ -395,7 +430,7 @@ interface tunnel0
 - Best practice: add `mode transport` under the transform set — the GRE header already tunnels, so transport mode saves 20 bytes of double-encapsulation
 - Result: OSPF/EIGRP/multicast flow like plain GRE, but everything on the wire is ESP
 
-### 3.6 Annotated example — `show crypto isakmp sa` and `show crypto ipsec sa`
+### VP.17 Annotated example — `show crypto isakmp sa` and `show crypto ipsec sa`
 
 ```text linenums="1"
 R1# show crypto isakmp sa
@@ -431,9 +466,9 @@ interface: GigabitEthernet0/1
 
 ---
 
-## 4. MPLS (Multiprotocol Label Switching)
+## MPLS (Multiprotocol Label Switching)
 
-### 4.1 Theory
+### VP.18 Theory
 
 MPLS forwards packets by a short **label** instead of the destination IP — routers in the core switch labels without ever looking up the full routing table, and more importantly, labels let providers build **separated customer VPNs** over one shared backbone.
 
@@ -460,7 +495,7 @@ MPLS forwards packets by a short **label** instead of the destination IP — rou
 - **MP-BGP** carries these VPNv4 routes between PEs, along with a **VPN label**. Packets in the core carry a **two-label stack**: outer = transport label (LDP, gets you to the egress PE), inner = VPN label (tells the egress PE which VRF/next-hop). The P routers only ever see the outer label — that's the separation.
 - From the enterprise view: you hand your routes to the PE via static/OSPF/eBGP, and the provider's MPLS is invisible — but knowing the theory explains provider terms (RD/RT, VPNv4) and why traceroutes through the core may show `MPLS: Label 24005` hops.
 
-### 4.2 Core commands — enabling MPLS/LDP
+### VP.19 Core commands — enabling MPLS/LDP
 
 Prerequisite: a working IGP (e.g., OSPF) across all MPLS-enabled links, ideally with `/32` loopbacks advertised (LDP sessions and BGP next-hops ride on them).
 
@@ -488,7 +523,7 @@ Optional hardening/tuning:
 | `mpls ldp igp sync` | Don't route traffic onto a link until LDP is up on it (prevents blackholing after link recovery) |
 | `no mpls ip propagate-ttl` | Hide the MPLS core from customer traceroutes (they see one hop instead of every P router) |
 
-### 4.3 VRF commands (the PE-side building block)
+### VP.20 VRF commands (the PE-side building block)
 
 Even outside a provider, **VRF-lite** (VRFs without MPLS) is common in enterprises for tenant/guest separation — same commands, no label stack:
 
@@ -518,7 +553,7 @@ Working *inside* a VRF requires VRF-aware commands:
 | `traceroute vrf CUSTOMER-A 10.1.1.2` | Trace within the VRF |
 | `ip route vrf CUSTOMER-A 10.2.0.0 255.255.255.0 10.1.1.2` | Static route inside the VRF |
 
-### 4.4 MPLS verification
+### VP.21 MPLS verification
 
 | Command | Explanation |
 |---|---|
@@ -530,7 +565,7 @@ Working *inside* a VRF requires VRF-aware commands:
 | `show ip cef 10.0.0.5 detail` | Exactly how one destination is forwarded, labels included |
 | `traceroute 10.0.0.5` | Labeled hops appear as `MPLS: Label 24005 Exp 0` — proof packets ride the LSP |
 
-### 4.5 Annotated example — `show mpls forwarding-table`
+### VP.22 Annotated example — `show mpls forwarding-table`
 
 ```text linenums="1"
 P1# show mpls forwarding-table

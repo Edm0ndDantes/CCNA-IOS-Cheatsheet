@@ -1,8 +1,34 @@
-# Reading Command Output — Annotated Examples
+# Troubleshooting Methodology
+
+## T.1 The three structured approaches
+
+| Method | Direction | Best when |
+|---|---|---|
+| **Bottom-up** | Start at **physical (L1)**, work **up** the OSI layers | Suspected physical/cabling issue; thorough but can be slow |
+| **Top-down** | Start at the **application (L7)**, work **down** | Suspected software/application issue |
+| **Divide-and-conquer** | Start at a **chosen layer** based on symptoms, then go up or down | You have a reasonable guess where the fault lies |
+
+- **Example of divide-and-conquer:** a URL fails but the **IP address works** → the problem is isolated to **name resolution (DNS)**, layers below are fine.
+- **Educated guess ("shoot-from-the-hip")** — a **less-structured** approach relying on experience/intuition; appropriate for **seasoned** admins, risky for beginners.
+
+## T.2 Gathering symptoms — key step
+
+- **Narrow the scope**: determine whether the problem sits at the **core, distribution, or access** layer — this focuses which equipment to examine next.
+
+## T.3 Common physical-layer fault: duplex mismatch
+
+A **duplex mismatch** = the two link ends run **different duplex modes**. Two ways it happens:
+
+1. **Both ends manually set** to different modes (one full, one half).
+2. **One end autonegotiates while the other is hard-set to full-duplex** — autonegotiation fails to detect duplex and **defaults to half**, so the fixed-full end mismatches.
+
+Symptoms: **late collisions**, CRC/interface errors, poor throughput. (Note: a speed difference alone, like 100 vs 1000 Mbps, does **not** create a duplex mismatch — the link simply won't come up or negotiates a common speed.)
+
+## T.4 Reading Command Output — Annotated Examples
 
 Realistic output from the most important verification commands, with explanations of what to look for.
 
-## `show ip route`
+### `show ip route`
 
 ``` linenums="1"
 R1# show ip route
@@ -35,7 +61,7 @@ L        192.168.10.1/32 is directly connected, GigabitEthernet0/0
 
 - **Longest prefix wins:** a packet to 192.168.20.5 matches `192.168.20.0/24` (specific) over `0.0.0.0/0` (default), regardless of AD or metric.
 
-## `show ip interface brief`
+### `show ip interface brief`
 
 ``` linenums="1"
 R1# show ip interface brief
@@ -58,7 +84,7 @@ Vlan1                  unassigned      YES unset  down                  down
 
 - **Method** shows where the IP came from: `manual` (typed), `DHCP`, `unset` (none).
 
-## `show interfaces g0/0` (key excerpts)
+### `show interfaces g0/0` (key excerpts)
 
 ``` linenums="1"
 GigabitEthernet0/0 is up, line protocol is up
@@ -84,7 +110,7 @@ GigabitEthernet0/0 is up, line protocol is up
 
 - `BW 1000000 Kbit/sec` — the bandwidth value OSPF/EIGRP use for metrics; it can be set with the `bandwidth` command without changing real speed.
 
-## `show vlan brief`
+### `show vlan brief`
 
 ``` linenums="1"
 S1# show vlan brief
@@ -107,7 +133,7 @@ VLAN Name                             Status    Ports
 
 - VLANs 1002–1005 are legacy FDDI/Token-Ring placeholders — ignore them; they can't be deleted.
 
-## `show interfaces trunk`
+### `show interfaces trunk`
 
 ``` linenums="1"
 S1# show interfaces trunk
@@ -132,7 +158,7 @@ Gi0/1       10,20
 
 - The three VLAN lists narrow down: *allowed* (your config) → *active* (VLAN actually exists) → *forwarding* (STP isn't blocking it). **A VLAN missing from a lower list than the one above it is your fault line:** allowed but not active = VLAN not created; active but not forwarding = STP blocking or pruned (here VLAN 99 is not forwarding — it has no member ports, which is normal).
 
-## `show spanning-tree vlan 10`
+### `show spanning-tree vlan 10`
 
 ``` linenums="1"
 S2# show spanning-tree vlan 10
@@ -164,7 +190,7 @@ Fa0/5               Desg FWD 19        128.7    P2p Edge
 
 - `P2p Edge` on Fa0/5 = PortFast is active (host port, skips listening/learning).
 
-## `show ip ospf neighbor`
+### `show ip ospf neighbor`
 
 ``` linenums="1"
 R1# show ip ospf neighbor
@@ -185,7 +211,7 @@ Neighbor ID     Pri   State           Dead Time   Address         Interface
 
 - **Dead Time** counts down from the dead interval and resets with each hello — it should hover, never reach zero.
 
-## `show ip nat translations`
+### `show ip nat translations`
 
 ``` linenums="1"
 R1# show ip nat translations
@@ -204,7 +230,7 @@ icmp 203.0.113.5:1       192.168.10.11:1     8.8.8.8:1           8.8.8.8:1
 
 - Empty table when you expect translations? Check: interfaces marked `ip nat inside`/`ip nat outside`, the ACL actually matches the source, and remember translations only appear when traffic flows.
 
-## `show access-lists`
+### `show access-lists`
 
 ``` linenums="1"
 R1# show access-lists
@@ -220,7 +246,7 @@ Extended IP access list BLOCK-WEB
 
 - Matches only count on the interface(s) where the ACL is applied, and the implicit deny at the end has **no counter** — add an explicit `deny ip any any log` line to see what's being silently dropped.
 
-## `show port-security interface f0/5`
+### `show port-security interface f0/5`
 
 ``` linenums="1"
 S1# show port-security interface f0/5
@@ -242,7 +268,7 @@ Security Violation Count   : 1
 
 - Recover: fix the physical issue, then `shutdown` / `no shutdown` on the interface (the violation count survives; clear with `clear port-security sticky`).
 
-## `show etherchannel summary`
+### `show etherchannel summary`
 
 ``` linenums="1"
 S1# show etherchannel summary
@@ -262,7 +288,7 @@ Group  Port-channel  Protocol    Ports
 
 - `Po2(SD)` is down: `Gi0/3(I)` = operating stand-alone (LACP got no response — is the far side configured?), `Gi0/4(s)` = **suspended**, almost always a **member mismatch** (VLAN list, speed, duplex, or mode differs from the channel). Fix the member config or the far end.
 
-## `show standby brief` (HSRP)
+### `show standby brief` (HSRP)
 
 ``` linenums="1"
 R1# show standby brief
@@ -281,7 +307,7 @@ Gi0/0       1    150 P Active  local           192.168.10.3    192.168.10.1
 
 ---
 
-## Quick "is it working?" checklist
+### Quick "is it working?" checklist
 
 | Question | Command |
 |---|---|

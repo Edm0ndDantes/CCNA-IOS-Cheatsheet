@@ -17,6 +17,30 @@ Voice/video are the drivers: TCP data retransmits and survives; real-time UDP st
 
 ## Q.2 Classification & marking
 
+**Order of operations:** traffic must be **classified** *before* it can be **marked**. Mark **as close to the source as possible**; the **trust boundary** is where markings start being believed — a Cisco **IP phone is a trusted marking point** (Trust Boundary 1 in the courseware).
+
+**Layer-2 vs Layer-3 marking:**
+| Marking | Layer | Field | Notes |
+|---|---|---|---|
+| **CoS** | L2 | 802.1Q tag, 3 bits (0–7) | Applies to **Ethernet frames**; lost across routed hops |
+| **IP Precedence** | L3 | ToS byte, 3 bits | Legacy |
+| **DSCP** | L3 | ToS byte, 6 bits (0–63) | Survives end-to-end; modern standard |
+
+**Traffic-type characteristics:**
+| | Voice | Video | Data |
+|---|---|---|---|
+| Packets | Small (~200 B), **predictable, smooth** | **Large, bursty, unpredictable, inconsistent** | Varies |
+| Latency budget | ≤ **150 ms** one-way (Cisco design std) | courseware cites ≤ **400 ms** | Not real-time |
+| Loss tolerance | Low; **more** resilient than video | **Less** resilient to loss than voice | Retransmits (TCP) |
+| Bandwidth | ~30–128 kb/s per call | High (≥ 384 kb/s+) | Varies |
+
+*(The 400 ms video figure is the ENSA courseware value; real-world/other Cisco material treats interactive video like voice at ~150 ms. Voice's ≤150 ms is the reliable number.)*
+
+**Congestion tools recap:**
+- **Policing** — **drops** (or re-marks) excess; sawtooth output; in or out.
+- **Shaping** — **buffers** excess and sends later; smooth output; **egress only**.
+- **WRED** — congestion **avoidance**: drops selectively before the queue is full.
+
 **Classification** = identifying which class a packet belongs to (by ACL, protocol/**NBAR** deep inspection, ingress interface, or an existing marking). **Marking** = writing that decision into the header so every later hop can classify by a cheap field lookup instead of re-inspecting:
 
 | Marking | Where | Bits | Values |

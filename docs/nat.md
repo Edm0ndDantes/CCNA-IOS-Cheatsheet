@@ -1,6 +1,45 @@
 # NAT (Network Address Translation)
 
-Terminology: **inside local** = private IP of a host; **inside global** = its public representation. The `ip nat inside`/`ip nat outside` interface marks are mandatory for any NAT to work.
+**Address terminology (memorize the four):**
+
+| Term | Meaning |
+|---|---|
+| **Inside local** | Private IP of the internal host (real LAN address) |
+| **Inside global** | Public IP representing that host to the outside (often the outside-interface address) |
+| **Outside global** | Real public IP of the external host |
+| **Outside local** | How the external host appears inside (usually same as outside global) |
+
+- In `ip nat inside source static [inside-local] [inside-global]`, the **second** address is the **inside global**, and it's assigned to/reachable via the **outside interface**.
+
+**Required interface tagging** — NAT does nothing until both are set:
+```
+interface fa0/0
+ ip nat inside               ! LAN-facing
+interface s0/0/0
+ ip nat outside              ! ISP-facing   <-- forgetting this is a classic broken-NAT cause
+```
+
+**Binding the ACL to the pool (dynamic/PAT):**
+```
+access-list 1 permit 172.19.89.0 0.0.0.255       ! IDENTIFY inside-local addresses to translate
+ip nat inside source list 1 pool NAT-POOL2       ! BIND the ACL to the pool (missing = NAT won't work)
+ip nat inside source list 1 interface s0/0/0 overload   ! PAT variant onto the outside interface
+```
+
+**Verification & maintenance:**
+| Command | Use |
+|---|---|
+| `show ip nat translations` | Active mappings (inside/outside, local/global) |
+| `show ip nat statistics` | Config parameters, inside/outside interfaces, **pool size & how many addresses allocated** |
+| `clear ip nat translation *` | Remove **dynamic** entries before the 24-h timeout (needed when changing pools) |
+| `debug ip nat` | Live per-packet translation (`s=` source, `d=` dest, `->` translated) |
+
+**Common failure signatures:**
+- `show ip nat statistics` shows **pool 100% allocated** → **pool exhausted**, new clients get nothing.
+- `debug ip nat` shows a translated address on a **different subnet than the ISP interface** → return traffic can't be routed back (inside-global not in the provider's subnet).
+- **Static NAT** with the **wrong inside-local** (e.g. pointing at the router's own interface instead of the server) → the server is unreachable from outside.
+
+
 
 ## Mark the interfaces (required for every NAT type)
 
