@@ -1,0 +1,2325 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ccna-commands.example/virt-auto/">
+      
+      
+        <link rel="prev" href="../management/">
+      
+      
+        <link rel="next" href="../troubleshooting/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/Router-Firewall.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Virtualization and Automation - CCNA Handbook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRed+Hat+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Red Hat Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#virtualization-network-automation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="CCNA Handbook" class="md-header__button md-logo" aria-label="CCNA Handbook" data-md-component="logo">
+      
+  <img src="../assets/Router-Firewall.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CCNA Handbook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Virtualization and Automation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="CCNA Handbook" class="md-nav__button md-logo" aria-label="CCNA Handbook" data-md-component="logo">
+      
+  <img src="../assets/Router-Firewall.svg" alt="logo">
+
+    </a>
+    CCNA Handbook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basics and Navigation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Basics and Navigation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../navigation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IOS CLI Navigation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic-device-config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Device Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interface-config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interface Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security-hardening/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Security & Hardening
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vlans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VLANs and Trunking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spanning Tree Protocol
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../etherchannel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EtherChannel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ipv6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IPv6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../static-routing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Static Routing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dhcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fhrp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    First Hop Redundancy Protocols
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wlan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WLANs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../forwarding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frame Forwarding and Packet Switching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enterprise Networking, Security and Automation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Enterprise Networking, Security and Automation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dynamic-routing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dynamic Routing - OSPF
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wan-tech/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WAN Technologies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enterprise Network Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access Control Lists
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NAT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vpn-tunnels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tunnels and VPNs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dynamic-routing-vpn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dynamic Routing over VPN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../qos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quality of Service (QoS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Management and Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Virtualization and Automation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Virtualization and Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#v1-server-virtualization-hypervisors-vms-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V.1 Server virtualization — hypervisors, VMs, containers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v2-traditional-vs-controller-based-networking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V.2 Traditional vs controller-based networking
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v3-intent-based-networking-ibn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V.3 Intent-Based Networking (IBN)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v4-overlay-underlay-fabric-sd-access-sd-wan-vocabulary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V.4 Overlay, underlay, fabric (SD-Access / SD-WAN vocabulary)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v5-rest-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V.5 REST APIs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="V.5 REST APIs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rest-authentication-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        REST authentication methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v6-data-formats-json-xml-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V.6 Data formats — JSON, XML, YAML
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="V.6 Data formats — JSON, XML, YAML">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#json-what-apis-speak-interpreting-it-is-an-exam-certainty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSON (what APIs speak — interpreting it is an exam certainty)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yaml-what-ansible-speaks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        YAML (what Ansible speaks)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v7-configuration-management-iac-ansible-and-terraform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V.7 Configuration management &amp; IaC — Ansible and Terraform
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="V.7 Configuration management &amp; IaC — Ansible and Terraform">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ansible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ansible
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terraform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terraform
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v8-ai-machine-learning-in-network-operations-new-in-200-301-v11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V.8 AI &amp; machine learning in network operations (new in 200-301 v1.1)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v9-where-the-device-cli-still-shows-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V.9 Where the device CLI still shows up
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v10-network-automation-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V.10 Network Automation Resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../misc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Miscellaneous
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#v1-server-virtualization-hypervisors-vms-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V.1 Server virtualization — hypervisors, VMs, containers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v2-traditional-vs-controller-based-networking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V.2 Traditional vs controller-based networking
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v3-intent-based-networking-ibn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V.3 Intent-Based Networking (IBN)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v4-overlay-underlay-fabric-sd-access-sd-wan-vocabulary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V.4 Overlay, underlay, fabric (SD-Access / SD-WAN vocabulary)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v5-rest-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V.5 REST APIs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="V.5 REST APIs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rest-authentication-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        REST authentication methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v6-data-formats-json-xml-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V.6 Data formats — JSON, XML, YAML
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="V.6 Data formats — JSON, XML, YAML">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#json-what-apis-speak-interpreting-it-is-an-exam-certainty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSON (what APIs speak — interpreting it is an exam certainty)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yaml-what-ansible-speaks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        YAML (what Ansible speaks)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v7-configuration-management-iac-ansible-and-terraform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V.7 Configuration management &amp; IaC — Ansible and Terraform
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="V.7 Configuration management &amp; IaC — Ansible and Terraform">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ansible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ansible
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terraform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terraform
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v8-ai-machine-learning-in-network-operations-new-in-200-301-v11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V.8 AI &amp; machine learning in network operations (new in 200-301 v1.1)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v9-where-the-device-cli-still-shows-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V.9 Where the device CLI still shows up
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v10-network-automation-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V.10 Network Automation Resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href=".." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../dynamic-routing/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Enterprise Networking, Security and Automation
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="virtualization-network-automation">Virtualization &amp; Network Automation</h1>
+<h2 id="v1-server-virtualization-hypervisors-vms-containers">V.1 Server virtualization — hypervisors, VMs, containers</h2>
+<p>A <strong>hypervisor</strong> lets one physical server run many isolated <strong>virtual machines</strong>, each with its own OS, vCPUs, vRAM, vNICs:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Runs</th>
+<th>Examples</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type 1 (bare-metal)</strong></td>
+<td>Directly on hardware</td>
+<td>ESXi, Hyper-V, KVM, Proxmox</td>
+<td>Data centers — efficiency, production</td>
+</tr>
+<tr>
+<td><strong>Type 2 (hosted)</strong></td>
+<td>As an app on a normal OS</td>
+<td>VirtualBox, VMware Workstation</td>
+<td>Labs, desktops (your CML/EVE-NG labs)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Hypervisors:</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Type 1 (bare-metal)</th>
+<th>Type 2 (hosted)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Installs on</td>
+<td><strong>Directly on hardware</strong></td>
+<td>On top of a <strong>host OS</strong></td>
+</tr>
+<tr>
+<td>Hardware access</td>
+<td><strong>Direct</strong></td>
+<td>Through the host OS</td>
+</tr>
+<tr>
+<td>Needs a <strong>management console</strong>?</td>
+<td><strong>Yes</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td>Best for</td>
+<td>Enterprise/data-center <strong>server consolidation</strong></td>
+<td>Labs, desktops (VMware Fusion/Workstation, VirtualBox)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>A <strong>hypervisor's</strong> main job: <strong>create and manage multiple VM instances</strong> on a host, each able to run a different OS on one CPU — the essence of <strong>virtualization</strong>.</li>
+<li><strong>Virtualization aids disaster recovery</strong> via <strong>live migration</strong> and <strong>hardware abstraction</strong> — the recovery site <strong>need not have identical hardware</strong> to production.</li>
+</ul>
+<p><strong>Containers</strong> virtualize at the OS level instead: all containers share the host's kernel, packaging only the app + dependencies (Docker; orchestrated at scale by Kubernetes):</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>VM</th>
+<th>Container</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Contains</td>
+<td>Full guest OS</td>
+<td>App + libraries only</td>
+</tr>
+<tr>
+<td>Size / boot</td>
+<td>GBs, minutes</td>
+<td>MBs, seconds</td>
+</tr>
+<tr>
+<td>Isolation</td>
+<td>Strong (hardware-level)</td>
+<td>Process-level (shared kernel)</td>
+</tr>
+<tr>
+<td>Density</td>
+<td>Tens per host</td>
+<td>Hundreds per host</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The networking side:</strong> VMs attach to a <strong>virtual switch (vSwitch)</strong> inside the hypervisor — a software L2 switch mapping VM vNICs to VLANs and to the physical NICs (uplinks). Consequences for the network engineer: the switchport facing a virtualization host is always a <strong>trunk</strong> carrying the VM VLANs; and VM-to-VM traffic on the same host <strong>never touches your physical switch</strong> — invisible to SPAN/ACLs there.</p>
+<p><strong>Network functions virtualize too (NFV):</strong> routers, firewalls, and load balancers as VMs (Catalyst 8000V, ASAv, FTDv) — same IOS commands, virtual hardware.</p>
+<p><em>(VRFs — virtualization of the routing table — are covered in the MPLS/VPN file, §4.3: same idea applied to a router.)</em></p>
+<h2 id="v2-traditional-vs-controller-based-networking">V.2 Traditional vs controller-based networking</h2>
+<p>Every network device has three <strong>planes</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Plane</th>
+<th>Job</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Data plane</strong></td>
+<td>Forward frames/packets</td>
+<td>The ASIC doing MAC/FIB lookups, NAT rewrites, ACL drops</td>
+</tr>
+<tr>
+<td><strong>Control plane</strong></td>
+<td>Decide <em>how</em> to forward</td>
+<td>OSPF, STP, ARP — builds the tables the data plane uses</td>
+</tr>
+<tr>
+<td><strong>Management plane</strong></td>
+<td>Configure &amp; monitor the device</td>
+<td>SSH, SNMP, NETCONF, HTTPS</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Traditional networking:</strong> every device runs its own control plane and is configured <strong>one CLI at a time</strong> (distributed intelligence). Consistency depends on humans; per-device config drift is the norm.</li>
+<li><strong>Controller-based (SDN):</strong> the control plane (partly or fully) moves to a central <strong>controller</strong> with a network-wide view; devices are programmed through APIs.</li>
+</ul>
+<p><strong>The API directions (memorize these):</strong></p>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>Between</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Southbound (SBI)</strong></td>
+<td>Controller → network devices</td>
+<td>NETCONF/RESTCONF, OpenFlow, SSH/CLI, SNMP, OpenConfig/gNMI</td>
+</tr>
+<tr>
+<td><strong>Northbound (NBI)</strong></td>
+<td>Apps/scripts → controller</td>
+<td><strong>REST APIs</strong> — your Python script asks the controller, never the 500 switches individually</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cisco's controllers:</strong> <strong>Catalyst Center</strong> (formerly DNA Center) for the enterprise campus; <strong>ACI/APIC</strong> in the data center; <strong>Meraki dashboard</strong> and <strong>vManage (SD-WAN)</strong> in the cloud.</p>
+<p><strong>Cisco ACI:</strong></p>
+<ul>
+<li>
+<p><strong>APIC</strong> (Application Policy Infrastructure Controller) = the "brain": <strong>translates application policies into network programming</strong>.</p>
+</li>
+<li>
+<p><strong>Spine-leaf</strong> two-tier fabric: <strong>every leaf connects to every spine; leaves never connect to each other</strong>, spines never to each other → every endpoint is <strong>one hop</strong> away.</p>
+</li>
+</ul>
+<h2 id="v3-intent-based-networking-ibn">V.3 Intent-Based Networking (IBN)</h2>
+<p>IBN is the layer <em>above</em> SDN: you declare the <strong>business intent</strong>, the system translates, deploys, and — the part that makes it IBN rather than just automation — <strong>continuously verifies</strong> the network still fulfills it. The canonical loop:</p>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>What happens</th>
+<th>Catalyst Center feature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. Translation</strong></td>
+<td>Intent ("guests never reach corporate", "voice gets priority") is captured and converted into policies, validated against the network model</td>
+<td>Policy / Design workflows</td>
+</tr>
+<tr>
+<td><strong>2. Activation</strong></td>
+<td>Policies are rendered into device configurations and pushed via the SBI to every relevant device</td>
+<td>Provision (templates, fabric, SGT/TrustSec policy)</td>
+</tr>
+<tr>
+<td><strong>3. Assurance</strong></td>
+<td>Telemetry streams back; the controller compares <strong>actual state vs declared intent</strong>, surfaces drift and failures, suggests or applies remediation</td>
+<td>Assurance (health scores, issues, sensor tests)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>The loop is <strong>closed</strong>: assurance findings feed back into translation/activation — configure → verify → correct, continuously. Traditional automation is fire-and-forget; IBN checks its own homework.</li>
+<li>Intent is <strong>abstracted from implementation</strong>: "marketing can't reach finance" doesn't name VLANs, ACLs, or IPs — the controller picks the mechanism (SGT policy, ACL, VRF) per device. You manage the <em>what</em>; it owns the <em>how</em>.</li>
+<li>Exam phrasing to recognize: <em>fulfillment</em> (translation + activation) and <em>assurance</em> are the two halves of IBN; Catalyst Center is Cisco's IBN controller for the campus.</li>
+</ul>
+<h2 id="v4-overlay-underlay-fabric-sd-access-sd-wan-vocabulary">V.4 Overlay, underlay, fabric (SD-Access / SD-WAN vocabulary)</h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Underlay</strong></td>
+<td>The physical network — links and a simple routed IGP whose only job is reachability between devices</td>
+</tr>
+<tr>
+<td><strong>Overlay</strong></td>
+<td>Virtual tunnels built on top (<strong>VXLAN</strong> in SD-Access, <strong>IPsec</strong> in SD-WAN) that carry the actual user traffic and policy</td>
+</tr>
+<tr>
+<td><strong>Fabric</strong></td>
+<td>Underlay + overlay + the controller managing both, viewed as one system</td>
+</tr>
+</tbody>
+</table>
+<p>Same underlay/overlay logic as the GRE/IPsec chapter, applied network-wide and automated. In SD-Access the VXLAN header carries an <strong>SGT</strong> (security group tag), enabling policy independent of IP addressing; edge switches encapsulate, the controller orchestrates.</p>
+<p><strong>SDN / controller APIs:</strong></p>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>Direction</th>
+<th>Talks to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Northbound (NBI)</strong></td>
+<td>Controller ↔ <strong>applications</strong> (upstream)</td>
+<td>REST APIs to business/SDN apps</td>
+</tr>
+<tr>
+<td><strong>Southbound (SBI)</strong></td>
+<td>Controller ↔ <strong>network devices</strong> (downstream)</td>
+<td>OpenFlow/NETCONF to switches/routers</td>
+</tr>
+</tbody>
+</table>
+<h2 id="v5-rest-apis">V.5 REST APIs</h2>
+<p><strong>REST API request anatomy</strong> — the <strong>query portion</strong> contains three components: <strong>format</strong> (JSON/XML/YAML), <strong>key</strong> (authentication), and <strong>parameters</strong>.</p>
+<p><strong>API access types:</strong> <strong>open/public</strong> (anyone), <strong>partner</strong> (specific business partners), <strong>private/internal</strong> (in-org only — e.g. salespeople reaching internal data from mobile).</p>
+<p>A <strong>REST API</strong> exchanges structured data over HTTP(S). The verbs map to <strong>CRUD</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>HTTP verb</th>
+<th>CRUD</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td>Create</td>
+<td>Add a new resource</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td>Read</td>
+<td>Retrieve (never modifies)</td>
+</tr>
+<tr>
+<td><code>PUT</code> / <code>PATCH</code></td>
+<td>Update</td>
+<td>Replace / partially modify</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td>Delete</td>
+<td>Remove</td>
+</tr>
+</tbody>
+</table>
+<p>Anatomy of <code>GET https://catalystcenter/dna/intent/api/v1/network-device?managementIpAddress=10.1.1.1</code>:</p>
+<ul>
+<li><strong>URI path</strong> identifies the resource; <strong>query parameters</strong> after <code>?</code> filter it</li>
+<li><strong>Headers</strong> carry <code>Content-Type: application/json</code>, <code>Accept:</code>, and credentials</li>
+<li><strong>Response</strong> = status code + usually a JSON body</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Status code</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>200</code> / <code>201</code> / <code>204</code></td>
+<td>OK / Created / OK-no-body</td>
+</tr>
+<tr>
+<td><code>400</code></td>
+<td>Bad request (your syntax/body)</td>
+</tr>
+<tr>
+<td><code>401</code> / <code>403</code></td>
+<td>Bad or missing auth / authenticated but not permitted</td>
+</tr>
+<tr>
+<td><code>404</code></td>
+<td>No such resource (check the URI)</td>
+</tr>
+<tr>
+<td><code>429</code></td>
+<td>Rate-limited — slow down</td>
+</tr>
+<tr>
+<td><code>5xx</code></td>
+<td>Server-side failure</td>
+</tr>
+</tbody>
+</table>
+<p>REST is <strong>stateless</strong>: every request carries everything needed; the server remembers nothing between calls — which is exactly why <em>every</em> request must carry authentication:</p>
+<h3 id="rest-authentication-methods">REST authentication methods</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>How it travels</th>
+<th>Character</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Basic auth</strong></td>
+<td><code>Authorization: Basic &lt;base64(user:pass)&gt;</code> header</td>
+<td>Simplest; base64 is <strong>encoding, not encryption</strong> — credentials are effectively cleartext, so HTTPS is mandatory. Sent on every call</td>
+</tr>
+<tr>
+<td><strong>API key</strong></td>
+<td>Static secret in a header (<code>X-API-Key: ...</code>) or query param</td>
+<td>Simple machine identity; no expiry unless rotated — treat like a password, never in URLs (they end up in logs)</td>
+</tr>
+<tr>
+<td><strong>Bearer token</strong></td>
+<td><code>Authorization: Bearer &lt;token&gt;</code> header</td>
+<td>Obtained by an initial login call, <strong>expires</strong> — limits the damage of a leak. The dominant pattern</td>
+</tr>
+<tr>
+<td><strong>OAuth 2.0</strong></td>
+<td>Token <em>framework</em>: an authorization server issues scoped, short-lived access tokens (+ refresh tokens)</td>
+<td>The standard behind "login with X" and most cloud APIs; what bearer tokens usually come from</td>
+</tr>
+</tbody>
+</table>
+<p>The token workflow, using Catalyst Center as the example:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>1) POST https://cc/dna/system/api/v1/auth/token        (Basic auth just this once)
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>   &lt;= 200  {&quot;Token&quot;: &quot;eyJhbGciOi...&quot;}
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>2) GET  https://cc/dna/intent/api/v1/network-device    (every subsequent call)
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>   Header: X-Auth-Token: eyJhbGciOi...
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>   &lt;= 200  [ ...device list... ]
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>3) Token expires =&gt; a call returns 401 =&gt; repeat step 1
+</span></code></pre></div>
+<ul>
+<li>Statelessness in practice: the token <strong>is</strong> the session; there is no "logged in" state on the server side.</li>
+<li><code>401</code> mid-script almost always = expired token, not wrong credentials — re-authenticate and retry.</li>
+</ul>
+<h2 id="v6-data-formats-json-xml-yaml">V.6 Data formats — JSON, XML, YAML</h2>
+<p><strong>Data formats:</strong></p>
+<ul>
+<li>
+<p><strong>JSON</strong> — objects in <code>{ }</code> as <code>"key": value</code> pairs (keys are quoted strings); arrays in <code>[ ]</code>, comma-separated. <strong>JSON array rules:</strong> values in <strong>square brackets</strong>, separated by <strong>commas</strong>.</p>
+</li>
+<li>
+<p><strong>XML</strong> — data wrapped in tag pairs <code>&lt;tag&gt;data&lt;/tag&gt;</code>.</p>
+</li>
+<li>
+<p><strong>YAML</strong> — <code>key: value</code> pairs, <strong>indentation-based</strong>, no brackets/quotes/commas.</p>
+</li>
+</ul>
+<h3 id="json-what-apis-speak-interpreting-it-is-an-exam-certainty">JSON (what APIs speak — interpreting it is an exam certainty)</h3>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Syntax</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td><code>{ }</code> — unordered key:value pairs</td>
+<td><code>{"hostname": "R1"}</code></td>
+</tr>
+<tr>
+<td>Array</td>
+<td><code>[ ]</code> — ordered list</td>
+<td><code>["Gi0/0", "Gi0/1"]</code></td>
+</tr>
+<tr>
+<td>Key</td>
+<td>Always a <code>"quoted string"</code> before <code>:</code></td>
+<td><code>"uptime":</code></td>
+</tr>
+<tr>
+<td>Value</td>
+<td>String <code>"..."</code>, number, <code>true</code>/<code>false</code>, <code>null</code>, nested object/array</td>
+<td><code>"14.2"</code>, <code>92</code>, <code>false</code></td>
+</tr>
+</tbody>
+</table>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">&quot;device&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">&quot;hostname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;R1&quot;</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">&quot;isManaged&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="nt">&quot;interfaces&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GigabitEthernet0/0&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;vlan&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GigabitEthernet0/1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;vlan&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="p">]</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="p">}</span>
+</span></code></pre></div>
+<ul>
+<li>Navigation skill: the VLAN of the second interface = <code>device</code> → <code>interfaces</code> → <code>[1]</code> (arrays count from 0) → <code>vlan</code> → <code>20</code></li>
+<li>Validity traps: keys must be quoted; <code>true</code>/<code>false</code> lowercase, unquoted; no trailing comma; <code>10</code> (number) ≠ <code>"10"</code> (string)</li>
+</ul>
+<h3 id="yaml-what-ansible-speaks">YAML (what Ansible speaks)</h3>
+<p>YAML is a superset of JSON built for humans: <strong>indentation</strong> (spaces, never tabs) replaces braces, <code>-</code> introduces list items, <code>#</code> comments. The same data as above:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># YAML equivalent of the JSON example</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">device</span><span class="p">:</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">R1</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">isManaged</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nt">interfaces</span><span class="p">:</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GigabitEthernet0/0</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">      </span><span class="nt">vlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GigabitEthernet0/1</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">      </span><span class="nt">vlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>JSON</th>
+<th>YAML</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object / mapping</td>
+<td><code>{"key": "value"}</code></td>
+<td><code>key: value</code> (nesting by indentation)</td>
+</tr>
+<tr>
+<td>List</td>
+<td><code>["a", "b"]</code></td>
+<td><code>- a</code> / <code>- b</code> on separate lines (inline <code>[a, b]</code> also legal)</td>
+</tr>
+<tr>
+<td>String quoting</td>
+<td>Mandatory</td>
+<td>Optional (quote when ambiguous — <code>"yes"</code>, <code>"01:00"</code>)</td>
+</tr>
+<tr>
+<td>Comments</td>
+<td>None</td>
+<td><code># like this</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>XML</strong> completes the trio: tag-based (<code>&lt;hostname&gt;R1&lt;/hostname&gt;</code>), verbose, schema-friendly — what <strong>NETCONF</strong> uses; RESTCONF speaks both XML and JSON.</p>
+<h2 id="v7-configuration-management-iac-ansible-and-terraform">V.7 Configuration management &amp; IaC — Ansible and Terraform</h2>
+<p><strong>The problem:</strong> hundreds of devices, manual CLI = drift, typos, no audit trail. <strong>The fix:</strong> define configuration as versioned files (<strong>Infrastructure as Code</strong>), keep them in Git, let a tool enforce them. Both tools below are <strong>idempotent</strong> — applying the same definition twice changes nothing the second time (contrast with pasting a CLI script twice).</p>
+<h3 id="ansible">Ansible</h3>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Control node</strong></td>
+<td>The machine running Ansible — nothing is installed on the network devices (<strong>agentless</strong>); transport is <strong>SSH</strong> (or HTTPS APIs)</td>
+</tr>
+<tr>
+<td><strong>Inventory</strong></td>
+<td>INI/YAML file listing managed hosts, grouped, with connection variables</td>
+</tr>
+<tr>
+<td><strong>Playbook</strong></td>
+<td>YAML file: ordered <strong>plays</strong>, each a list of <strong>tasks</strong> run against a host group</td>
+</tr>
+<tr>
+<td><strong>Module</strong></td>
+<td>The unit of work a task calls (<code>cisco.ios.ios_config</code>, <code>ios_facts</code>, <code>ios_command</code>)</td>
+</tr>
+<tr>
+<td><strong>Model</strong></td>
+<td><strong>Push, procedural</strong> — you (or a schedule/CI job) run the playbook; tasks execute in order</td>
+</tr>
+</tbody>
+</table>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># inventory.yml</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">routers</span><span class="p">:</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">r1</span><span class="p">:</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">      </span><span class="nt">ansible_host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.1.1.1</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span><span class="nt">vars</span><span class="p">:</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="nt">ansible_network_os</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cisco.ios.ios</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="nt">ansible_connection</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ansible.netcommon.network_cli</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="nt">ansible_user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admin</span>
+</span></code></pre></div>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># playbook.yml — ensure NTP + a VLAN exist on all routers</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Baseline config</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">routers</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="nt">gather_facts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="nt">tasks</span><span class="p">:</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ensure NTP server is configured</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">      </span><span class="nt">cisco.ios.ios_config</span><span class="p">:</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">        </span><span class="nt">lines</span><span class="p">:</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ntp server 192.168.1.100</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ensure VLAN 30 exists</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">      </span><span class="nt">cisco.ios.ios_vlans</span><span class="p">:</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">        </span><span class="nt">config</span><span class="p">:</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">vlan_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IOT</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">        </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">merged</span>
+</span></code></pre></div>
+<ul>
+<li>Run with <code>ansible-playbook -i inventory.yml playbook.yml</code>; a second run reports <code>ok</code> instead of <code>changed</code> — idempotence in action</li>
+<li>Note what Ansible rides on: the <strong>SSH + local user</strong> groundwork from the hardening section <em>is</em> its transport — automation lives on the management plane you already built</li>
+</ul>
+<h3 id="terraform">Terraform</h3>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>HCL</strong></td>
+<td>The declarative language: you write the <strong>end state</strong>, Terraform computes what must change</td>
+</tr>
+<tr>
+<td><strong>Provider</strong></td>
+<td>Plugin that knows an API (AWS, Azure, IOS-XE, Meraki, Catalyst Center)</td>
+</tr>
+<tr>
+<td><strong>State file</strong></td>
+<td>Terraform's record of what it built — maps code to real resource IDs; drift is detected by comparing code ↔ state ↔ reality. Protect it (it holds secrets)</td>
+</tr>
+<tr>
+<td><strong>Workflow</strong></td>
+<td><code>terraform init</code> (fetch providers) → <code>terraform plan</code> (<strong>preview the diff</strong> — the killer feature) → <code>terraform apply</code> (execute) → <code>terraform destroy</code> (tear down)</td>
+</tr>
+</tbody>
+</table>
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># main.tf — declare that VLAN 30 exists on an IOS-XE switch (RESTCONF provider)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;iosxe_vlan&quot;</span><span class="w"> </span><span class="nv">&quot;iot&quot;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="na">vlan_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="na">name</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;IOT&quot;</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">}</span>
+</span></code></pre></div>
+<ul>
+<li>Declarative vs procedural in one line: Ansible = "run these steps"; Terraform = "make reality equal this file". Deleting the <code>resource</code> block and applying <strong>removes</strong> the VLAN — the file is the single source of truth</li>
+<li>Sweet spots: Terraform = <em>provisioning</em> infrastructure (cloud VPCs/VMs, controller objects, increasingly network device state); Ansible = <em>configuring</em> what exists (fleet-wide IOS changes, upgrades). Real shops use both: Terraform builds, Ansible configures</li>
+</ul>
+<p><em>(Older exam versions named Puppet and Chef here — agent-based, pull-model tools; know the names as the contrast to Ansible's agentless push.)</em></p>
+<h2 id="v8-ai-machine-learning-in-network-operations-new-in-200-301-v11">V.8 AI &amp; machine learning in network operations (new in 200-301 v1.1)</h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Meaning in the network context</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Predictive AI/ML</strong></td>
+<td>Learn the network's normal from telemetry, then forecast and flag: anomaly detection, failure prediction, capacity trending — Catalyst Center <strong>Assurance</strong> (the IBN assurance phase, §V.3, is where this ML lives) and Meraki health scores</td>
+</tr>
+<tr>
+<td><strong>Generative AI</strong></td>
+<td>Produces content: draft configs, explain a routing table, natural-language interfaces to the controller</td>
+</tr>
+<tr>
+<td><strong>AIOps</strong></td>
+<td>The umbrella: telemetry in → ML correlation → suggested/automated remediation</td>
+</tr>
+<tr>
+<td>Caveats the exam expects</td>
+<td>Model quality depends on training data; recommendations need human validation; telemetry export = privacy/security consideration</td>
+</tr>
+</tbody>
+</table>
+<h2 id="v9-where-the-device-cli-still-shows-up">V.9 Where the device CLI still shows up</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ip http secure-server</code></td>
+<td>Enables the HTTPS server that RESTCONF rides on</td>
+</tr>
+<tr>
+<td><code>restconf</code></td>
+<td>Enable the RESTCONF API (IOS-XE) — JSON/XML over HTTPS, YANG-modeled</td>
+</tr>
+<tr>
+<td><code>netconf-yang</code></td>
+<td>Enable NETCONF (SSH port 830) — the XML-based, standards southbound</td>
+</tr>
+<tr>
+<td><code>show netconf-yang sessions</code></td>
+<td>Who's currently talking NETCONF to this box</td>
+</tr>
+<tr>
+<td><code>show platform software yang-management process</code></td>
+<td>Are the model-driven-API daemons actually running</td>
+</tr>
+<tr>
+<td><code>crypto key generate rsa</code> + <code>username ... privilege 15</code></td>
+<td>The SSH/local-auth groundwork Ansible's connection uses</td>
+</tr>
+<tr>
+<td><code>show sdm prefer</code></td>
+<td>(Switch) TCAM template — relevant when fabric/SGT features need a different one</td>
+</tr>
+</tbody>
+</table>
+<h2 id="v10-network-automation-resources">V.10 Network Automation Resources</h2>
+<ul>
+<li>
+<p><a href="https://python-automation-book.readthedocs.io/en/1.0/12_netmiko/01_netmiko.html">Netmiko</a></p>
+</li>
+<li>
+<p><a href="https://napalm.readthedocs.io/en/latest/">NAPALM</a></p>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../management/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Management and Monitoring">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Management and Monitoring
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../troubleshooting/" class="md-footer__link md-footer__link--next" aria-label="Next: Troubleshooting">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Troubleshooting
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Edm0ndDantes" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.footer", "navigation.path", "navigation.indexes", "toc.follow", "navigation.expand", "navigation.sections", "content.code.copy", "content.code.select", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,3113 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ccna-commands.example/vpn-tunnels/">
+      
+      
+        <link rel="prev" href="../nat/">
+      
+      
+        <link rel="next" href="../dynamic-routing-vpn/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/Router-Firewall.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Tunnels and VPNs - CCNA Handbook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRed+Hat+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Red Hat Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#vpns-tunnels" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="CCNA Handbook" class="md-header__button md-logo" aria-label="CCNA Handbook" data-md-component="logo">
+      
+  <img src="../assets/Router-Firewall.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CCNA Handbook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Tunnels and VPNs
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="CCNA Handbook" class="md-nav__button md-logo" aria-label="CCNA Handbook" data-md-component="logo">
+      
+  <img src="../assets/Router-Firewall.svg" alt="logo">
+
+    </a>
+    CCNA Handbook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basics and Navigation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Basics and Navigation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../navigation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IOS CLI Navigation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic-device-config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Device Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interface-config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interface Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security-hardening/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Security & Hardening
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vlans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VLANs and Trunking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spanning Tree Protocol
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../etherchannel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EtherChannel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ipv6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IPv6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../static-routing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Static Routing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dhcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fhrp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    First Hop Redundancy Protocols
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wlan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WLANs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../forwarding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frame Forwarding and Packet Switching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enterprise Networking, Security and Automation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Enterprise Networking, Security and Automation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dynamic-routing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dynamic Routing - OSPF
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wan-tech/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WAN Technologies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enterprise Network Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access Control Lists
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NAT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tunnels and VPNs
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tunnels and VPNs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vpn-types-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VPN Types &amp; Classification
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VPN Types &amp; Classification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vp1-what-a-vpn-is" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.1 What a VPN is
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp2-the-two-fundamental-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.2 The two fundamental types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp3-enterprise-managed-vs-provider-managed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.3 Enterprise-managed vs provider-managed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp4-remote-access-technologies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.4 Remote-access technologies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp5-dmvpn-mgre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.5 DMVPN &amp; mGRE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp6-why-gre-over-ipsec-for-routing-protocols" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.6 Why GRE-over-IPsec for routing protocols
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pure-ipsec-carries-unicast-only-it-cant-transport-the-multicastbroadcast-that-ospfeigrp-rely-on-gre-encapsulates-multicastbroadcast-and-ipsec-then-encrypts-the-gre-packet-gre-over-ipsec-is-the-standard-for-running-a-routing-protocol-across-an-encrypted-site-to-site-link" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pure IPsec carries unicast only — it can't transport the multicast/broadcast that OSPF/EIGRP rely on. GRE encapsulates multicast/broadcast, and IPsec then encrypts the GRE packet → GRE over IPsec is the standard for running a routing protocol across an encrypted site-to-site link.
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tunneling-vpn-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tunneling &amp; VPN Concepts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tunneling &amp; VPN Concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vp7-packet-anatomy-before-after-encapsulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.7 Packet anatomy — before &amp; after encapsulation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VP.7 Packet anatomy — before &amp; after encapsulation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-original-packet-before-any-tunnel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The original packet (before any tunnel)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gre-encapsulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GRE encapsulation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipsec-transport-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IPsec transport mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipsec-tunnel-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IPsec tunnel mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gre-over-ipsec-transport-mode-the-recommended-combination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GRE over IPsec — transport mode (the recommended combination)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gre-over-ipsec-tunnel-mode-works-but-wasteful" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GRE over IPsec — tunnel mode (works, but wasteful)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-who-fills-which-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary — who fills which header
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gre-generic-routing-encapsulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GRE (Generic Routing Encapsulation)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GRE (Generic Routing Encapsulation)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vp8-theory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.8 Theory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp9-configuration-point-to-point-gre-between-two-sites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.9 Configuration (point-to-point GRE between two sites)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp10-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.10 Verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp11-annotated-example-show-interfaces-tunnel0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.11 Annotated example — show interfaces tunnel0
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ipsec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IPsec
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IPsec">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vp12-theory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.12 Theory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp13-site-to-site-ipsec-ikev1-with-crypto-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.13 Site-to-site IPsec, IKEv1 with crypto map
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp14-ipsec-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.14 IPsec verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp15-modern-equivalent-ikev2-with-svti-route-based-vpn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.15 Modern equivalent: IKEv2 with SVTI (route-based VPN)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp16-gre-over-ipsec-encrypted-tunnel-that-carries-routing-protocols" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.16 GRE over IPsec (encrypted tunnel that carries routing protocols)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp17-annotated-example-show-crypto-isakmp-sa-and-show-crypto-ipsec-sa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.17 Annotated example — show crypto isakmp sa and show crypto ipsec sa
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mpls-multiprotocol-label-switching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MPLS (Multiprotocol Label Switching)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MPLS (Multiprotocol Label Switching)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vp18-theory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.18 Theory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp19-core-commands-enabling-mplsldp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.19 Core commands — enabling MPLS/LDP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp20-vrf-commands-the-pe-side-building-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.20 VRF commands (the PE-side building block)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp21-mpls-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.21 MPLS verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp22-annotated-example-show-mpls-forwarding-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.22 Annotated example — show mpls forwarding-table
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-is-the-tunnel-working-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick "is the tunnel working?" checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dynamic-routing-vpn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dynamic Routing over VPN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../qos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quality of Service (QoS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Management and Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../virt-auto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Virtualization and Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../misc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Miscellaneous
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vpn-types-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VPN Types &amp; Classification
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VPN Types &amp; Classification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vp1-what-a-vpn-is" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.1 What a VPN is
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp2-the-two-fundamental-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.2 The two fundamental types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp3-enterprise-managed-vs-provider-managed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.3 Enterprise-managed vs provider-managed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp4-remote-access-technologies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.4 Remote-access technologies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp5-dmvpn-mgre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.5 DMVPN &amp; mGRE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp6-why-gre-over-ipsec-for-routing-protocols" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.6 Why GRE-over-IPsec for routing protocols
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pure-ipsec-carries-unicast-only-it-cant-transport-the-multicastbroadcast-that-ospfeigrp-rely-on-gre-encapsulates-multicastbroadcast-and-ipsec-then-encrypts-the-gre-packet-gre-over-ipsec-is-the-standard-for-running-a-routing-protocol-across-an-encrypted-site-to-site-link" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pure IPsec carries unicast only — it can't transport the multicast/broadcast that OSPF/EIGRP rely on. GRE encapsulates multicast/broadcast, and IPsec then encrypts the GRE packet → GRE over IPsec is the standard for running a routing protocol across an encrypted site-to-site link.
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tunneling-vpn-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tunneling &amp; VPN Concepts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tunneling &amp; VPN Concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vp7-packet-anatomy-before-after-encapsulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.7 Packet anatomy — before &amp; after encapsulation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VP.7 Packet anatomy — before &amp; after encapsulation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-original-packet-before-any-tunnel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The original packet (before any tunnel)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gre-encapsulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GRE encapsulation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipsec-transport-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IPsec transport mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipsec-tunnel-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IPsec tunnel mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gre-over-ipsec-transport-mode-the-recommended-combination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GRE over IPsec — transport mode (the recommended combination)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gre-over-ipsec-tunnel-mode-works-but-wasteful" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GRE over IPsec — tunnel mode (works, but wasteful)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-who-fills-which-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary — who fills which header
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gre-generic-routing-encapsulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GRE (Generic Routing Encapsulation)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GRE (Generic Routing Encapsulation)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vp8-theory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.8 Theory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp9-configuration-point-to-point-gre-between-two-sites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.9 Configuration (point-to-point GRE between two sites)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp10-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.10 Verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp11-annotated-example-show-interfaces-tunnel0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.11 Annotated example — show interfaces tunnel0
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ipsec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IPsec
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IPsec">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vp12-theory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.12 Theory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp13-site-to-site-ipsec-ikev1-with-crypto-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.13 Site-to-site IPsec, IKEv1 with crypto map
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp14-ipsec-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.14 IPsec verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp15-modern-equivalent-ikev2-with-svti-route-based-vpn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.15 Modern equivalent: IKEv2 with SVTI (route-based VPN)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp16-gre-over-ipsec-encrypted-tunnel-that-carries-routing-protocols" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.16 GRE over IPsec (encrypted tunnel that carries routing protocols)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp17-annotated-example-show-crypto-isakmp-sa-and-show-crypto-ipsec-sa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.17 Annotated example — show crypto isakmp sa and show crypto ipsec sa
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mpls-multiprotocol-label-switching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MPLS (Multiprotocol Label Switching)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MPLS (Multiprotocol Label Switching)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vp18-theory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.18 Theory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp19-core-commands-enabling-mplsldp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.19 Core commands — enabling MPLS/LDP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp20-vrf-commands-the-pe-side-building-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.20 VRF commands (the PE-side building block)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp21-mpls-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.21 MPLS verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vp22-annotated-example-show-mpls-forwarding-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VP.22 Annotated example — show mpls forwarding-table
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-is-the-tunnel-working-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick "is the tunnel working?" checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href=".." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../dynamic-routing/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Enterprise Networking, Security and Automation
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="vpns-tunnels">VPNs &amp; Tunnels</h1>
+<h2 id="vpn-types-classification">VPN Types &amp; Classification</h2>
+<h3 id="vp1-what-a-vpn-is">VP.1 What a VPN is</h3>
+<p>A VPN creates a <strong>private network across a public network</strong> using <strong>virtual (logical) connections</strong> instead of dedicated physical links — carrying traffic securely over the shared Internet.</p>
+<h3 id="vp2-the-two-fundamental-types">VP.2 The two fundamental types</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Connects</th>
+<th>"Always on"?</th>
+<th>Client needed?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Site-to-site</strong></td>
+<td><strong>Entire networks</strong> (site ↔ site) via VPN gateways</td>
+<td>Yes, static</td>
+<td>No — transparent to end hosts</td>
+</tr>
+<tr>
+<td><strong>Remote-access</strong></td>
+<td><strong>Individual users</strong> to a network</td>
+<td>On demand</td>
+<td>Yes — VPN client (or clientless browser) on the user device</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Remote-access examples:</strong> a mobile sales agent connecting from a hotel; an employee running VPN client software from home.</li>
+<li><strong>Site-to-site examples:</strong> a branch office ASA tunneling to HQ; a permanent tunnel to a supplier; connecting two merged companies' networks <strong>without leased-line cost</strong> → site-to-site VPN is the cost-effective answer.</li>
+</ul>
+<h3 id="vp3-enterprise-managed-vs-provider-managed">VP.3 Enterprise-managed vs provider-managed</h3>
+<table>
+<thead>
+<tr>
+<th>Managed by</th>
+<th>Site-to-site</th>
+<th>Remote-access</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Enterprise</strong></td>
+<td><strong>IPsec VPN</strong>, <strong>GRE over IPsec</strong>, <strong>DMVPN</strong>, IPsec VTI</td>
+<td>Clientless SSL VPN, client-based IPsec/SSL (AnyConnect)</td>
+</tr>
+<tr>
+<td><strong>Service provider</strong></td>
+<td><strong>Layer 3 MPLS VPN</strong>, Layer 2 VPN</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vp4-remote-access-technologies">VP.4 Remote-access technologies</h3>
+<ul>
+<li><strong>SSL/TLS VPN</strong> — connects using <strong>Transport Layer Security</strong>; works through a standard <strong>web browser</strong>. If a user's host lacks the <strong>Cisco AnyConnect</strong> client, they start a <strong>clientless SSL VPN</strong> in a compliant browser and download/install the client from there.</li>
+<li><strong>IPsec remote-access</strong> — client-based, stronger for full network-layer access.</li>
+</ul>
+<h3 id="vp5-dmvpn-mgre">VP.5 DMVPN &amp; mGRE</h3>
+<ul>
+<li><strong>DMVPN</strong> builds many site-to-site tunnels <strong>dynamically and scalably</strong> from three components: <strong>mGRE + NHRP + IPsec</strong>.</li>
+<li><strong>mGRE</strong> (multipoint GRE) provides a <strong>permanent tunnel source at the hub</strong> with <strong>dynamically allocated tunnel destinations at the spokes</strong> — one hub interface serves all spokes, enabling on-demand spoke-to-spoke tunnels.</li>
+<li><strong>NHRP</strong> is the distributed <strong>address-mapping</strong> database (spoke public IPs); <strong>IPsec</strong> encrypts.</li>
+</ul>
+<h3 id="vp6-why-gre-over-ipsec-for-routing-protocols">VP.6 Why GRE-over-IPsec for routing protocols</h3>
+<h2 id="pure-ipsec-carries-unicast-only-it-cant-transport-the-multicastbroadcast-that-ospfeigrp-rely-on-gre-encapsulates-multicastbroadcast-and-ipsec-then-encrypts-the-gre-packet-gre-over-ipsec-is-the-standard-for-running-a-routing-protocol-across-an-encrypted-site-to-site-link">Pure <strong>IPsec carries unicast only</strong> — it can't transport the <strong>multicast/broadcast</strong> that OSPF/EIGRP rely on. <strong>GRE encapsulates multicast/broadcast</strong>, and IPsec then encrypts the GRE packet → <strong>GRE over IPsec</strong> is the standard for running a routing protocol across an encrypted site-to-site link.</h2>
+<h2 id="tunneling-vpn-concepts">Tunneling &amp; VPN Concepts</h2>
+<p>A <strong>tunnel</strong> encapsulates one protocol inside another so traffic can cross a network that couldn't otherwise carry it (private addresses across the Internet, IPv6 across IPv4, multicast across a unicast-only core). A <strong>VPN</strong> is a tunnel with privacy expectations — though not every tunnel encrypts (GRE and MPLS do <strong>not</strong>).</p>
+<table>
+<thead>
+<tr>
+<th>Technology</th>
+<th>What it does</th>
+<th>Encrypts?</th>
+<th>Carries multicast/routing protocols?</th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>GRE</strong></td>
+<td>Generic encapsulation, IP protocol 47</td>
+<td>No</td>
+<td><strong>Yes</strong></td>
+<td>Connect sites over the Internet, carry OSPF/EIGRP, wrap non-IP traffic</td>
+</tr>
+<tr>
+<td><strong>IPsec</strong></td>
+<td>Authenticated + encrypted transport (ESP, IP protocol 50)</td>
+<td><strong>Yes</strong></td>
+<td>No (pure IPsec is unicast IP only)</td>
+<td>Site-to-site and remote-access encryption</td>
+</tr>
+<tr>
+<td><strong>GRE over IPsec</strong></td>
+<td>GRE flexibility inside IPsec protection</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>The standard encrypted site-to-site with dynamic routing</td>
+</tr>
+<tr>
+<td><strong>MPLS</strong></td>
+<td>Label switching in a provider core; L3VPNs via VRFs + MP-BGP</td>
+<td>No (separation, not secrecy)</td>
+<td>Yes (within a VPN)</td>
+<td>Carrier backbone, enterprise WAN (provider-managed)</td>
+</tr>
+<tr>
+<td><strong>DMVPN</strong></td>
+<td>Multipoint GRE + NHRP + IPsec</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Hub-and-spoke that builds dynamic spoke-to-spoke tunnels</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Overhead planning:</strong> every layer of encapsulation adds header bytes and eats into the 1500-byte Ethernet MTU. 
+- GRE adds 24 bytes; 
+- IPsec ESP (tunnel mode, AES) adds roughly 50–73. </p>
+<p>This is why tunnel interfaces almost always carry <code>ip mtu</code> and <code>ip tcp adjust-mss</code> commands — forgetting them is the #1 cause of "ping works but HTTPS hangs" over tunnels.</p>
+<h3 id="vp7-packet-anatomy-before-after-encapsulation">VP.7 Packet anatomy — before &amp; after encapsulation</h3>
+<p>Reference topology used in all diagrams below (the same one as the config sections):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a> Host A                R1                    Internet                 R2                Host B
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a> 192.168.1.10 ---- g0/0: 192.168.1.1                        g0/0: 192.168.2.1 ---- 192.168.2.10
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>                   g0/1: 203.0.113.1  &lt;==== tunnel0 ====&gt;   g0/1: 198.51.100.2
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>                      tun0: 172.16.0.1                    172.16.0.2 :tun0
+</span></code></pre></div>
+<p>Three kinds of IP addresses are in play — keeping them straight is the whole game:</p>
+<table>
+<thead>
+<tr>
+<th>Address type</th>
+<th>Example</th>
+<th>Where it appears</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Original / inner</strong> addresses</td>
+<td><code>192.168.1.10 → 192.168.2.10</code></td>
+<td>The hosts' packet — always the <strong>inner</strong> header; never changed by tunneling</td>
+</tr>
+<tr>
+<td><strong>Physical / transport</strong> addresses</td>
+<td><code>203.0.113.1 → 198.51.100.2</code></td>
+<td>The <strong>outer</strong> header of every tunneled packet. Comes from <code>tunnel source</code> / <code>tunnel destination</code> (GRE) or the crypto peers (IPsec) — i.e., the <strong>physical</strong> (or loopback) interface, <em>never</em> the tunnel interface</td>
+</tr>
+<tr>
+<td><strong>Tunnel interface (overlay)</strong> addresses</td>
+<td><code>172.16.0.1 / 172.16.0.2</code></td>
+<td><strong>Not in the headers of transit user traffic at all.</strong> They exist for the routing table: routes point at <code>172.16.0.2</code> as a next-hop, which resolves to "encapsulate and send out tunnel0". They show up <em>inside</em> packets only when the routers themselves talk across the tunnel (OSPF hellos, <code>ping 172.16.0.2</code>) — then they are the <em>inner</em> src/dst</td>
+</tr>
+</tbody>
+</table>
+<h4 id="the-original-packet-before-any-tunnel">The original packet (before any tunnel)</h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>+---------------------+----------+------------------+
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>|      IP header      | TCP/UDP  |       Data       |
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>|  src 192.168.1.10   |  header  |                  |
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>|  dst 192.168.2.10   |          |                  |
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>|  proto 6 (TCP)      |          |                  |
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>+---------------------+----------+------------------+
+</span></code></pre></div>
+<p>This can't cross the Internet as-is: <code>192.168.x.x</code> isn't routable there. Every method below solves that differently.</p>
+<h4 id="gre-encapsulation">GRE encapsulation</h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Before:                                   After (on the wire, R1 → R2):
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>+------------------+-----+------+         +--------------------+---------+------------------+-----+------+
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>| IP header        | TCP | Data |   ==&gt;   | NEW IP header      | GRE hdr | ORIGINAL IP hdr  | TCP | Data |
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>| s 192.168.1.10   |     |      |         | s 203.0.113.1      | (4 B)   | s 192.168.1.10   |     |      |
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>| d 192.168.2.10   |     |      |         | d 198.51.100.2     |         | d 192.168.2.10   |     |      |
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>+------------------+-----+------+         | proto 47 (GRE)     |         | proto 6 (TCP)    |     |      |
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>                                          +--------------------+---------+------------------+-----+------+
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>                                            20 B                 4 B       = 24 B total overhead
+</span></code></pre></div>
+<ul>
+<li><strong>New (outer) header:</strong> src = R1's <code>tunnel source</code> (physical <code>g0/1</code>, <code>203.0.113.1</code>); dst = R1's <code>tunnel destination</code> (R2's physical, <code>198.51.100.2</code>). The Internet routes on these alone.</li>
+<li><strong>Original (inner) header:</strong> completely untouched — R2 decapsulates and forwards it as if it had arrived natively.</li>
+<li>The tunnel IPs <code>172.16.0.x</code> appear nowhere in this packet. They were only the routing-table next-hop that <em>selected</em> tunnel0.</li>
+<li><strong>Not encrypted:</strong> anyone on the path reads the inner packet in cleartext.</li>
+</ul>
+<h4 id="ipsec-transport-mode">IPsec transport mode</h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Before:                                   After:
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>+------------------+-----+------+         +---------------------+---------+===========+========+  ESP    ESP
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>| IP header        | TCP | Data |   ==&gt;   | ORIGINAL IP header  | ESP hdr | TCP       | Data   | trailer|auth|
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>| s 192.168.1.10   |     |      |         |  (REUSED, modified) |         | ENCRYPTED | ENCRYPT|  ENCR  |    |
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>| d 192.168.2.10   |     |      |         | s 192.168.1.10 (!)  |         |           |        |        |    |
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>+------------------+-----+------+         | d 192.168.2.10 (!)  |         |           |        |        |    |
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>                                          | proto 50 (ESP)      |         |           |        |        |    |
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>                                          +---------------------+---------+===========+========+--------+----+
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>                                          (=== marks the encrypted span)
+</span></code></pre></div>
+<ul>
+<li><strong>No new header is added.</strong> The original header is <em>reused</em> — only its protocol field changes (6 → 50) — and the payload behind it is encrypted.</li>
+<li><strong>Consequence:</strong> the src/dst on the wire are still the original addresses. If those are private LAN addresses (as here), <strong>the packet cannot cross the Internet</strong> — which is why pure transport mode is <em>not</em> used for site-to-site host traffic. It fits only when the communicating endpoints' own addresses are already routable end-to-end: host-to-host on an internal network, or <strong>router-to-router packets like GRE</strong>, whose header already carries the public <code>203.0.113.1 → 198.51.100.2</code> (see GRE over IPsec below).</li>
+<li>Saves 20 bytes versus tunnel mode — that's its whole appeal.</li>
+</ul>
+<h4 id="ipsec-tunnel-mode">IPsec tunnel mode</h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Before:                                   After:
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>+------------------+-----+------+         +--------------------+---------+==================+=====+======+  ESP    ESP
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>| IP header        | TCP | Data |   ==&gt;   | NEW IP header      | ESP hdr | ORIGINAL IP hdr  | TCP | Data | trailer|auth|
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>| s 192.168.1.10   |     |      |         | s 203.0.113.1      |         | s 192.168.1.10   |     |      |  ENCR  |    |
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>| d 192.168.2.10   |     |      |         | d 198.51.100.2     |         | d 192.168.2.10   |     |      |        |    |
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>+------------------+-----+------+         | proto 50 (ESP)     |         |    ENCRYPTED     |ENCR | ENCR |        |    |
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>                                          +--------------------+---------+==================+=====+======+--------+----+
+</span></code></pre></div>
+<ul>
+<li><strong>New (outer) header:</strong> src/dst = the <strong>crypto peers</strong> — R1's physical <code>203.0.113.1</code> and the <code>set peer 198.51.100.2</code> address. With a crypto map there is no tunnel interface at all; with an SVTI (<code>tunnel mode ipsec ipv4</code>), the outer IPs still come from <code>tunnel source</code>/<code>tunnel destination</code> — physical addresses again.</li>
+<li><strong>Original header + payload: fully encrypted.</strong> An observer sees only "some ESP between 203.0.113.1 and 198.51.100.2" — the LAN addresses, ports, and protocols are hidden. This is both the privacy win and why tunnel mode is the site-to-site default.</li>
+<li>Overhead: new IP (20) + ESP header/IV (~8–16) + trailer/padding + ICV (~12–16) ≈ <strong>50–73 bytes</strong> depending on cipher.</li>
+</ul>
+<h4 id="gre-over-ipsec-transport-mode-the-recommended-combination">GRE over IPsec — transport mode (the recommended combination)</h4>
+<p>Two-step encapsulation on R1: <strong>GRE first, then ESP protects the GRE packet.</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Step 1 — GRE (as above):
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>+--------------------+---------+------------------+-----+------+
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>| GRE IP header      | GRE hdr | ORIGINAL IP hdr  | TCP | Data |
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>| s 203.0.113.1      |         | s 192.168.1.10   |     |      |
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>| d 198.51.100.2     |         | d 192.168.2.10   |     |      |
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>| proto 47           |         |                  |     |      |
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>+--------------------+---------+------------------+-----+------+
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>Step 2 — ESP transport mode wraps it (reuses the GRE packet&#39;s header):
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>+--------------------+---------+=========+==================+=====+======+  ESP    ESP
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>| GRE IP header      | ESP hdr | GRE hdr | ORIGINAL IP hdr  | TCP | Data | trailer|auth|
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>| s 203.0.113.1      |         | ENCRYPT | s 192.168.1.10   |     |      |  ENCR  |    |
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>| d 198.51.100.2     |         |         | d 192.168.2.10   |     |      |        |    |
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>| proto 50 (ESP)     |         |         |    ENCRYPTED     |ENCR | ENCR |        |    |
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>+--------------------+---------+=========+==================+=====+======+--------+----+
+</span></code></pre></div>
+<ul>
+<li>Transport mode is safe here precisely because the packet being encrypted is <strong>router-to-router</strong>: the GRE header's addresses (<code>203.0.113.1 → 198.51.100.2</code>) are already public/routable, so reusing that header works perfectly. This is the textbook use-case for transport mode.</li>
+<li><strong>One</strong> outer IP header total. Overhead: 24 (GRE) + ~30–50 (ESP without a new IP header).</li>
+<li>The GRE header and everything inside it is encrypted — an observer can't even tell it's GRE.</li>
+</ul>
+<h4 id="gre-over-ipsec-tunnel-mode-works-but-wasteful">GRE over IPsec — tunnel mode (works, but wasteful)</h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>+--------------------+---------+==================+=========+==================+=====+======+  ESP
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>| NEW IP header      | ESP hdr | GRE IP header    | GRE hdr | ORIGINAL IP hdr  | TCP | Data | trl |auth|
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>| s 203.0.113.1      |         | s 203.0.113.1    | ENCRYPT | s 192.168.1.10   |     |      | ENC |    |
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>| d 198.51.100.2     |         | d 198.51.100.2   |         | d 192.168.2.10   |     |      |     |    |
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>| proto 50           |         | proto 47, ENCR   |         |    ENCRYPTED     | ENC | ENC  |     |    |
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>+--------------------+---------+==================+=========+==================+=====+======+-----+----+
+</span></code></pre></div>
+<ul>
+<li>Tunnel mode adds a <strong>new</strong> outer header — which ends up carrying the <em>same</em> <code>203.0.113.1 → 198.51.100.2</code> pair that the (now encrypted) GRE header already contains. Two identical IP headers, 20 bytes of pure waste per packet.</li>
+<li>This is exactly why the recipes in §3.5 recommend <code>mode transport</code> under the transform set for GRE over IPsec. (Tunnel mode becomes necessary only in some NAT-traversal and multi-vendor corner cases.)</li>
+</ul>
+<h4 id="summary-who-fills-which-header">Summary — who fills which header</h4>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Outer src/dst filled from</th>
+<th>Inner src/dst</th>
+<th>Tunnel interface IPs used for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GRE</td>
+<td><code>tunnel source</code> / <code>tunnel destination</code> → <strong>physical</strong> (or loopback) IPs</td>
+<td>Original hosts, unchanged, cleartext</td>
+<td>Routing next-hop only (overlay)</td>
+</tr>
+<tr>
+<td>IPsec transport</td>
+<td><em>(no outer header — original reused)</em></td>
+<td>Original hosts, <strong>visible</strong>, payload encrypted</td>
+<td>n/a (no tunnel interface)</td>
+</tr>
+<tr>
+<td>IPsec tunnel</td>
+<td>Crypto peers (<code>set peer</code> / <code>tunnel source</code>+<code>destination</code>) → <strong>physical</strong> IPs</td>
+<td>Original hosts, <strong>encrypted</strong></td>
+<td>n/a for crypto map; routing next-hop for SVTI</td>
+</tr>
+<tr>
+<td>GRE over IPsec (transport)</td>
+<td>The GRE header's IPs → <strong>physical</strong> IPs, reused by ESP</td>
+<td>Original hosts, encrypted (GRE header too)</td>
+<td>Routing next-hop only (overlay)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Rule of thumb:</strong> outer headers are always built from <strong>physical/loopback</strong> addresses — the ones the transit network can route. Tunnel-interface addresses never ride the wire in user traffic; they exist so <em>your</em> routing table has something to point at.</p>
+<hr />
+<h2 id="gre-generic-routing-encapsulation">GRE (Generic Routing Encapsulation)</h2>
+<h3 id="vp8-theory">VP.8 Theory</h3>
+<ul>
+<li>GRE wraps an inner packet (IPv4, IPv6, or even non-IP) in a new IP header (protocol <strong>47</strong>) plus a 4-byte GRE header. Total overhead: <strong>24 bytes</strong> (20 IP + 4 GRE).</li>
+<li>The tunnel appears as a <strong>point-to-point interface</strong> (<code>tunnel0</code>). Anything routable over an interface is routable over a GRE tunnel — including <strong>routing protocols and multicast</strong>, which plain IPsec can't carry. This is GRE's main selling point.</li>
+<li><strong>No security whatsoever</strong>: no encryption, no authentication (an optional key value is a tag, not a secret). Assume anything in a bare GRE tunnel is publicly readable — pair with IPsec for privacy (§3.5).</li>
+<li>Terminology: the <strong>tunnel source/destination</strong> addresses (the <em>outer</em> header, usually public IPs) are the transport; the <strong>tunnel interface IPs</strong> (usually a private /30) are the overlay that your routing uses.</li>
+<li><strong>Recursive routing</strong> — the classic GRE failure: if the router learns the route to the <em>tunnel destination itself</em> <strong>through the tunnel</strong>, the tunnel collapses (it would need itself to reach itself). IOS detects it and logs <code>%TUN-5-RECURDOWN</code>, flapping the tunnel. Prevention: reach the tunnel destination via a static route or a routing process that never runs inside the tunnel.</li>
+<li>Tunnel state logic: the interface is <code>up/up</code> if it has a source, a destination, and a route to the destination — <strong>it does not verify the far end is alive</strong>. Add <code>keepalive</code> to detect a dead peer.</li>
+</ul>
+<h3 id="vp9-configuration-point-to-point-gre-between-two-sites">VP.9 Configuration (point-to-point GRE between two sites)</h3>
+<p><strong>R1 (site A, public IP 203.0.113.1):</strong></p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span>
+<span class="normal"><a href="#__codelineno-7-6">6</a></span>
+<span class="normal"><a href="#__codelineno-7-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a>interface tunnel0
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a> ip address 172.16.0.1 255.255.255.252
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a> tunnel source g0/1 !or tunnel source 203.0.113.1
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a> tunnel destination 198.51.100.2
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a> keepalive 5 3
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a> ip mtu 1400
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a> ip tcp adjust-mss 1360
+</span></code></pre></div></td></tr></table></div>
+<p><strong>R2 (site B, public IP 198.51.100.2) — mirror image:</strong></p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span>
+<span class="normal"><a href="#__codelineno-8-5">5</a></span>
+<span class="normal"><a href="#__codelineno-8-6">6</a></span>
+<span class="normal"><a href="#__codelineno-8-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a>interface tunnel0
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a> ip address 172.16.0.2 255.255.255.252
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a> tunnel source g0/1 !or tunnel source 198.51.100.2
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a> tunnel destination 203.0.113.1
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a> keepalive 5 3
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a> ip mtu 1400
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a> ip tcp adjust-mss 1360
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><code>interface tunnel0</code> — create the logical tunnel interface (the number is locally significant)</li>
+<li><code>ip address 172.16.0.1 255.255.255.252</code> — the overlay address; a /30 or /31 per tunnel is conventional</li>
+<li><code>tunnel source g0/1</code> — outer-header source: the physical exit interface (or its IP, or a loopback for stability)</li>
+<li><code>tunnel destination 198.51.100.2</code> — outer-header destination: the far end's <strong>public</strong> IP; must be reachable <em>outside</em> the tunnel (see recursive routing above)</li>
+<li><code>keepalive 5 3</code> — send a keepalive every 5 s, declare the tunnel down after 3 misses; without this the tunnel stays <code>up/up</code> even if the peer is dead</li>
+<li><code>ip mtu 1400</code> — leave room for the 24-byte GRE header (and future IPsec) so the router fragments sanely</li>
+<li><code>ip tcp adjust-mss 1360</code> — clamp TCP handshakes so sessions never <em>try</em> to send oversized segments (MSS = IP MTU − 40)</li>
+<li>GRE is the default tunnel encapsulation; <code>tunnel mode gre ip</code> exists but doesn't need to be typed</li>
+</ul>
+<p>Then route site-to-site traffic <strong>through the tunnel</strong> — either static:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ip route 192.168.2.0 255.255.255.0 172.16.0.2</code></td>
+<td>Send site B's LAN via the tunnel's far-end overlay IP</td>
+</tr>
+</tbody>
+</table>
+<p>...or run a routing protocol over it (the point of GRE):</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a>router ospf 1
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a> network 172.16.0.0 0.0.0.3 area 0
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a> network 192.168.1.0 0.0.0.255 area 0
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><code>network 172.16.0.0 0.0.0.3 area 0</code> — form an OSPF adjacency <em>across the tunnel</em></li>
+<li><code>network 192.168.1.0 0.0.0.255 area 0</code> — advertise the local LAN into it</li>
+<li><strong>Never</strong> advertise the tunnel destination's public network into this process, or recursive routing kills the tunnel</li>
+</ul>
+<h3 id="vp10-verification">VP.10 Verification</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>show interfaces tunnel0</code></td>
+<td>State, encapsulation, source/destination, keepalive settings</td>
+</tr>
+<tr>
+<td><code>show ip interface brief \| include Tunnel</code></td>
+<td>Quick up/down check of all tunnels</td>
+</tr>
+<tr>
+<td><code>show ip route &lt;far-LAN&gt;</code></td>
+<td>Confirm site-to-site routes point into the tunnel</td>
+</tr>
+<tr>
+<td><code>ping 172.16.0.2</code></td>
+<td>Test the overlay (far end's tunnel IP)</td>
+</tr>
+<tr>
+<td><code>ping 192.168.2.1 source g0/0</code></td>
+<td>Test end-to-end, sourced from the LAN (proves routing, not just the tunnel)</td>
+</tr>
+<tr>
+<td><code>debug tunnel</code></td>
+<td>Watch encapsulation events (lab use)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vp11-annotated-example-show-interfaces-tunnel0">VP.11 Annotated example — <code>show interfaces tunnel0</code></h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-10-10">10</a></span>
+<span class="normal"><a href="#__codelineno-10-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a>R1# show interfaces tunnel0
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a>Tunnel0 is up, line protocol is up
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a>  Hardware is Tunnel
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a>  Internet address is 172.16.0.1/30
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a>  MTU 17916 bytes, BW 100 Kbit/sec, DLY 50000 usec,
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6"></a>  Encapsulation TUNNEL, loopback not set
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7"></a>  Keepalive set (5 sec), retries 3
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8"></a>  Tunnel source 203.0.113.1 (GigabitEthernet0/1), destination 198.51.100.2
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9"></a>  Tunnel protocol/transport GRE/IP
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10"></a>    Key disabled, sequencing disabled
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11"></a>  Tunnel transport MTU 1476 bytes
+</span></code></pre></div></td></tr></table></div>
+<p><strong>How to read it:</strong>
+- <code>up, line protocol is up</code> — with keepalives set, <code>up/up</code> actually means the far end answers. Without keepalives, <code>up/up</code> only means "I have a source, a destination, and a route to it".
+- <code>up, line protocol is down</code> + keepalives configured = the peer isn't responding: far end down, misconfigured (source/destination don't mirror), or GRE (IP protocol 47) blocked by a firewall in the path.
+- <code>Tunnel source 203.0.113.1 ... destination 198.51.100.2</code> — must be the exact mirror of the far end's config; the most common GRE mistake is a source that doesn't match the peer's configured destination (e.g., traffic leaves a different interface, or NAT rewrites it).
+- <code>Tunnel transport MTU 1476</code> — physical 1500 − 24 GRE bytes; payload larger than this gets fragmented or dropped.
+- <code>BW 100 Kbit/sec</code> — tunnels default to a tiny bandwidth value, which <strong>wrecks OSPF/EIGRP metrics</strong>; set <code>bandwidth 100000</code> on the tunnel to reflect reality.</p>
+<hr />
+<h2 id="ipsec">IPsec</h2>
+<h3 id="vp12-theory">VP.12 Theory</h3>
+<p>IPsec is a framework of protocols that provides 
+- <strong>confidentiality</strong> (encryption), 
+- <strong>integrity</strong> (hashing), 
+- <strong>authentication</strong> (peer identity), and 
+- <strong>anti-replay</strong> (sequence numbers) </p>
+<p>at the IP layer.</p>
+<p><strong>The two traffic protocols:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Protocol</th>
+<th>IP proto</th>
+<th>Provides</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ESP</strong> (Encapsulating Security Payload)</td>
+<td>50</td>
+<td>Encryption + integrity + authentication</td>
+<td>What everyone actually uses</td>
+</tr>
+<tr>
+<td><strong>AH</strong> (Authentication Header)</td>
+<td>51</td>
+<td>Integrity + authentication only, <strong>no encryption</strong></td>
+<td>Breaks through NAT (it hashes the IP header); essentially legacy</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The two modes:</strong></p>
+<ul>
+<li><strong>Tunnel mode</strong> — the entire original IP packet is encrypted and wrapped in a <em>new</em> IP header. Site-to-site default: internal addresses are hidden.</li>
+<li><strong>Transport mode</strong> — only the payload is encrypted; the original IP header is reused. Less overhead; used host-to-host and for GRE-over-IPsec (the GRE header already provides the outer tunnel).</li>
+</ul>
+<p><strong>The negotiation — IKE (Internet Key Exchange), UDP/500:</strong></p>
+<ul>
+<li><strong>Phase 1</strong> builds a secure management channel (the <em>ISAKMP/IKE SA</em>) between the peers. Here they agree on encryption, hash, Diffie-Hellman group, authentication method (pre-shared key or certificates), and lifetime — memorable as <strong>HAGLE</strong> (Hash, Authentication, Group, Lifetime, Encryption).</li>
+<li><strong>Phase 2</strong> negotiates the <em>IPsec SAs</em> inside that channel: which traffic to protect (the "interesting traffic" ACL / proxy IDs) and with which <strong>transform set</strong> (ESP algorithms). SAs are unidirectional — there's always a pair.</li>
+<li><strong>IKEv2</strong> is the modern replacement (fewer messages, built-in NAT-T and keepalives, EAP support). Concepts are identical; commands differ (§3.4).</li>
+<li><strong>NAT-T</strong>: when a NAT device is detected in the path, ESP is wrapped in <strong>UDP/4500</strong> so port translation can work. Firewalls must allow UDP/500, UDP/4500, and ESP (protocol 50).</li>
+</ul>
+<p><strong>Algorithm quick guidance:</strong> prefer <code>aes 256</code> / AES-GCM, <code>sha256</code> or better, DH group <code>14</code>+ (or 19/20 ECDH); avoid DES/3DES, MD5, SHA-1, and groups 1/2/5 — they appear in old examples and exams but are broken or deprecated.</p>
+<h3 id="vp13-site-to-site-ipsec-ikev1-with-crypto-map">VP.13 Site-to-site IPsec, IKEv1 with crypto map</h3>
+<p><strong>R1 (203.0.113.1), protecting LAN 192.168.1.0/24 ↔ remote LAN 192.168.2.0/24:</strong></p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-11-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-11-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-11-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-11-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-11-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-11-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-11-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-11-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-11-10">10</a></span>
+<span class="normal"><a href="#__codelineno-11-11">11</a></span>
+<span class="normal"><a href="#__codelineno-11-12">12</a></span>
+<span class="normal"><a href="#__codelineno-11-13">13</a></span>
+<span class="normal"><a href="#__codelineno-11-14">14</a></span>
+<span class="normal"><a href="#__codelineno-11-15">15</a></span>
+<span class="normal"><a href="#__codelineno-11-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a>crypto isakmp policy 10
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a> encryption aes 256
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a> hash sha256
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a> authentication pre-share
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5"></a> group 14
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6"></a> lifetime 86400
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7"></a>crypto isakmp key MySecretKey123 address 198.51.100.2
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8"></a>crypto ipsec transform-set TSET esp-aes 256 esp-sha256-hmac
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9"></a>ip access-list extended VPN-TRAFFIC
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10"></a> permit ip 192.168.1.0 0.0.0.255 192.168.2.0 0.0.0.255
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11"></a>crypto map CMAP 10 ipsec-isakmp
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12"></a> set peer 198.51.100.2
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13"></a> set transform-set TSET
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14"></a> match address VPN-TRAFFIC
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15"></a>interface g0/1
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16"></a> crypto map CMAP
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><code>crypto isakmp policy 10</code> — a Phase 1 proposal; the peers compare policies by priority number until one matches</li>
+<li><code>encryption aes 256</code> / <code>hash sha256</code> / <code>group 14</code> — the HAGLE parameters: cipher, integrity hash, and Diffie-Hellman group for key exchange</li>
+<li><code>authentication pre-share</code> — peers authenticate with a shared secret (certificates are the scalable alternative)</li>
+<li><code>lifetime 86400</code> — rekey the Phase 1 SA daily (seconds)</li>
+<li><code>crypto isakmp key MySecretKey123 address 198.51.100.2</code> — the pre-shared key, bound to the peer's address; <strong>must match on both sides</strong></li>
+<li><code>crypto ipsec transform-set TSET esp-aes 256 esp-sha256-hmac</code> — the Phase 2 proposal: ESP with AES-256 encryption and SHA-256 integrity (tunnel mode is the default; add <code>mode transport</code> under it for GRE-over-IPsec)</li>
+<li><code>permit ip 192.168.1.0 0.0.0.255 192.168.2.0 0.0.0.255</code> — the <strong>interesting traffic</strong> ACL: what gets encrypted. The far end's ACL must be the exact <strong>mirror image</strong>, or Phase 2 fails</li>
+<li><code>crypto map CMAP 10 ipsec-isakmp</code> — glue: peer + transform set + interesting traffic in one policy entry</li>
+<li><code>crypto map CMAP</code> (on the interface) — activate it on the Internet-facing interface; only <strong>one</strong> crypto map per interface (add more peers as more sequence numbers)</li>
+</ul>
+<p><strong>R2 mirrors everything:</strong> same policy/transform values, <code>set peer 203.0.113.1</code>, key bound to <code>203.0.113.1</code>, and the ACL reversed (<code>permit ip 192.168.2.0 0.0.0.255 192.168.1.0 0.0.0.255</code>).</p>
+<p><strong>Gotcha — NAT vs VPN:</strong> if the same router also does PAT to the Internet, the NAT ACL must <strong>deny</strong> the VPN traffic first (<code>deny ip 192.168.1.0 0.0.0.255 192.168.2.0 0.0.0.255</code> above the <code>permit</code>), otherwise packets are translated before encryption and never match the crypto ACL.</p>
+<h3 id="vp14-ipsec-verification">VP.14 IPsec verification</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>show crypto isakmp sa</code></td>
+<td>Phase 1 status — you want <code>QM_IDLE</code> / <code>ACTIVE</code> (see §3.6)</td>
+</tr>
+<tr>
+<td><code>show crypto ipsec sa</code></td>
+<td>Phase 2 SAs with encrypt/decrypt packet counters — the ground truth</td>
+</tr>
+<tr>
+<td><code>show crypto map</code></td>
+<td>The assembled policy: peers, ACLs, transform sets, which interface</td>
+</tr>
+<tr>
+<td><code>show crypto session</code></td>
+<td>One-line summary of all VPN sessions and their state</td>
+</tr>
+<tr>
+<td><code>show crypto isakmp policy</code></td>
+<td>Configured Phase 1 proposals (and defaults)</td>
+</tr>
+<tr>
+<td><code>clear crypto isakmp</code> / <code>clear crypto sa</code></td>
+<td>Tear down Phase 1 / Phase 2 to force renegotiation after changes</td>
+</tr>
+<tr>
+<td><code>debug crypto isakmp</code></td>
+<td>Watch Phase 1 negotiate — the #1 tool for "tunnel won't come up" (lab/maintenance window)</td>
+</tr>
+<tr>
+<td><code>debug crypto ipsec</code></td>
+<td>Watch Phase 2 / SA installation</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vp15-modern-equivalent-ikev2-with-svti-route-based-vpn">VP.15 Modern equivalent: IKEv2 with SVTI (route-based VPN)</h3>
+<p>Instead of a crypto map + ACL ("policy-based"), modern IOS builds the VPN as a <strong>virtual tunnel interface</strong> — anything <em>routed into the tunnel</em> gets encrypted ("route-based"). Cleaner, supports routing protocols natively, no mirror-image ACLs.</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-12-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-12-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-12-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-12-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-12-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-12-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-12-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-12-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-12-10">10</a></span>
+<span class="normal"><a href="#__codelineno-12-11">11</a></span>
+<span class="normal"><a href="#__codelineno-12-12">12</a></span>
+<span class="normal"><a href="#__codelineno-12-13">13</a></span>
+<span class="normal"><a href="#__codelineno-12-14">14</a></span>
+<span class="normal"><a href="#__codelineno-12-15">15</a></span>
+<span class="normal"><a href="#__codelineno-12-16">16</a></span>
+<span class="normal"><a href="#__codelineno-12-17">17</a></span>
+<span class="normal"><a href="#__codelineno-12-18">18</a></span>
+<span class="normal"><a href="#__codelineno-12-19">19</a></span>
+<span class="normal"><a href="#__codelineno-12-20">20</a></span>
+<span class="normal"><a href="#__codelineno-12-21">21</a></span>
+<span class="normal"><a href="#__codelineno-12-22">22</a></span>
+<span class="normal"><a href="#__codelineno-12-23">23</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a>crypto ikev2 proposal PROP
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a> encryption aes-cbc-256
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3"></a> integrity sha256
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4"></a> group 14
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5"></a>crypto ikev2 policy POL
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6"></a> proposal PROP
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7"></a>crypto ikev2 keyring KEYS
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8"></a> peer R2
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9"></a>  address 198.51.100.2
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10"></a>  pre-shared-key MySecretKey123
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11"></a>crypto ikev2 profile PROF
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12"></a> match identity remote address 198.51.100.2 255.255.255.255
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13"></a> authentication remote pre-share
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14"></a> authentication local pre-share
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15"></a> keyring local KEYS
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16"></a>crypto ipsec profile IPSEC-PROF
+</span><span id="__span-12-17"><a id="__codelineno-12-17" name="__codelineno-12-17"></a> set ikev2-profile PROF
+</span><span id="__span-12-18"><a id="__codelineno-12-18" name="__codelineno-12-18"></a>interface tunnel0
+</span><span id="__span-12-19"><a id="__codelineno-12-19" name="__codelineno-12-19"></a> ip address 172.16.0.1 255.255.255.252
+</span><span id="__span-12-20"><a id="__codelineno-12-20" name="__codelineno-12-20"></a> tunnel source g0/1
+</span><span id="__span-12-21"><a id="__codelineno-12-21" name="__codelineno-12-21"></a> tunnel destination 198.51.100.2
+</span><span id="__span-12-22"><a id="__codelineno-12-22" name="__codelineno-12-22"></a> tunnel mode ipsec ipv4
+</span><span id="__span-12-23"><a id="__codelineno-12-23" name="__codelineno-12-23"></a> tunnel protection ipsec profile IPSEC-PROF
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><code>crypto ikev2 proposal PROP</code> — the IKEv2 crypto suite (Phase 1 equivalent); <code>policy POL</code> selects which proposals are offered</li>
+<li><code>crypto ikev2 keyring KEYS</code> — pre-shared keys, organized per peer</li>
+<li><code>crypto ikev2 profile PROF</code> — ties identity matching, authentication method, and keyring together (the brain of IKEv2 config)</li>
+<li><code>crypto ipsec profile IPSEC-PROF</code> — the Phase 2 wrapper applied to tunnels (uses a default transform set unless you <code>set transform-set</code>)</li>
+<li><code>tunnel mode ipsec ipv4</code> — a pure IPsec tunnel interface (SVTI); no GRE header at all</li>
+<li><code>tunnel protection ipsec profile IPSEC-PROF</code> — encrypt everything entering this interface</li>
+<li>Now simply <strong>route</strong> through <code>tunnel0</code> (static or OSPF/EIGRP/BGP) — the routing table decides what's encrypted</li>
+</ul>
+<h3 id="vp16-gre-over-ipsec-encrypted-tunnel-that-carries-routing-protocols">VP.16 GRE over IPsec (encrypted tunnel that carries routing protocols)</h3>
+<p>Take the GRE tunnel from §2.2 and add protection — two extra blocks:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<span class="normal"><a href="#__codelineno-13-2">2</a></span>
+<span class="normal"><a href="#__codelineno-13-3">3</a></span>
+<span class="normal"><a href="#__codelineno-13-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a>crypto ipsec profile GRE-PROT
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a> set transform-set TSET
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3"></a>interface tunnel0
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4"></a> tunnel protection ipsec profile GRE-PROT
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><code>crypto ipsec profile GRE-PROT</code> + <code>set transform-set TSET</code> — reuse the Phase 2 transform set inside a profile (Phase 1 config from §3.2 or §3.4 is still required)</li>
+<li><code>tunnel protection ipsec profile GRE-PROT</code> — wrap the GRE tunnel in IPsec; <strong>both ends</strong> need it or the tunnel dies</li>
+<li>Best practice: add <code>mode transport</code> under the transform set — the GRE header already tunnels, so transport mode saves 20 bytes of double-encapsulation</li>
+<li>Result: OSPF/EIGRP/multicast flow like plain GRE, but everything on the wire is ESP</li>
+</ul>
+<h3 id="vp17-annotated-example-show-crypto-isakmp-sa-and-show-crypto-ipsec-sa">VP.17 Annotated example — <code>show crypto isakmp sa</code> and <code>show crypto ipsec sa</code></h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
+<span class="normal"><a href="#__codelineno-14-2">2</a></span>
+<span class="normal"><a href="#__codelineno-14-3">3</a></span>
+<span class="normal"><a href="#__codelineno-14-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a>R1# show crypto isakmp sa
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a>IPv4 Crypto ISAKMP SA
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a>dst             src             state          conn-id status
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4"></a>198.51.100.2    203.0.113.1     QM_IDLE           1001 ACTIVE
+</span></code></pre></div></td></tr></table></div>
+<p><strong>How to read it:</strong>
+- <code>QM_IDLE</code> + <code>ACTIVE</code> = Phase 1 succeeded and is at rest ("Quick Mode idle") — healthy.
+- <code>MM_NO_STATE</code> = Phase 1 dying repeatedly: usually a <strong>pre-shared key mismatch</strong> or no matching <code>isakmp policy</code> (compare HAGLE values on both ends).
+- <code>MM_KEY_EXCH</code> stuck = keys exchanging but authentication failing — again, almost always the PSK.
+- <strong>Empty output</strong> = Phase 1 never even started: no interesting traffic has been sent yet (send a ping between the LANs first!), the crypto map isn't on the interface, or UDP/500 is blocked.</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-15-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-15-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-15-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-15-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-15-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-15-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-15-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-15-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-15-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a>R1# show crypto ipsec sa
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2"></a>interface: GigabitEthernet0/1
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3"></a>    Crypto map tag: CMAP, local addr 203.0.113.1
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4"></a>   protected vrf: (none)
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5"></a>   local  ident (addr/mask/prot/port): (192.168.1.0/255.255.255.0/0/0)
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6"></a>   remote ident (addr/mask/prot/port): (192.168.2.0/255.255.255.0/0/0)
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7"></a>   current_peer 198.51.100.2 port 500
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8"></a>    #pkts encaps: 4312, #pkts encrypt: 4312, #pkts digest: 4312
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9"></a>    #pkts decaps: 4298, #pkts decrypt: 4298, #pkts verify: 4298
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10"></a>    #send errors 0, #recv errors 0
+</span></code></pre></div></td></tr></table></div>
+<p><strong>How to read it:</strong>
+- <code>local ident</code> / <code>remote ident</code> — the negotiated proxy IDs; they must be mirror images of the peer's. A Phase 2 failure with Phase 1 <code>ACTIVE</code> is almost always <strong>mismatched crypto ACLs</strong>.
+- <code>#pkts encaps/encrypt</code> <strong>and</strong> <code>#pkts decaps/decrypt</code> both incrementing = traffic flows both ways — the tunnel genuinely works.
+- Encrypts climbing but <strong>decrypts stuck at 0</strong> = your packets go out, nothing comes back: far end's return route missing, its crypto ACL doesn't mirror yours, or ESP (protocol 50) is blocked toward you. This asymmetry is the single most diagnostic line in IPsec troubleshooting.
+- <code>#send errors</code> climbing = local problem (often MTU/fragmentation).</p>
+<hr />
+<h2 id="mpls-multiprotocol-label-switching">MPLS (Multiprotocol Label Switching)</h2>
+<h3 id="vp18-theory">VP.18 Theory</h3>
+<p>MPLS forwards packets by a short <strong>label</strong> instead of the destination IP — routers in the core switch labels without ever looking up the full routing table, and more importantly, labels let providers build <strong>separated customer VPNs</strong> over one shared backbone.</p>
+<p><strong>The label:</strong> a 4-byte "shim" header inserted <strong>between</strong> the layer-2 header and the IP header (why MPLS is called <em>layer 2.5</em>). Fields: 20-bit label value, 3-bit EXP/TC (QoS), 1 bottom-of-stack bit (labels can <strong>stack</strong> — crucial for VPNs), 8-bit TTL.</p>
+<p><strong>The roles:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LSR</strong> (P router)</td>
+<td>Label Switch Router — core device that only swaps labels; knows nothing about customer routes</td>
+</tr>
+<tr>
+<td><strong>LER / edge LSR</strong> (PE router)</td>
+<td>Provider Edge — imposes (pushes) labels on ingress, removes (pops) on egress; holds the customer VRFs</td>
+</tr>
+<tr>
+<td><strong>CE router</strong></td>
+<td>Customer Edge — the customer's router; runs ordinary IP toward the PE, no MPLS awareness needed</td>
+</tr>
+<tr>
+<td><strong>LSP</strong></td>
+<td>Label Switched Path — the unidirectional label path a packet follows through the core</td>
+</tr>
+<tr>
+<td><strong>FEC</strong></td>
+<td>Forwarding Equivalence Class — the set of packets treated identically (typically: same destination prefix)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The label operations:</strong> <strong>push</strong> (ingress PE adds a label), <strong>swap</strong> (each core LSR replaces the label), <strong>pop</strong> (label removed). <strong>PHP</strong> (Penultimate Hop Popping): the <em>second-to-last</em> router pops the label so the final router does just one lookup instead of two — signaled with the reserved <strong>implicit-null</strong> label (3), which is why <code>show</code> output says <code>Pop Label</code>.</p>
+<p><strong>How labels are learned — LDP (Label Distribution Protocol):</strong> every router assigns a local label to each prefix in its routing table and advertises the binding to its neighbors (LDP uses UDP/646 hello discovery, then a TCP/646 session). LDP <strong>follows the IGP</strong> — it labels the paths OSPF/IS-IS already chose. Therefore: <strong>no working IGP → no working MPLS</strong>.</p>
+<p><strong>MPLS L3VPN — the flagship application (theory only, config is provider-side):</strong></p>
+<ul>
+<li>Each customer gets a <strong>VRF</strong> (Virtual Routing and Forwarding instance) on the PE — a private routing table. Customers can all use 10.0.0.0/8 without conflict.</li>
+<li>A <strong>RD</strong> (Route Distinguisher) is prepended to each customer prefix to make it globally unique (<code>65000:1:10.1.1.0/24</code>); <strong>RTs</strong> (Route Targets, BGP extended communities) control which VRFs import/export which routes — this is how topologies (any-to-any, hub-and-spoke, extranet) are built.</li>
+<li><strong>MP-BGP</strong> carries these VPNv4 routes between PEs, along with a <strong>VPN label</strong>. Packets in the core carry a <strong>two-label stack</strong>: outer = transport label (LDP, gets you to the egress PE), inner = VPN label (tells the egress PE which VRF/next-hop). The P routers only ever see the outer label — that's the separation.</li>
+<li>From the enterprise view: you hand your routes to the PE via static/OSPF/eBGP, and the provider's MPLS is invisible — but knowing the theory explains provider terms (RD/RT, VPNv4) and why traceroutes through the core may show <code>MPLS: Label 24005</code> hops.</li>
+</ul>
+<h3 id="vp19-core-commands-enabling-mplsldp">VP.19 Core commands — enabling MPLS/LDP</h3>
+<p>Prerequisite: a working IGP (e.g., OSPF) across all MPLS-enabled links, ideally with <code>/32</code> loopbacks advertised (LDP sessions and BGP next-hops ride on them).</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
+<span class="normal"><a href="#__codelineno-16-2">2</a></span>
+<span class="normal"><a href="#__codelineno-16-3">3</a></span>
+<span class="normal"><a href="#__codelineno-16-4">4</a></span>
+<span class="normal"><a href="#__codelineno-16-5">5</a></span>
+<span class="normal"><a href="#__codelineno-16-6">6</a></span>
+<span class="normal"><a href="#__codelineno-16-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1"></a>ip cef
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2"></a>mpls ip
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3"></a>interface g0/1
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4"></a> mpls ip
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5"></a>interface g0/2
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6"></a> mpls ip
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7"></a>mpls ldp router-id loopback0 force
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><code>ip cef</code> — Cisco Express Forwarding must be on (it is by default on anything modern); MPLS is built on CEF</li>
+<li><code>mpls ip</code> (global) — enable MPLS forwarding on the router</li>
+<li><code>mpls ip</code> (interface) — run LDP on each core-facing link; both ends must enable it for a session to form</li>
+<li><code>mpls ldp router-id loopback0 force</code> — pin the LDP router ID to the loopback (stability; <code>force</code> resets sessions to apply it)</li>
+</ul>
+<p>Optional hardening/tuning:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mpls ldp neighbor 10.0.0.2 password MplsPass</code></td>
+<td>MD5-protect the LDP TCP session with that neighbor</td>
+</tr>
+<tr>
+<td><code>mpls mtu 1512</code></td>
+<td>(Interface) Allow labeled packets bigger than the IP MTU — two labels = +8 bytes; prevents core fragmentation</td>
+</tr>
+<tr>
+<td><code>mpls ldp igp sync</code></td>
+<td>Don't route traffic onto a link until LDP is up on it (prevents blackholing after link recovery)</td>
+</tr>
+<tr>
+<td><code>no mpls ip propagate-ttl</code></td>
+<td>Hide the MPLS core from customer traceroutes (they see one hop instead of every P router)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vp20-vrf-commands-the-pe-side-building-block">VP.20 VRF commands (the PE-side building block)</h3>
+<p>Even outside a provider, <strong>VRF-lite</strong> (VRFs without MPLS) is common in enterprises for tenant/guest separation — same commands, no label stack:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span>
+<span class="normal"><a href="#__codelineno-17-2">2</a></span>
+<span class="normal"><a href="#__codelineno-17-3">3</a></span>
+<span class="normal"><a href="#__codelineno-17-4">4</a></span>
+<span class="normal"><a href="#__codelineno-17-5">5</a></span>
+<span class="normal"><a href="#__codelineno-17-6">6</a></span>
+<span class="normal"><a href="#__codelineno-17-7">7</a></span>
+<span class="normal"><a href="#__codelineno-17-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1"></a>vrf definition CUSTOMER-A
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2"></a> rd 65000:1
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3"></a> route-target export 65000:1
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4"></a> route-target import 65000:1
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5"></a> address-family ipv4
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6"></a>interface g0/0
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7"></a> vrf forwarding CUSTOMER-A
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8"></a> ip address 10.1.1.1 255.255.255.0
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><code>vrf definition CUSTOMER-A</code> — create the VRF (older IOS: <code>ip vrf CUSTOMER-A</code>)</li>
+<li><code>rd 65000:1</code> — the Route Distinguisher that keeps this customer's prefixes globally unique</li>
+<li><code>route-target export/import 65000:1</code> — tag routes leaving this VRF / accept routes carrying this tag (MP-BGP environments)</li>
+<li><code>address-family ipv4</code> — activate IPv4 inside the VRF</li>
+<li><code>vrf forwarding CUSTOMER-A</code> — bind an interface to the VRF — <strong>this wipes the interface's IP address</strong>, so re-enter it afterwards (deliberate IOS behavior)</li>
+</ul>
+<p>Working <em>inside</em> a VRF requires VRF-aware commands:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>show ip route vrf CUSTOMER-A</code></td>
+<td>That customer's private routing table</td>
+</tr>
+<tr>
+<td><code>ping vrf CUSTOMER-A 10.1.1.2</code></td>
+<td>Ping from within the VRF (a plain <code>ping</code> uses the global table and will fail)</td>
+</tr>
+<tr>
+<td><code>traceroute vrf CUSTOMER-A 10.1.1.2</code></td>
+<td>Trace within the VRF</td>
+</tr>
+<tr>
+<td><code>ip route vrf CUSTOMER-A 10.2.0.0 255.255.255.0 10.1.1.2</code></td>
+<td>Static route inside the VRF</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vp21-mpls-verification">VP.21 MPLS verification</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>show mpls interfaces</code></td>
+<td>Which interfaces run MPLS/LDP — the first sanity check</td>
+</tr>
+<tr>
+<td><code>show mpls ldp neighbor</code></td>
+<td>LDP sessions — look for <code>Oper</code> state and the TCP connection</td>
+</tr>
+<tr>
+<td><code>show mpls ldp discovery</code></td>
+<td>Hello adjacencies (a neighbor here but not in <code>ldp neighbor</code> = TCP/646 blocked or password mismatch)</td>
+</tr>
+<tr>
+<td><code>show mpls ldp bindings</code></td>
+<td>The LIB: every label learned for every prefix, from every neighbor</td>
+</tr>
+<tr>
+<td><code>show mpls forwarding-table</code></td>
+<td>The LFIB: the labels actually used to forward (see §4.5)</td>
+</tr>
+<tr>
+<td><code>show ip cef 10.0.0.5 detail</code></td>
+<td>Exactly how one destination is forwarded, labels included</td>
+</tr>
+<tr>
+<td><code>traceroute 10.0.0.5</code></td>
+<td>Labeled hops appear as <code>MPLS: Label 24005 Exp 0</code> — proof packets ride the LSP</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vp22-annotated-example-show-mpls-forwarding-table">VP.22 Annotated example — <code>show mpls forwarding-table</code></h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span>
+<span class="normal"><a href="#__codelineno-18-2">2</a></span>
+<span class="normal"><a href="#__codelineno-18-3">3</a></span>
+<span class="normal"><a href="#__codelineno-18-4">4</a></span>
+<span class="normal"><a href="#__codelineno-18-5">5</a></span>
+<span class="normal"><a href="#__codelineno-18-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1"></a>P1# show mpls forwarding-table
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2"></a>Local      Outgoing   Prefix           Bytes Label   Outgoing   Next Hop
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3"></a>Label      Label      or Tunnel Id     Switched      interface
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4"></a>16         Pop Label  10.0.0.3/32      152340        Gi0/2      10.1.23.3
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5"></a>17         18         10.0.0.4/32      98220         Gi0/2      10.1.23.3
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6"></a>18         No Label   192.168.5.0/24   0             Gi0/1      10.1.12.1
+</span></code></pre></div></td></tr></table></div>
+<p><strong>How to read it:</strong>
+- Each row: "if a packet arrives with <strong>Local Label</strong> X, do <strong>Outgoing Label</strong> action and send it to <strong>Next Hop</strong>".
+- Row 1 — <code>Pop Label</code>: this router is the <strong>penultimate hop</strong> for 10.0.0.3 (PHP in action): it strips the label and forwards plain IP to the final router.
+- Row 2 — <code>17 → 18</code>: a classic <strong>swap</strong> in the middle of an LSP.
+- Row 3 — <code>No Label</code>: the next hop never advertised a label for this prefix — the packet leaves <strong>unlabeled</strong>. Fine at the MPLS edge; a <strong>problem in the core</strong> (it breaks L3VPN, whose inner label needs the transport label to survive). Causes: LDP not enabled on that link, LDP session down, or the prefix missing from the neighbor's IGP.
+- <code>Bytes Label Switched</code> stuck at 0 on a path that should carry traffic = the LSP exists but nothing uses it — check IGP path selection.</p>
+<hr />
+<h2 id="quick-is-the-tunnel-working-checklist">Quick "is the tunnel working?" checklist</h2>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Is the tunnel interface up?</td>
+<td><code>show ip interface brief \| include Tunnel</code></td>
+</tr>
+<tr>
+<td>Does the overlay respond?</td>
+<td><code>ping &lt;far tunnel IP&gt;</code></td>
+</tr>
+<tr>
+<td>GRE peer really alive?</td>
+<td><code>keepalive</code> configured + <code>show interfaces tunnel0</code></td>
+</tr>
+<tr>
+<td>IPsec Phase 1 up?</td>
+<td><code>show crypto isakmp sa</code> → <code>QM_IDLE</code>/<code>ACTIVE</code></td>
+</tr>
+<tr>
+<td>IPsec passing traffic <em>both</em> ways?</td>
+<td><code>show crypto ipsec sa</code> → encaps <strong>and</strong> decaps rising</td>
+</tr>
+<tr>
+<td>Why won't Phase 1/2 negotiate?</td>
+<td><code>debug crypto isakmp</code> / <code>debug crypto ipsec</code></td>
+</tr>
+<tr>
+<td>LDP neighbors up?</td>
+<td><code>show mpls ldp neighbor</code></td>
+</tr>
+<tr>
+<td>Labels actually forwarding?</td>
+<td><code>show mpls forwarding-table</code> (beware <code>No Label</code> in the core)</td>
+</tr>
+<tr>
+<td>VRF routing correct?</td>
+<td><code>show ip route vrf &lt;name&gt;</code>, <code>ping vrf &lt;name&gt;</code></td>
+</tr>
+<tr>
+<td>Big packets dying in the tunnel?</td>
+<td>Check <code>ip mtu</code> / <code>ip tcp adjust-mss</code> on the tunnel interface</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../nat/" class="md-footer__link md-footer__link--prev" aria-label="Previous: NAT">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                NAT
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../dynamic-routing-vpn/" class="md-footer__link md-footer__link--next" aria-label="Next: Dynamic Routing over VPN">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Dynamic Routing over VPN
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Edm0ndDantes" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.footer", "navigation.path", "navigation.indexes", "toc.follow", "navigation.expand", "navigation.sections", "content.code.copy", "content.code.select", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2171 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ccna-commands.example/troubleshooting/">
+      
+      
+        <link rel="prev" href="../virt-auto/">
+      
+      
+        <link rel="next" href="../misc/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/Router-Firewall.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Troubleshooting - CCNA Handbook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRed+Hat+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Red Hat Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#troubleshooting-methodology" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="CCNA Handbook" class="md-header__button md-logo" aria-label="CCNA Handbook" data-md-component="logo">
+      
+  <img src="../assets/Router-Firewall.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CCNA Handbook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Troubleshooting
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="CCNA Handbook" class="md-nav__button md-logo" aria-label="CCNA Handbook" data-md-component="logo">
+      
+  <img src="../assets/Router-Firewall.svg" alt="logo">
+
+    </a>
+    CCNA Handbook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basics and Navigation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Basics and Navigation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../navigation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IOS CLI Navigation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic-device-config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Device Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interface-config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interface Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security-hardening/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Security & Hardening
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vlans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VLANs and Trunking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spanning Tree Protocol
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../etherchannel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EtherChannel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ipv6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IPv6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../static-routing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Static Routing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dhcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fhrp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    First Hop Redundancy Protocols
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wlan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WLANs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../forwarding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frame Forwarding and Packet Switching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enterprise Networking, Security and Automation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Enterprise Networking, Security and Automation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dynamic-routing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dynamic Routing - OSPF
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wan-tech/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WAN Technologies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enterprise Network Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access Control Lists
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NAT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vpn-tunnels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tunnels and VPNs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dynamic-routing-vpn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dynamic Routing over VPN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../qos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quality of Service (QoS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Management and Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../virt-auto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Virtualization and Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#t1-the-three-structured-approaches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        T.1 The three structured approaches
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t2-gathering-symptoms-key-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        T.2 Gathering symptoms — key step
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t3-common-physical-layer-fault-duplex-mismatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        T.3 Common physical-layer fault: duplex mismatch
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t4-reading-command-output-annotated-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        T.4 Reading Command Output — Annotated Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="T.4 Reading Command Output — Annotated Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#show-ip-route" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        show ip route
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-ip-interface-brief" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        show ip interface brief
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-interfaces-g00-key-excerpts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        show interfaces g0/0 (key excerpts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-vlan-brief" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        show vlan brief
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-interfaces-trunk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        show interfaces trunk
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-spanning-tree-vlan-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        show spanning-tree vlan 10
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-ip-ospf-neighbor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        show ip ospf neighbor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-ip-nat-translations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        show ip nat translations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-access-lists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        show access-lists
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-port-security-interface-f05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        show port-security interface f0/5
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-etherchannel-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        show etherchannel summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-standby-brief-hsrp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        show standby brief (HSRP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-is-it-working-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick "is it working?" checklist
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../misc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Miscellaneous
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#t1-the-three-structured-approaches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        T.1 The three structured approaches
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t2-gathering-symptoms-key-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        T.2 Gathering symptoms — key step
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t3-common-physical-layer-fault-duplex-mismatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        T.3 Common physical-layer fault: duplex mismatch
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t4-reading-command-output-annotated-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        T.4 Reading Command Output — Annotated Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="T.4 Reading Command Output — Annotated Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#show-ip-route" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        show ip route
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-ip-interface-brief" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        show ip interface brief
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-interfaces-g00-key-excerpts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        show interfaces g0/0 (key excerpts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-vlan-brief" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        show vlan brief
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-interfaces-trunk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        show interfaces trunk
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-spanning-tree-vlan-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        show spanning-tree vlan 10
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-ip-ospf-neighbor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        show ip ospf neighbor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-ip-nat-translations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        show ip nat translations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-access-lists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        show access-lists
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-port-security-interface-f05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        show port-security interface f0/5
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-etherchannel-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        show etherchannel summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-standby-brief-hsrp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        show standby brief (HSRP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-is-it-working-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick "is it working?" checklist
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="troubleshooting-methodology">Troubleshooting Methodology</h1>
+<h2 id="t1-the-three-structured-approaches">T.1 The three structured approaches</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Direction</th>
+<th>Best when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bottom-up</strong></td>
+<td>Start at <strong>physical (L1)</strong>, work <strong>up</strong> the OSI layers</td>
+<td>Suspected physical/cabling issue; thorough but can be slow</td>
+</tr>
+<tr>
+<td><strong>Top-down</strong></td>
+<td>Start at the <strong>application (L7)</strong>, work <strong>down</strong></td>
+<td>Suspected software/application issue</td>
+</tr>
+<tr>
+<td><strong>Divide-and-conquer</strong></td>
+<td>Start at a <strong>chosen layer</strong> based on symptoms, then go up or down</td>
+<td>You have a reasonable guess where the fault lies</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Example of divide-and-conquer:</strong> a URL fails but the <strong>IP address works</strong> → the problem is isolated to <strong>name resolution (DNS)</strong>, layers below are fine.</li>
+<li><strong>Educated guess ("shoot-from-the-hip")</strong> — a <strong>less-structured</strong> approach relying on experience/intuition; appropriate for <strong>seasoned</strong> admins, risky for beginners.</li>
+</ul>
+<h2 id="t2-gathering-symptoms-key-step">T.2 Gathering symptoms — key step</h2>
+<ul>
+<li><strong>Narrow the scope</strong>: determine whether the problem sits at the <strong>core, distribution, or access</strong> layer — this focuses which equipment to examine next.</li>
+</ul>
+<h2 id="t3-common-physical-layer-fault-duplex-mismatch">T.3 Common physical-layer fault: duplex mismatch</h2>
+<p>A <strong>duplex mismatch</strong> = the two link ends run <strong>different duplex modes</strong>. Two ways it happens:</p>
+<ol>
+<li><strong>Both ends manually set</strong> to different modes (one full, one half).</li>
+<li><strong>One end autonegotiates while the other is hard-set to full-duplex</strong> — autonegotiation fails to detect duplex and <strong>defaults to half</strong>, so the fixed-full end mismatches.</li>
+</ol>
+<p>Symptoms: <strong>late collisions</strong>, CRC/interface errors, poor throughput. (Note: a speed difference alone, like 100 vs 1000 Mbps, does <strong>not</strong> create a duplex mismatch — the link simply won't come up or negotiates a common speed.)</p>
+<h2 id="t4-reading-command-output-annotated-examples">T.4 Reading Command Output — Annotated Examples</h2>
+<p>Realistic output from the most important verification commands, with explanations of what to look for.</p>
+<h3 id="show-ip-route"><code>show ip route</code></h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>R1# show ip route
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>       * - candidate default, U - per-user static route
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a>Gateway of last resort is 203.0.113.1 to network 0.0.0.0
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a>S*    0.0.0.0/0 [1/0] via 203.0.113.1
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a>      10.0.0.0/8 is variably subnetted, 2 subnets, 2 masks
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a>C        10.1.1.0/30 is directly connected, GigabitEthernet0/1
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a>L        10.1.1.1/32 is directly connected, GigabitEthernet0/1
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a>O     192.168.20.0/24 [110/2] via 10.1.1.2, 00:12:45, GigabitEthernet0/1
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a>S     192.168.30.0/24 [1/0] via 10.1.1.2
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a>      192.168.10.0/24 is variably subnetted, 2 subnets, 2 masks
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15"></a>C        192.168.10.0/24 is directly connected, GigabitEthernet0/0
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16"></a>L        192.168.10.1/32 is directly connected, GigabitEthernet0/0
+</span></code></pre></div></td></tr></table></div>
+<p><strong>How to read it:</strong></p>
+<ul>
+<li>
+<p><strong>The letter code</strong> is the route's source: <code>C</code> = directly connected network, <code>L</code> = the router's own address on that link (always /32), <code>S</code> = static, <code>O</code> = OSPF-learned, <code>S*</code> = a static route that is also the <strong>default</strong> route.</p>
+</li>
+<li>
+<p><code>Gateway of last resort is 203.0.113.1</code> — a default route exists; anything not matching a more specific route goes there. If this says <em>"is not set"</em>, unknown destinations are dropped.</p>
+</li>
+<li>
+<p><code>[110/2]</code> = <strong>[administrative distance / metric]</strong>. AD 110 identifies OSPF; metric 2 is the OSPF cost of the path. When two sources offer the same prefix, lower AD wins; between routes from the same protocol, lower metric wins.</p>
+</li>
+<li>
+<p><code>via 10.1.1.2</code> — the next-hop address; <code>00:12:45</code> — how long the route has been stable (a young timer on an "old" route hints at flapping); <code>GigabitEthernet0/1</code> — the exit interface.</p>
+</li>
+<li>
+<p><strong>Longest prefix wins:</strong> a packet to 192.168.20.5 matches <code>192.168.20.0/24</code> (specific) over <code>0.0.0.0/0</code> (default), regardless of AD or metric.</p>
+</li>
+</ul>
+<h3 id="show-ip-interface-brief"><code>show ip interface brief</code></h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span>
+<span class="normal"><a href="#__codelineno-1-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>R1# show ip interface brief
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>Interface              IP-Address      OK? Method Status                Protocol
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>GigabitEthernet0/0     192.168.10.1    YES manual up                    up
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>GigabitEthernet0/1     10.1.1.1        YES manual up                    up
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a>GigabitEthernet0/2     unassigned      YES unset  administratively down down
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a>Serial0/0/0            203.0.113.2     YES DHCP   up                    down
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a>Vlan1                  unassigned      YES unset  down                  down
+</span></code></pre></div></td></tr></table></div>
+<p><strong>How to read it — the last two columns tell the story:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Protocol</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>up</td>
+<td>up</td>
+<td>Working normally</td>
+</tr>
+<tr>
+<td>administratively down</td>
+<td>down</td>
+<td>Someone typed <code>shutdown</code> — fix with <code>no shutdown</code></td>
+</tr>
+<tr>
+<td>up</td>
+<td>down</td>
+<td>Physical layer OK, data-link broken: clock/encapsulation mismatch, keepalives failing, far end misconfigured</td>
+</tr>
+<tr>
+<td>down</td>
+<td>down</td>
+<td>No signal at all: cable unplugged/bad, far-end device off, wrong port</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Method</strong> shows where the IP came from: <code>manual</code> (typed), <code>DHCP</code>, <code>unset</code> (none).</li>
+</ul>
+<h3 id="show-interfaces-g00-key-excerpts"><code>show interfaces g0/0</code> (key excerpts)</h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>GigabitEthernet0/0 is up, line protocol is up
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>  Hardware is iGbE, address is 0c1a.2b3c.4d00
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec,
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a>  Full-duplex, 1000Mb/s, media type is RJ45
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a>  Last input 00:00:02, output 00:00:01
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a>  5 minute input rate 2000 bits/sec, 3 packets/sec
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a>     10233 packets input, 1523340 bytes
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a>     0 input errors, 0 CRC, 0 frame, 0 overrun
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a>     8811 packets output, 923412 bytes
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a>     0 output errors, 0 collisions, 2 interface resets
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a>     0 late collision, 0 deferred
+</span></code></pre></div></td></tr></table></div>
+<p><strong>What to look for:</strong></p>
+<ul>
+<li>
+<p><code>Full-duplex, 1000Mb/s</code> — verify both ends agree. A <strong>duplex mismatch</strong> classically shows as <em>CRC/late collisions</em> on the half-duplex side and runts on the other.</p>
+</li>
+<li>
+<p><code>input errors</code> / <code>CRC</code> climbing → bad cable, bad SFP, or duplex mismatch. Re-run the command twice; what matters is whether counters are <em>increasing</em>, not their absolute value (use <code>clear counters</code> first).</p>
+</li>
+<li>
+<p><code>output drops</code> (in the queue line, not shown here) → congestion: traffic exceeds the interface's capacity.</p>
+</li>
+<li>
+<p><code>BW 1000000 Kbit/sec</code> — the bandwidth value OSPF/EIGRP use for metrics; it can be set with the <code>bandwidth</code> command without changing real speed.</p>
+</li>
+</ul>
+<h3 id="show-vlan-brief"><code>show vlan brief</code></h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span>
+<span class="normal"><a href="#__codelineno-3-7">7</a></span>
+<span class="normal"><a href="#__codelineno-3-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>S1# show vlan brief
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a>VLAN Name                             Status    Ports
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a>---- -------------------------------- --------- -------------------------------
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a>1    default                          active    Gi0/3, Gi1/0, Gi1/1, Gi1/2
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a>10   SALES                            active    Fa0/5, Fa0/6
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a>20   ENGINEERING                      active    Fa0/7, Fa0/8
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a>99   MANAGEMENT                       active    
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8"></a>1002 fddi-default                     act/unsup
+</span></code></pre></div></td></tr></table></div>
+<p><strong>How to read it:</strong></p>
+<ul>
+<li>
+<p>Only <strong>access</strong> ports are listed — trunks don't appear here (they carry all VLANs; see <code>show interfaces trunk</code>).</p>
+</li>
+<li>
+<p>A host in the wrong VLAN? This is the first place to look: find its port in the wrong row.</p>
+</li>
+<li>
+<p>A VLAN that exists but shows no ports (like 99 here) is fine for SVI-only/management VLANs.</p>
+</li>
+<li>
+<p>VLANs 1002–1005 are legacy FDDI/Token-Ring placeholders — ignore them; they can't be deleted.</p>
+</li>
+</ul>
+<h3 id="show-interfaces-trunk"><code>show interfaces trunk</code></h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a>S1# show interfaces trunk
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a>Port        Mode         Encapsulation  Status        Native vlan
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>Gi0/1       on           802.1q         trunking      99
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a>Port        Vlans allowed on trunk
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a>Gi0/1       10,20,99
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a>Port        Vlans allowed and active in management domain
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a>Gi0/1       10,20,99
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10"></a>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11"></a>Port        Vlans in spanning tree forwarding state and not pruned
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12"></a>Gi0/1       10,20
+</span></code></pre></div></td></tr></table></div>
+<p><strong>How to read it:</strong></p>
+<ul>
+<li>
+<p>Mode <code>on</code> = statically configured trunk; <code>desirable</code>/<code>auto</code> mean DTP negotiated it (harden this).</p>
+</li>
+<li>
+<p><code>Native vlan 99</code> — must match on both ends or you'll see CDP "native VLAN mismatch" log messages and inter-VLAN leakage.</p>
+</li>
+<li>
+<p>The three VLAN lists narrow down: <em>allowed</em> (your config) → <em>active</em> (VLAN actually exists) → <em>forwarding</em> (STP isn't blocking it). <strong>A VLAN missing from a lower list than the one above it is your fault line:</strong> allowed but not active = VLAN not created; active but not forwarding = STP blocking or pruned (here VLAN 99 is not forwarding — it has no member ports, which is normal).</p>
+</li>
+</ul>
+<h3 id="show-spanning-tree-vlan-10"><code>show spanning-tree vlan 10</code></h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span>
+<span class="normal"><a href="#__codelineno-5-15">15</a></span>
+<span class="normal"><a href="#__codelineno-5-16">16</a></span>
+<span class="normal"><a href="#__codelineno-5-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a>S2# show spanning-tree vlan 10
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a>VLAN0010
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a>  Spanning tree enabled protocol rstp
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a>  Root ID    Priority    24586
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a>             Address     0c1a.aaaa.0001
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a>             Cost        4
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a>             Port        25 (GigabitEthernet0/1)
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a>             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9"></a>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10"></a>  Bridge ID  Priority    32778  (priority 32768 sys-id-ext 10)
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11"></a>             Address     0c1a.bbbb.0002
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12"></a>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13"></a>Interface           Role Sts Cost      Prio.Nbr Type
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14"></a>------------------- ---- --- --------- -------- ------------------------
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15"></a>Gi0/1               Root FWD 4         128.25   P2p
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16"></a>Gi0/2               Altn BLK 4         128.26   P2p
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17"></a>Fa0/5               Desg FWD 19        128.7    P2p Edge
+</span></code></pre></div></td></tr></table></div>
+<p><strong>How to read it:</strong></p>
+<ul>
+<li>
+<p><strong>Root ID vs Bridge ID:</strong> Root ID is the elected root bridge; Bridge ID is <em>this</em> switch. If they showed the same MAC, you'd see <code>This bridge is the root</code> instead of a Cost/Port line. Here, this switch is NOT the root.</p>
+</li>
+<li>
+<p>Root priority <code>24586</code> = 24576 + VLAN 10 → someone configured <code>spanning-tree vlan 10 root primary</code>. This switch's <code>32778</code> = default 32768 + 10.</p>
+</li>
+<li>
+<p><strong>Port roles:</strong> <code>Root</code>/<code>FWD</code> = best path toward the root; <code>Desg</code>/<code>FWD</code> = designated (forwarding) for its segment; <code>Altn</code>/<code>BLK</code> = the <strong>blocked redundant link</strong> — this is the loop prevention working. If a "missing bandwidth" mystery arises, this blocked port is usually why.</p>
+</li>
+<li>
+<p><code>P2p Edge</code> on Fa0/5 = PortFast is active (host port, skips listening/learning).</p>
+</li>
+</ul>
+<h3 id="show-ip-ospf-neighbor"><code>show ip ospf neighbor</code></h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span>
+<span class="normal"><a href="#__codelineno-6-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a>R1# show ip ospf neighbor
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>Neighbor ID     Pri   State           Dead Time   Address         Interface
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a>2.2.2.2           1   FULL/DR         00:00:35    10.1.1.2        GigabitEthernet0/1
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a>3.3.3.3           1   FULL/BDR        00:00:38    10.1.1.3        GigabitEthernet0/1
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a>4.4.4.4           0   2WAY/DROTHER    00:00:31    10.1.1.4        GigabitEthernet0/1
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a>5.5.5.5           1   FULL/  -        00:00:33    10.2.2.2        Serial0/0/0
+</span></code></pre></div></td></tr></table></div>
+<p><strong>How to read it:</strong></p>
+<ul>
+<li>
+<p><code>FULL</code> = healthy adjacency, databases synchronized. <code>FULL/ -</code> (dash) = point-to-point link, where no DR/BDR is elected — also healthy.</p>
+</li>
+<li>
+<p><code>2WAY/DROTHER</code> is <strong>normal, not broken</strong>, on a multi-access segment: two non-DR routers stay at 2WAY with each other and only go FULL with the DR and BDR. (Pri <code>0</code> = that router refuses to be DR.)</p>
+</li>
+<li>
+<p><strong>Genuinely broken states:</strong> stuck in <code>INIT</code> = your hellos reach them, theirs don't return (ACL? unidirectional link?); stuck in <code>EXSTART</code>/<code>EXCHANGE</code> = classic <strong>MTU mismatch</strong>; neighbor missing entirely = subnet/area/timer/authentication mismatch or <code>passive-interface</code>.</p>
+</li>
+<li>
+<p><strong>Dead Time</strong> counts down from the dead interval and resets with each hello — it should hover, never reach zero.</p>
+</li>
+</ul>
+<h3 id="show-ip-nat-translations"><code>show ip nat translations</code></h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span>
+<span class="normal"><a href="#__codelineno-7-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a>R1# show ip nat translations
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a>Pro  Inside global       Inside local        Outside local       Outside global
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a>tcp  203.0.113.5:34122   192.168.10.11:34122 198.51.100.7:443    198.51.100.7:443
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a>tcp  203.0.113.5:51920   192.168.10.42:51920 93.184.216.34:80    93.184.216.34:80
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a>icmp 203.0.113.5:1       192.168.10.11:1     8.8.8.8:1           8.8.8.8:1
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a>---  203.0.113.9         192.168.10.5        ---                 ---
+</span></code></pre></div></td></tr></table></div>
+<p><strong>How to read it (each row left→right is "outside view → inside truth"):</strong></p>
+<ul>
+<li>
+<p><strong>Inside local</strong> = the host's real private IP; <strong>inside global</strong> = what the outside world sees. Rows sharing one inside-global IP with different ports (first three rows) = <strong>PAT/overload</strong> at work.</p>
+</li>
+<li>
+<p>The last row with no protocol/ports and no outside addresses = a <strong>static NAT</strong> entry — it exists permanently, even with no traffic.</p>
+</li>
+<li>
+<p>Empty table when you expect translations? Check: interfaces marked <code>ip nat inside</code>/<code>ip nat outside</code>, the ACL actually matches the source, and remember translations only appear when traffic flows.</p>
+</li>
+</ul>
+<h3 id="show-access-lists"><code>show access-lists</code></h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span>
+<span class="normal"><a href="#__codelineno-8-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a>R1# show access-lists
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a>Extended IP access list BLOCK-WEB
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a>    10 deny tcp 192.168.10.0 0.0.0.255 any eq www (152 matches)
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a>    15 deny tcp 192.168.10.0 0.0.0.255 any eq 443 (89 matches)
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a>    20 permit ip any any (10334 matches)
+</span></code></pre></div></td></tr></table></div>
+<p><strong>How to read it:</strong></p>
+<ul>
+<li>
+<p><code>(152 matches)</code> — the counters are the whole point: they prove the line is actually catching traffic. A rule you expect to fire showing <strong>no counter at all</strong> = never matched — likely ordered below a broader line that grabs the traffic first, applied to the wrong interface/direction, or the traffic isn't what you think.</p>
+</li>
+<li>
+<p>Matches only count on the interface(s) where the ACL is applied, and the implicit deny at the end has <strong>no counter</strong> — add an explicit <code>deny ip any any log</code> line to see what's being silently dropped.</p>
+</li>
+</ul>
+<h3 id="show-port-security-interface-f05"><code>show port-security interface f0/5</code></h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span>
+<span class="normal"><a href="#__codelineno-9-5">5</a></span>
+<span class="normal"><a href="#__codelineno-9-6">6</a></span>
+<span class="normal"><a href="#__codelineno-9-7">7</a></span>
+<span class="normal"><a href="#__codelineno-9-8">8</a></span>
+<span class="normal"><a href="#__codelineno-9-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a>S1# show port-security interface f0/5
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a>Port Security              : Enabled
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a>Port Status                : Secure-shutdown
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a>Violation Mode             : Shutdown
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a>Maximum MAC Addresses      : 2
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6"></a>Total MAC Addresses        : 2
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7"></a>Sticky MAC Addresses       : 2
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8"></a>Last Source Address:Vlan   : 000c.dead.beef:10
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9"></a>Security Violation Count   : 1
+</span></code></pre></div></td></tr></table></div>
+<p><strong>How to read it:</strong></p>
+<ul>
+<li>
+<p><code>Secure-shutdown</code> = the port is <strong>err-disabled</strong> right now — a violation occurred. (Healthy states: <code>Secure-up</code>; <code>Secure-down</code> just means the port is down/idle.)</p>
+</li>
+<li>
+<p><code>Last Source Address</code> = the MAC that triggered the violation — your evidence of <em>what</em> was plugged in.</p>
+</li>
+<li>
+<p>Recover: fix the physical issue, then <code>shutdown</code> / <code>no shutdown</code> on the interface (the violation count survives; clear with <code>clear port-security sticky</code>).</p>
+</li>
+</ul>
+<h3 id="show-etherchannel-summary"><code>show etherchannel summary</code></h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span>
+<span class="normal"><a href="#__codelineno-10-5">5</a></span>
+<span class="normal"><a href="#__codelineno-10-6">6</a></span>
+<span class="normal"><a href="#__codelineno-10-7">7</a></span>
+<span class="normal"><a href="#__codelineno-10-8">8</a></span>
+<span class="normal"><a href="#__codelineno-10-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a>S1# show etherchannel summary
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a>Flags:  D - down        P - bundled in port-channel
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a>        S - Layer2      U - in use      s - suspended
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a>        I - stand-alone
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6"></a>Group  Port-channel  Protocol    Ports
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7"></a>------+-------------+-----------+----------------------------
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8"></a>1      Po1(SU)         LACP      Gi0/1(P)  Gi0/2(P)
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9"></a>2      Po2(SD)         LACP      Gi0/3(I)  Gi0/4(s)
+</span></code></pre></div></td></tr></table></div>
+<p><strong>How to read it:</strong></p>
+<ul>
+<li>
+<p><code>Po1(SU)</code> = Layer-2 channel, <strong>U</strong>p and in use, with both members <code>(P)</code> bundled — healthy.</p>
+</li>
+<li>
+<p><code>Po2(SD)</code> is down: <code>Gi0/3(I)</code> = operating stand-alone (LACP got no response — is the far side configured?), <code>Gi0/4(s)</code> = <strong>suspended</strong>, almost always a <strong>member mismatch</strong> (VLAN list, speed, duplex, or mode differs from the channel). Fix the member config or the far end.</p>
+</li>
+</ul>
+<h3 id="show-standby-brief-hsrp"><code>show standby brief</code> (HSRP)</h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a>R1# show standby brief
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a>                     P indicates configured to preempt.
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a>Interface   Grp  Pri P State   Active          Standby         Virtual IP
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a>Gi0/0       1    150 P Active  local           192.168.10.3    192.168.10.1
+</span></code></pre></div></td></tr></table></div>
+<p><strong>How to read it:</strong></p>
+<ul>
+<li>
+<p>State <code>Active</code> + Active = <code>local</code> → this router currently owns the virtual IP 192.168.10.1. The peer at <code>.3</code> is <code>Standby</code>, ready to take over.</p>
+</li>
+<li>
+<p><code>P</code> = preempt is on — after recovering from a failure, this higher-priority (150) router will reclaim the Active role. Without preempt it would wait as Standby forever.</p>
+</li>
+<li>
+<p>Both routers showing <code>Active</code> = <strong>split brain</strong>: they can't hear each other's hellos — check the link/VLAN between them.</p>
+</li>
+</ul>
+<hr />
+<h3 id="quick-is-it-working-checklist">Quick "is it working?" checklist</h3>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Are my interfaces up?</td>
+<td><code>show ip interface brief</code></td>
+</tr>
+<tr>
+<td>Can I reach it?</td>
+<td><code>ping</code> / <code>traceroute</code></td>
+</tr>
+<tr>
+<td>What path is used?</td>
+<td><code>show ip route &lt;dest&gt;</code></td>
+</tr>
+<tr>
+<td>L2: right VLAN?</td>
+<td><code>show vlan brief</code>, <code>show interfaces trunk</code></td>
+</tr>
+<tr>
+<td>STP blocking something?</td>
+<td><code>show spanning-tree</code></td>
+</tr>
+<tr>
+<td>OSPF neighbors up?</td>
+<td><code>show ip ospf neighbor</code></td>
+</tr>
+<tr>
+<td>DHCP leasing?</td>
+<td><code>show ip dhcp binding</code></td>
+</tr>
+<tr>
+<td>NAT translating?</td>
+<td><code>show ip nat translations</code></td>
+</tr>
+<tr>
+<td>ACL dropping traffic?</td>
+<td><code>show access-lists</code> (watch counters)</td>
+</tr>
+<tr>
+<td>Who's plugged in where?</td>
+<td><code>show mac address-table</code>, <code>show cdp neighbors</code></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../virt-auto/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Virtualization and Automation">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Virtualization and Automation
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../misc/" class="md-footer__link md-footer__link--next" aria-label="Next: Miscellaneous">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Miscellaneous
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Edm0ndDantes" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.footer", "navigation.path", "navigation.indexes", "toc.follow", "navigation.expand", "navigation.sections", "content.code.copy", "content.code.select", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

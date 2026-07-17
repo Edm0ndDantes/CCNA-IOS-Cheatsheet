@@ -1,0 +1,1781 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ccna-commands.example/stp/">
+      
+      
+        <link rel="prev" href="../vlans/">
+      
+      
+        <link rel="next" href="../etherchannel/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/Router-Firewall.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Spanning Tree Protocol - CCNA Handbook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRed+Hat+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Red Hat Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#spanning-tree-protocol-stp" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="CCNA Handbook" class="md-header__button md-logo" aria-label="CCNA Handbook" data-md-component="logo">
+      
+  <img src="../assets/Router-Firewall.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CCNA Handbook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Spanning Tree Protocol
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="CCNA Handbook" class="md-nav__button md-logo" aria-label="CCNA Handbook" data-md-component="logo">
+      
+  <img src="../assets/Router-Firewall.svg" alt="logo">
+
+    </a>
+    CCNA Handbook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basics and Navigation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Basics and Navigation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../navigation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IOS CLI Navigation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic-device-config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Device Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interface-config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interface Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security-hardening/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Security & Hardening
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vlans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VLANs and Trunking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spanning Tree Protocol
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spanning Tree Protocol
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#s1-stp-theory-why-it-exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S.1 STP theory — why it exists
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="S.1 STP theory — why it exists">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-the-tree-is-built-bpdus-and-the-three-elections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How the tree is built — BPDUs and the three elections
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#port-states-and-timers-classic-8021d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Port states and timers (classic 802.1D)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rstp-8021w-what-actually-changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RSTP (802.1w) — what actually changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pvst-per-vlan-trees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PVST+ — per-VLAN trees
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-protection-toolkit-what-each-guard-is-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The protection toolkit — what each guard is for
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s2-global-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S.2 Global configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s3-per-interface-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S.3 Per-interface features
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s4-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S.4 Verification
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../etherchannel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EtherChannel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ipv6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IPv6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../static-routing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Static Routing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dhcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fhrp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    First Hop Redundancy Protocols
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wlan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WLANs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../forwarding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frame Forwarding and Packet Switching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enterprise Networking, Security and Automation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Enterprise Networking, Security and Automation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dynamic-routing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dynamic Routing - OSPF
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wan-tech/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WAN Technologies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enterprise Network Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access Control Lists
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NAT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vpn-tunnels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tunnels and VPNs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dynamic-routing-vpn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dynamic Routing over VPN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../qos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quality of Service (QoS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Management and Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../virt-auto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Virtualization and Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../misc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Miscellaneous
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#s1-stp-theory-why-it-exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S.1 STP theory — why it exists
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="S.1 STP theory — why it exists">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-the-tree-is-built-bpdus-and-the-three-elections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How the tree is built — BPDUs and the three elections
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#port-states-and-timers-classic-8021d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Port states and timers (classic 802.1D)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rstp-8021w-what-actually-changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RSTP (802.1w) — what actually changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pvst-per-vlan-trees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PVST+ — per-VLAN trees
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-protection-toolkit-what-each-guard-is-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The protection toolkit — what each guard is for
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s2-global-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S.2 Global configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s3-per-interface-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S.3 Per-interface features
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s4-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S.4 Verification
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="spanning-tree-protocol-stp">Spanning Tree Protocol (STP)</h1>
+<p>STP prevents Layer-2 loops by electing a root bridge and blocking redundant paths.</p>
+<h2 id="s1-stp-theory-why-it-exists">S.1 STP theory — why it exists</h2>
+<p>Ethernet frames have <strong>no TTL</strong>: a frame caught in a physical loop circulates <em>forever</em>. Redundant links between switches are deliberately built for failover — STP's job is to keep the redundancy while logically breaking the loop, by blocking just enough ports to leave exactly <strong>one active path</strong> between any two points, and unblocking them when the primary path dies.</p>
+<p>Without STP, a loop produces three simultaneous disasters:</p>
+<table>
+<thead>
+<tr>
+<th>Failure</th>
+<th>Mechanism</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Broadcast storm</strong></td>
+<td>Every broadcast/multicast/unknown-unicast frame is flooded, loops around, is flooded again — traffic multiplies until links and CPUs saturate (takes seconds to kill a network)</td>
+</tr>
+<tr>
+<td><strong>MAC table instability</strong></td>
+<td>The same source MAC arrives on different ports as its frames loop, so the table rewrites constantly ("MAC flapping") — the switch CPU churns and forwarding becomes erratic</td>
+</tr>
+<tr>
+<td><strong>Duplicate frames</strong></td>
+<td>A host receives multiple copies of the same unicast frame via different loop paths — breaks protocols that don't expect it</td>
+</tr>
+</tbody>
+</table>
+<h3 id="how-the-tree-is-built-bpdus-and-the-three-elections">How the tree is built — BPDUs and the three elections</h3>
+<p>Switches exchange <strong>BPDUs</strong> (Bridge Protocol Data Units, sent to multicast <code>0180.c200.0000</code> every <strong>hello time = 2 s</strong>). Everything is decided by comparing values, <strong>lowest always wins</strong>:</p>
+<p><strong>1. Elect one Root Bridge per VLAN.</strong> The switch with the lowest <strong>Bridge ID</strong> wins. The BID is:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>| Priority (4 bits)      | Extended System ID (12 bits) | MAC address (48 bits) |
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>| default 32768,         | = VLAN number                | the tie-breaker       |
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>| multiples of 4096      |                              |                       |
+</span></code></pre></div>
+<ul>
+<li>Priority + VLAN is why <code>show spanning-tree</code> displays values like <code>32778</code> (32768 + VLAN 10) and why configured priorities must be multiples of 4096.</li>
+<li>With default priorities everywhere, the <strong>oldest switch wins</strong> (lowest MAC) — usually the <em>worst</em> choice. This is the argument for always setting <code>spanning-tree vlan X root primary</code> (priority 24576) on the intended core switch and <code>root secondary</code> (28672) on its backup.</li>
+<li>All ports on the root bridge are Designated/forwarding — the tree grows outward from it.</li>
+</ul>
+<p><strong>2. Each non-root switch elects one Root Port</strong> — its single best path <em>toward</em> the root, chosen by (tie-breakers in strict order):</p>
+<ol>
+<li>Lowest cumulative <strong>root path cost</strong> (sum of port costs along the path)</li>
+<li>Lowest <strong>sender BID</strong> (neighbor's bridge ID)</li>
+<li>Lowest <strong>sender port priority</strong> (default 128, tunable with <code>spanning-tree port-priority</code>)</li>
+<li>Lowest <strong>sender port number</strong></li>
+</ol>
+<p><strong>3. Each segment elects one Designated Port</strong> — the port that forwards toward that segment, on the switch with the lowest path cost to root (same tie-breakers). Every port that ended up neither Root nor Designated becomes <strong>Alternate (blocked)</strong> — those are the loop-breakers.</p>
+<p><strong>Path costs</strong> (IEEE short values — what Catalyst switches use by default):</p>
+<table>
+<thead>
+<tr>
+<th>Link speed</th>
+<th>STP cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10 Mb/s</td>
+<td>100</td>
+</tr>
+<tr>
+<td>100 Mb/s</td>
+<td>19</td>
+</tr>
+<tr>
+<td>1 Gb/s</td>
+<td>4</td>
+</tr>
+<tr>
+<td>10 Gb/s</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<p>Costs only differentiate up to 10G in the short system (the long system, <code>spanning-tree pathcost method long</code>, fixes this for faster links). Manipulating <code>spanning-tree cost</code> on a port changes which path is preferred — the STP analogue of tuning OSPF cost.</p>
+<h3 id="port-states-and-timers-classic-8021d">Port states and timers (classic 802.1D)</h3>
+<p>A port moving toward forwarding walks through states — the delays exist to make sure the whole tree has agreed before traffic flows (a premature forward = temporary loop):</p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Duration</th>
+<th>Learns MACs?</th>
+<th>Forwards?</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Blocking</strong></td>
+<td>stable</td>
+<td>No</td>
+<td>No</td>
+<td>Receives BPDUs only — the loop-prevention state</td>
+</tr>
+<tr>
+<td><strong>Listening</strong></td>
+<td>15 s (forward delay)</td>
+<td>No</td>
+<td>No</td>
+<td>Sends/receives BPDUs, participates in elections</td>
+</tr>
+<tr>
+<td><strong>Learning</strong></td>
+<td>15 s (forward delay)</td>
+<td><strong>Yes</strong></td>
+<td>No</td>
+<td>Pre-populates the MAC table so forwarding doesn't start with a flood</td>
+</tr>
+<tr>
+<td><strong>Forwarding</strong></td>
+<td>stable</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Normal operation</td>
+</tr>
+<tr>
+<td>Disabled</td>
+<td>—</td>
+<td>No</td>
+<td>No</td>
+<td>Administratively <code>shutdown</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>The three timers</strong> (set by the root bridge, propagated in BPDUs):</p>
+<table>
+<thead>
+<tr>
+<th>Timer</th>
+<th>Default</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hello</td>
+<td>2 s</td>
+<td>BPDU transmission interval</td>
+</tr>
+<tr>
+<td>Max Age</td>
+<td>20 s</td>
+<td>How long a stored BPDU stays valid — a blocked port that stops hearing BPDUs waits this long before acting</td>
+</tr>
+<tr>
+<td>Forward Delay</td>
+<td>15 s</td>
+<td>Length of each of Listening and Learning</td>
+</tr>
+</tbody>
+</table>
+<p>Worst-case classic convergence: <strong>Max Age + 2× Forward Delay = 50 seconds</strong> of outage. That number is the whole justification for RSTP — and for PortFast, which skips Listening/Learning on host ports (a PC boots and DHCPs immediately instead of staring at a dead port for 30 s).</p>
+<h3 id="rstp-8021w-what-actually-changed">RSTP (802.1w) — what actually changed</h3>
+<p>Rapid PVST+ (<code>spanning-tree mode rapid-pvst</code>) keeps the same election logic and tie-breakers but converges in <strong>milliseconds-to-seconds</strong> instead of 30–50 s:</p>
+<ul>
+<li><strong>States collapse to three:</strong> Discarding (absorbs old Blocking/Listening/Disabled), Learning, Forwarding.</li>
+<li><strong>New port roles:</strong> the blocked ports get jobs. An <strong>Alternate</strong> port is a pre-computed backup <em>Root Port</em> (path to root via another switch); a <strong>Backup</strong> port is a backup <em>Designated Port</em> (second link to the same segment — rare, needs a hub). When the root port dies, the alternate goes forwarding <strong>immediately</strong> — no timers.</li>
+<li><strong>Proposal/Agreement handshake:</strong> instead of waiting out timers, point-to-point neighbors negotiate explicitly ("I propose to forward" → "agreed, I've blocked my other ports") — this is what makes it <em>rapid</em>, and it only works on <strong>link-type point-to-point</strong> (full-duplex, auto-detected). Half-duplex links fall back to timer-based convergence.</li>
+<li><strong>Edge ports</strong> = PortFast formalized: a port declared edge goes straight to forwarding and generates no topology changes; it loses edge status the instant a BPDU arrives.</li>
+<li><strong>Every switch originates BPDUs</strong> every hello (in 802.1D only relayed from the root); a neighbor is declared dead after <strong>3 missed hellos = 6 s</strong>, not Max Age.</li>
+<li>Backward compatible: a port hearing legacy 802.1D BPDUs reverts to classic behavior on that link.</li>
+</ul>
+<h3 id="pvst-per-vlan-trees">PVST+ — per-VLAN trees</h3>
+<p>Cisco's PVST+/Rapid-PVST+ runs <strong>one independent STP instance per VLAN</strong> (the standards run one for all). Cost: CPU/BPDUs scale with VLAN count. Benefit: <strong>per-VLAN load sharing</strong> — make one switch root for VLANs 10/30 and another root for VLANs 20/40, and both uplinks carry traffic (each blocked for the <em>other</em> VLAN set) instead of one link idling. This is done purely with per-VLAN <code>root primary</code>/<code>priority</code> — the topology does the rest.</p>
+<h3 id="the-protection-toolkit-what-each-guard-is-for">The protection toolkit — what each guard is <em>for</em></h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Deploy on</th>
+<th>Protects against</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PortFast</strong></td>
+<td>Access/host ports</td>
+<td>30 s of dead port at boot (DHCP timeouts); also stops hosts from generating topology-change events</td>
+</tr>
+<tr>
+<td><strong>BPDU Guard</strong></td>
+<td>PortFast ports</td>
+<td>A switch (or bridging host/rogue AP) plugged into a host port — err-disables the port on the first BPDU. PortFast without BPDU Guard is a standing invitation for a loop</td>
+</tr>
+<tr>
+<td><strong>Root Guard</strong></td>
+<td>Designated ports toward access/customer switches</td>
+<td>A downstream switch with a better BID hijacking the root role — the port goes <code>root-inconsistent</code> (blocked) while superior BPDUs arrive, recovers alone when they stop</td>
+</tr>
+<tr>
+<td><strong>Loop Guard</strong></td>
+<td>Root/alternate ports on trunk links</td>
+<td>A <strong>unidirectional</strong> link failure (BPDUs stop arriving but the link shows up) silently unblocking a port → loop. The port goes <code>loop-inconsistent</code> instead of forwarding</td>
+</tr>
+<tr>
+<td><strong>BPDU Filter</strong></td>
+<td>(rarely)</td>
+<td>Suppresses BPDUs entirely — effectively disables STP on the port; dangerous, know it exists, avoid it</td>
+</tr>
+</tbody>
+</table>
+<p>Root Guard vs Loop Guard in one line: Root Guard fires when <em>superior BPDUs arrive</em> where they shouldn't; Loop Guard fires when <em>BPDUs stop arriving</em> where they should.</p>
+<h2 id="s2-global-configuration">S.2 Global configuration</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>spanning-tree mode rapid-pvst</code></td>
+<td>Use Rapid PVST+ (fast convergence; recommended). Others: <code>pvst</code>, <code>mst</code></td>
+</tr>
+<tr>
+<td><code>spanning-tree vlan 10 root primary</code></td>
+<td>Make this switch the root bridge for VLAN 10 (sets priority to 24576 or lower)</td>
+</tr>
+<tr>
+<td><code>spanning-tree vlan 10 root secondary</code></td>
+<td>Backup root (priority 28672)</td>
+</tr>
+<tr>
+<td><code>spanning-tree vlan 10 priority 4096</code></td>
+<td>Or set the priority manually (multiple of 4096; lower wins)</td>
+</tr>
+<tr>
+<td><code>spanning-tree portfast default</code></td>
+<td>PortFast on all access ports at once</td>
+</tr>
+<tr>
+<td><code>spanning-tree portfast bpduguard default</code></td>
+<td>BPDU Guard on all PortFast ports</td>
+</tr>
+</tbody>
+</table>
+<h2 id="s3-per-interface-features">S.3 Per-interface features</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>spanning-tree portfast</code></td>
+<td>Skip listening/learning on an access port — host ports come up instantly</td>
+</tr>
+<tr>
+<td><code>spanning-tree bpduguard enable</code></td>
+<td>Err-disable the port if a BPDU arrives (a switch was plugged into a host port)</td>
+</tr>
+<tr>
+<td><code>spanning-tree guard root</code></td>
+<td>Root Guard: block a downstream switch from becoming root via this port</td>
+</tr>
+<tr>
+<td><code>spanning-tree cost 10</code></td>
+<td>Manipulate path cost (lower preferred)</td>
+</tr>
+<tr>
+<td><code>spanning-tree port-priority 64</code></td>
+<td>Tie-breaker between equal-cost ports (lower wins, multiple of 32)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="s4-verification">S.4 Verification</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>show spanning-tree</code></td>
+<td>Root bridge, port roles/states for every VLAN (see §18.6)</td>
+</tr>
+<tr>
+<td><code>show spanning-tree vlan 10</code></td>
+<td>Same, for one VLAN</td>
+</tr>
+<tr>
+<td><code>show spanning-tree summary</code></td>
+<td>Modes and feature status (PortFast, BPDU Guard, etc.)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Reading the output:</strong> the root bridge shows <code>This bridge is the root</code>. Port roles: Root (best path to root), Designated (forwarding), Alternate/Blocked.</p>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../vlans/" class="md-footer__link md-footer__link--prev" aria-label="Previous: VLANs and Trunking">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                VLANs and Trunking
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../etherchannel/" class="md-footer__link md-footer__link--next" aria-label="Next: EtherChannel">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                EtherChannel
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Edm0ndDantes" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.footer", "navigation.path", "navigation.indexes", "toc.follow", "navigation.expand", "navigation.sections", "content.code.copy", "content.code.select", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

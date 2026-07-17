@@ -1,0 +1,1771 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ccna-commands.example/wlan/">
+      
+      
+        <link rel="prev" href="../fhrp/">
+      
+      
+        <link rel="next" href="../forwarding/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/Router-Firewall.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>WLANs - CCNA Handbook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRed+Hat+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Red Hat Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#wlans-wireless-lans" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="CCNA Handbook" class="md-header__button md-logo" aria-label="CCNA Handbook" data-md-component="logo">
+      
+  <img src="../assets/Router-Firewall.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CCNA Handbook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              WLANs
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="CCNA Handbook" class="md-nav__button md-logo" aria-label="CCNA Handbook" data-md-component="logo">
+      
+  <img src="../assets/Router-Firewall.svg" alt="logo">
+
+    </a>
+    CCNA Handbook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basics and Navigation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Basics and Navigation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../navigation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IOS CLI Navigation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic-device-config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Device Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interface-config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interface Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security-hardening/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Security & Hardening
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vlans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VLANs and Trunking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spanning Tree Protocol
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../etherchannel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EtherChannel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ipv6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IPv6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../static-routing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Static Routing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dhcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fhrp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    First Hop Redundancy Protocols
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WLANs
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WLANs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#w1-rf-fundamentals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W.1 RF fundamentals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#w2-service-sets-topology-terms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W.2 Service sets &amp; topology terms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#w3-ap-architectures-autonomous-vs-lightweight-capwap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W.3 AP architectures — autonomous vs lightweight (CAPWAP)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#w4-wireless-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W.4 Wireless security
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#w5-switch-configuration-for-aps-and-wlc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W.5 Switch configuration for APs and WLC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#w6-wlc-quick-reference-aireos-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W.6 WLC quick reference (AireOS CLI)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#w7-troubleshooting-quick-hits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W.7 Troubleshooting quick hits
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../forwarding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frame Forwarding and Packet Switching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enterprise Networking, Security and Automation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Enterprise Networking, Security and Automation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dynamic-routing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dynamic Routing - OSPF
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wan-tech/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WAN Technologies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enterprise Network Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access Control Lists
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NAT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vpn-tunnels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tunnels and VPNs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dynamic-routing-vpn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dynamic Routing over VPN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../qos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quality of Service (QoS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Management and Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../virt-auto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Virtualization and Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../misc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Miscellaneous
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#w1-rf-fundamentals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W.1 RF fundamentals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#w2-service-sets-topology-terms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W.2 Service sets &amp; topology terms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#w3-ap-architectures-autonomous-vs-lightweight-capwap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W.3 AP architectures — autonomous vs lightweight (CAPWAP)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#w4-wireless-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W.4 Wireless security
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#w5-switch-configuration-for-aps-and-wlc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W.5 Switch configuration for APs and WLC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#w6-wlc-quick-reference-aireos-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W.6 WLC quick reference (AireOS CLI)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#w7-troubleshooting-quick-hits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W.7 Troubleshooting quick hits
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="wlans-wireless-lans">WLANs (Wireless LANs)</h1>
+<h2 id="w1-rf-fundamentals">W.1 RF fundamentals</h2>
+<p>Wi-Fi (IEEE 802.11) carries frames over radio instead of cable — and radio changes the rules:</p>
+<ul>
+<li><strong>Half-duplex, shared medium:</strong> all devices on a channel share airtime; only one transmits at a time. Wireless uses <strong>CSMA/CA</strong> (Collision <em>Avoidance</em>): listen first, wait a random backoff, transmit, and require an <strong>ACK</strong> for every frame — collisions can't be <em>detected</em> over radio (you can't hear while transmitting), so they're avoided and repaired instead.</li>
+<li><strong>Bands and channels:</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Channels</th>
+<th>Character</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>2.4 GHz</strong></td>
+<td>1–13 (14 in Japan) — but only <strong>1, 6, 11 are non-overlapping</strong></td>
+<td>Longer range, penetrates walls, crowded (Bluetooth, microwaves); channels are 22 MHz wide but spaced 5 MHz apart, hence the 1/6/11 rule</td>
+</tr>
+<tr>
+<td><strong>5 GHz</strong></td>
+<td>~24 non-overlapping 20 MHz channels</td>
+<td>Shorter range, much more spectrum, supports 40/80/160 MHz channel bonding for speed; some channels require <strong>DFS</strong> (radar detection)</td>
+</tr>
+<tr>
+<td><strong>6 GHz</strong> (Wi-Fi 6E)</td>
+<td>59 additional 20 MHz channels</td>
+<td>New, clean spectrum; WPA3 mandatory</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Adjacent APs must use non-overlapping channels</strong> — same-channel neighbors share airtime (co-channel interference), overlapping-channel neighbors corrupt each other. The classic design is a honeycomb of 1/6/11 in 2.4 GHz.</li>
+<li><strong>802.11 standards:</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Standard</th>
+<th>Marketing name</th>
+<th>Band</th>
+<th>Max (theoretical)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>802.11b / a / g</td>
+<td>—</td>
+<td>2.4 / 5 / 2.4 GHz</td>
+<td>11 / 54 / 54 Mb/s</td>
+</tr>
+<tr>
+<td>802.11n</td>
+<td>Wi-Fi 4</td>
+<td>2.4 + 5</td>
+<td>~600 Mb/s (MIMO introduced)</td>
+</tr>
+<tr>
+<td>802.11ac</td>
+<td>Wi-Fi 5</td>
+<td>5 only</td>
+<td>~6.9 Gb/s (MU-MIMO downlink)</td>
+</tr>
+<tr>
+<td>802.11ax</td>
+<td>Wi-Fi 6 / 6E</td>
+<td>2.4 + 5 (+6)</td>
+<td>~9.6 Gb/s (OFDMA, uplink MU-MIMO, better density)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="w2-service-sets-topology-terms">W.2 Service sets &amp; topology terms</h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SSID</strong></td>
+<td>The network <em>name</em> — what users see</td>
+</tr>
+<tr>
+<td><strong>BSS</strong></td>
+<td>Basic Service Set: one AP and its clients</td>
+</tr>
+<tr>
+<td><strong>BSSID</strong></td>
+<td>The BSS's unique ID = the AP radio's MAC address (one SSID on many APs = same SSID, different BSSIDs)</td>
+</tr>
+<tr>
+<td><strong>ESS</strong></td>
+<td>Extended Service Set: multiple APs advertising the same SSID over a wired <strong>distribution system</strong>, enabling roaming</td>
+</tr>
+<tr>
+<td><strong>IBSS / ad hoc</strong></td>
+<td>Client-to-client, no AP</td>
+</tr>
+<tr>
+<td><strong>Mesh</strong></td>
+<td>APs backhaul wirelessly to each other; only some are cabled</td>
+</tr>
+</tbody>
+</table>
+<p>A client <strong>associates</strong> with one BSS at a time; <strong>roaming</strong> = re-associating to a different BSSID of the same ESS. One physical AP typically broadcasts several SSIDs, each mapped to a different <strong>VLAN</strong> — this SSID↔VLAN mapping is the core of enterprise WLAN design.</p>
+<h2 id="w3-ap-architectures-autonomous-vs-lightweight-capwap">W.3 AP architectures — autonomous vs lightweight (CAPWAP)</h2>
+<table>
+<thead>
+<tr>
+<th>Architecture</th>
+<th>How it works</th>
+<th>Scale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Autonomous</strong></td>
+<td>Each AP is fully self-contained, configured individually (CLI/GUI); its switch port is a <strong>trunk</strong> (the AP bridges SSIDs to VLANs locally)</td>
+<td>A handful of APs</td>
+</tr>
+<tr>
+<td><strong>Lightweight + WLC</strong></td>
+<td>APs keep only the radio functions; all config, authentication, and roaming logic centralizes on a <strong>Wireless LAN Controller</strong>. This division of labor is <strong>split-MAC</strong>. AP switch ports are <strong>access</strong> ports</td>
+<td>Enterprise</td>
+</tr>
+<tr>
+<td><strong>Cloud-managed</strong> (e.g., Meraki)</td>
+<td>Autonomous data plane, cloud control plane</td>
+<td>Enterprise, ops-light</td>
+</tr>
+</tbody>
+</table>
+<p><strong>CAPWAP</strong> — the lightweight AP ↔ WLC protocol: two UDP tunnels, <strong>5246 (control, DTLS-encrypted)</strong> and <strong>5247 (data)</strong>. Client traffic is tunneled from the AP to the WLC and dropped onto the wired VLAN <em>there</em> — which is why AP ports are simple access ports and the <strong>WLC's port is the trunk</strong>.</p>
+<p><strong>How a lightweight AP finds its WLC (discovery order worth knowing):</strong> subnet broadcast → previously stored WLC IPs → <strong>DHCP option 43</strong> (WLC address handed out with the lease) → DNS lookup of <code>CISCO-CAPWAP-CONTROLLER.&lt;domain&gt;</code>.</p>
+<p><strong>Lightweight AP modes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Local</strong></td>
+<td>Default: serves clients, tunnels all traffic to the WLC</td>
+</tr>
+<tr>
+<td><strong>FlexConnect</strong></td>
+<td>Branch office: can switch traffic <em>locally</em> and survive a WAN/WLC outage</td>
+</tr>
+<tr>
+<td><strong>Monitor / Sniffer</strong></td>
+<td>Dedicated sensor: rogue detection / packet capture (serves no clients)</td>
+</tr>
+<tr>
+<td><strong>Rogue detector</strong></td>
+<td>Wired-side rogue correlation</td>
+</tr>
+<tr>
+<td><strong>Bridge / Mesh</strong></td>
+<td>Point-to-point links, mesh backhaul</td>
+</tr>
+</tbody>
+</table>
+<h2 id="w4-wireless-security">W.4 Wireless security</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Encryption / auth</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Open / WEP</td>
+<td>none / RC4, broken since 2001</td>
+<td>Never (open + captive portal only for guest)</td>
+</tr>
+<tr>
+<td>WPA</td>
+<td>TKIP (RC4 wrapper)</td>
+<td>Legacy stopgap — avoid</td>
+</tr>
+<tr>
+<td><strong>WPA2</strong></td>
+<td><strong>AES-CCMP</strong></td>
+<td>Today's baseline</td>
+</tr>
+<tr>
+<td><strong>WPA3</strong></td>
+<td>AES-GCMP, <strong>SAE</strong> replaces the PSK handshake (immune to offline dictionary attacks), PMF mandatory</td>
+<td>Deploy where supported</td>
+</tr>
+</tbody>
+</table>
+<p>Orthogonal to the version, the <strong>authentication model</strong>:</p>
+<ul>
+<li><strong>Personal (PSK / SAE):</strong> one shared passphrase for everyone. Simple; no per-user revocation.</li>
+<li><strong>Enterprise (802.1X/EAP):</strong> each user authenticates individually against a <strong>RADIUS</strong> server (common methods: PEAP = username/password inside TLS, EAP-TLS = client certificates). The RADIUS config from the AAA section is exactly what backs this.</li>
+</ul>
+<h2 id="w5-switch-configuration-for-aps-and-wlc">W.5 Switch configuration for APs and WLC</h2>
+<p>Port for a <strong>lightweight AP</strong> (CAPWAP tunnels everything, so one VLAN suffices):</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>interface g1/0/10
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a> description LIGHTWEIGHT-AP
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a> switchport mode access
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a> switchport access vlan 100
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a> spanning-tree portfast
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a> power inline auto
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><code>switchport access vlan 100</code> — the AP management VLAN; client SSIDs don't need to exist here — they emerge from the CAPWAP tunnel at the WLC</li>
+<li><code>spanning-tree portfast</code> — the AP is an edge device; let it come up immediately</li>
+<li><code>power inline auto</code> — PoE for the AP (default on PoE switches; shown for completeness — <code>show power inline</code> to verify draw)</li>
+</ul>
+<p>Port for an <strong>autonomous AP</strong> (bridges SSIDs to VLANs itself):</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>interface g1/0/11
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a> description AUTONOMOUS-AP
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a> switchport mode trunk
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a> switchport trunk native vlan 100
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a> switchport trunk allowed vlan 100,110,120
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>Trunk because each SSID maps to a VLAN tag on the wire; native VLAN = the AP's management VLAN</li>
+</ul>
+<p>Port(s) for the <strong>WLC</strong> — a trunk, usually bundled (WLC LAG requires <code>mode on</code>, not LACP):</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>interface range g1/0/23 - 24
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a> channel-group 5 mode on
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>interface port-channel 5
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a> switchport mode trunk
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a> switchport trunk allowed vlan 100,110,120
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><code>channel-group 5 mode on</code> — static EtherChannel; <strong>Cisco WLCs don't speak LACP/PAgP</strong>, so <code>mode on</code> is mandatory</li>
+<li>Allowed VLANs = the AP management VLAN plus every VLAN any SSID maps to</li>
+</ul>
+<p><strong>DHCP option 43</strong> — point APs at the WLC from the router/IOS DHCP pool:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>option 43 hex f104.0a01.0105</code></td>
+<td>Inside the AP pool: TLV <code>f1</code> + length <code>04</code> + WLC IP in hex (<code>0a01.0105</code> = 10.1.1.5). Multiple WLCs: length <code>08</code> + two IPs</td>
+</tr>
+</tbody>
+</table>
+<h2 id="w6-wlc-quick-reference-aireos-cli">W.6 WLC quick reference (AireOS CLI)</h2>
+<p>Day-to-day WLAN creation is GUI work (WLAN → SSID → security → interface/VLAN → enable), but the CLI verifies fast:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>show wlan summary</code></td>
+<td>All WLANs (SSIDs), their IDs, status, and mapped interface</td>
+</tr>
+<tr>
+<td><code>show ap summary</code></td>
+<td>Every joined AP: model, IP, and how many clients</td>
+</tr>
+<tr>
+<td><code>show ap join stats summary all</code></td>
+<td>Why an AP did/didn't join — the CAPWAP troubleshooting goldmine</td>
+</tr>
+<tr>
+<td><code>show client summary</code></td>
+<td>Associated clients, their AP, WLAN, and state</td>
+</tr>
+<tr>
+<td><code>show client detail &lt;mac&gt;</code></td>
+<td>One client's full story: RSSI, SNR, security, throughput</td>
+</tr>
+<tr>
+<td><code>show interface summary</code></td>
+<td>WLC's dynamic interfaces (the VLAN mappings)</td>
+</tr>
+<tr>
+<td><code>show sysinfo</code></td>
+<td>WLC version, AP capacity</td>
+</tr>
+</tbody>
+</table>
+<h2 id="w7-troubleshooting-quick-hits">W.7 Troubleshooting quick hits</h2>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>First checks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AP won't join the WLC</td>
+<td><code>show ap join stats</code> on the WLC; DHCP option 43 / DNS record; UDP 5246-5247 open in the path; AP and WLC code versions</td>
+</tr>
+<tr>
+<td>AP port err-disabled / no power</td>
+<td><code>show power inline</code> (PoE budget), BPDU Guard vs an AP in bridge mode</td>
+</tr>
+<tr>
+<td>Clients associate but get no IP</td>
+<td>SSID→VLAN mapping on the WLC, DHCP scope for <em>that</em> VLAN, trunk allowed-VLAN list to the WLC</td>
+</tr>
+<tr>
+<td>Works near the AP, dies far away</td>
+<td>Client transmits weaker than the AP — coverage designed on AP power alone; check RSSI/SNR in <code>show client detail</code></td>
+</tr>
+<tr>
+<td>2.4 GHz slow, 5 GHz fine</td>
+<td>Co-channel interference — neighbors off the 1/6/11 plan</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../fhrp/" class="md-footer__link md-footer__link--prev" aria-label="Previous: First Hop Redundancy Protocols">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                First Hop Redundancy Protocols
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../forwarding/" class="md-footer__link md-footer__link--next" aria-label="Next: Frame Forwarding and Packet Switching">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Frame Forwarding and Packet Switching
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Edm0ndDantes" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.footer", "navigation.path", "navigation.indexes", "toc.follow", "navigation.expand", "navigation.sections", "content.code.copy", "content.code.select", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

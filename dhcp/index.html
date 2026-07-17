@@ -1,0 +1,1730 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ccna-commands.example/dhcp/">
+      
+      
+        <link rel="prev" href="../static-routing/">
+      
+      
+        <link rel="next" href="../fhrp/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/Router-Firewall.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>DHCP - CCNA Handbook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRed+Hat+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Red Hat Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#dhcp" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="CCNA Handbook" class="md-header__button md-logo" aria-label="CCNA Handbook" data-md-component="logo">
+      
+  <img src="../assets/Router-Firewall.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CCNA Handbook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              DHCP
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="CCNA Handbook" class="md-nav__button md-logo" aria-label="CCNA Handbook" data-md-component="logo">
+      
+  <img src="../assets/Router-Firewall.svg" alt="logo">
+
+    </a>
+    CCNA Handbook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basics and Navigation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Basics and Navigation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../navigation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IOS CLI Navigation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic-device-config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Device Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interface-config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interface Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security-hardening/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Security & Hardening
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vlans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VLANs and Trunking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spanning Tree Protocol
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../etherchannel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EtherChannel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ipv6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IPv6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../static-routing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Static Routing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dhcpv4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DHCPv4
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DHCPv4">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dhcpv4-server-on-a-router" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DHCPv4 server (on a router)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dhcp-relay-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DHCP relay &amp; client
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dhcpv4-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DHCPv4 verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dhcpv6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DHCPv6
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DHCPv6">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dhcpv6-stateless-slaac-address-dhcp-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DHCPv6 — stateless (SLAAC address + DHCP options)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dhcpv6-stateful-server-assigns-addresses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DHCPv6 — stateful (server assigns addresses)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#address-assignment-methods-dynamic-vs-automatic-vs-static-and-apipa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Address assignment methods — dynamic vs automatic vs static, and APIPA
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Address assignment methods — dynamic vs automatic vs static, and APIPA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-three-dhcp-allocation-methods-rfc-2131" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The three DHCP allocation methods (RFC 2131):
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apipa-automatic-private-ip-addressing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        APIPA (Automatic Private IP Addressing)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fhrp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    First Hop Redundancy Protocols
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wlan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WLANs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../forwarding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frame Forwarding and Packet Switching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enterprise Networking, Security and Automation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Enterprise Networking, Security and Automation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dynamic-routing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dynamic Routing - OSPF
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wan-tech/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WAN Technologies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enterprise Network Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access Control Lists
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NAT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vpn-tunnels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tunnels and VPNs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dynamic-routing-vpn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dynamic Routing over VPN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../qos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quality of Service (QoS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Management and Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../virt-auto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Virtualization and Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../misc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Miscellaneous
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dhcpv4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DHCPv4
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DHCPv4">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dhcpv4-server-on-a-router" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DHCPv4 server (on a router)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dhcp-relay-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DHCP relay &amp; client
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dhcpv4-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DHCPv4 verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dhcpv6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DHCPv6
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DHCPv6">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dhcpv6-stateless-slaac-address-dhcp-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DHCPv6 — stateless (SLAAC address + DHCP options)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dhcpv6-stateful-server-assigns-addresses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DHCPv6 — stateful (server assigns addresses)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#address-assignment-methods-dynamic-vs-automatic-vs-static-and-apipa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Address assignment methods — dynamic vs automatic vs static, and APIPA
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Address assignment methods — dynamic vs automatic vs static, and APIPA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-three-dhcp-allocation-methods-rfc-2131" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The three DHCP allocation methods (RFC 2131):
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apipa-automatic-private-ip-addressing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        APIPA (Automatic Private IP Addressing)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="dhcp">DHCP</h1>
+<h2 id="dhcpv4">DHCPv4</h2>
+<h3 id="dhcpv4-server-on-a-router">DHCPv4 server (on a router)</h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span>
+<span class="normal"><a href="#__codelineno-0-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>ip dhcp excluded-address 192.168.10.1 192.168.10.10
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>ip dhcp pool LAN10
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a> network 192.168.10.0 255.255.255.0
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a> default-router 192.168.10.1
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a> dns-server 8.8.8.8 1.1.1.1
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a> domain-name example.com
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a> lease 2 12 30
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><code>ip dhcp excluded-address 192.168.10.1 192.168.10.10</code> — reserve addresses the pool must <strong>not</strong> hand out (gateways, servers)</li>
+<li><code>ip dhcp pool LAN10</code> — create/enter a DHCP pool</li>
+<li><code>network 192.168.10.0 255.255.255.0</code> — the scope: hand out addresses from this subnet</li>
+<li><code>default-router 192.168.10.1</code> — default gateway given to clients</li>
+<li><code>dns-server 8.8.8.8 1.1.1.1</code> — DNS servers given to clients</li>
+<li><code>domain-name example.com</code> — domain suffix</li>
+<li><code>lease 2 12 30</code> — lease time: 2 days, 12 hours, 30 minutes (default 1 day)</li>
+</ul>
+<h3 id="dhcp-relay-client">DHCP relay &amp; client</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ip helper-address 10.1.1.5</code></td>
+<td>(Interface mode) Relay clients' DHCP broadcasts to a server on another subnet</td>
+</tr>
+<tr>
+<td><code>ip address dhcp</code></td>
+<td>(Interface mode) Make this router interface a DHCP <strong>client</strong> (e.g., ISP-facing)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dhcpv4-verification">DHCPv4 verification</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>show ip dhcp binding</code></td>
+<td>Leased addresses and client MACs</td>
+</tr>
+<tr>
+<td><code>show ip dhcp pool</code></td>
+<td>Pool usage statistics</td>
+</tr>
+<tr>
+<td><code>show ip dhcp server statistics</code></td>
+<td>Message counters</td>
+</tr>
+<tr>
+<td><code>show ip dhcp conflict</code></td>
+<td>Addresses detected in use by two hosts</td>
+</tr>
+<tr>
+<td><code>clear ip dhcp binding *</code></td>
+<td>Release all leases</td>
+</tr>
+</tbody>
+</table>
+<h2 id="dhcpv6">DHCPv6</h2>
+<h3 id="dhcpv6-stateless-slaac-address-dhcp-options">DHCPv6 — stateless (SLAAC address + DHCP options)</h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span>
+<span class="normal"><a href="#__codelineno-1-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>ipv6 unicast-routing
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>ipv6 dhcp pool STATELESS
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a> dns-server 2001:db8::8
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a> domain-name example.com
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a>interface g0/0
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a> ipv6 nd other-config-flag
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a> ipv6 dhcp server STATELESS
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><code>ipv6 dhcp pool STATELESS</code> — pool carrying only <em>options</em>, no addresses</li>
+<li><code>dns-server 2001:db8::8</code> / <code>domain-name example.com</code> — the options handed out</li>
+<li><code>ipv6 nd other-config-flag</code> — tell hosts: SLAAC your address, fetch options via DHCPv6</li>
+<li><code>ipv6 dhcp server STATELESS</code> — attach the pool to the interface</li>
+</ul>
+<h3 id="dhcpv6-stateful-server-assigns-addresses">DHCPv6 — stateful (server assigns addresses)</h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>ipv6 dhcp pool STATEFUL
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a> address prefix 2001:db8:acad:1::/64
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a> dns-server 2001:db8::8
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a>interface g0/0
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a> ipv6 nd managed-config-flag
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a> ipv6 nd prefix default no-autoconfig
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a> ipv6 dhcp server STATEFUL
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><code>address prefix 2001:db8:acad:1::/64</code> — the server assigns addresses from this prefix</li>
+<li><code>ipv6 nd managed-config-flag</code> — tell hosts: get your address from DHCPv6</li>
+<li><code>ipv6 nd prefix default no-autoconfig</code> — suppress SLAAC so DHCPv6 is the only source</li>
+<li><code>ipv6 dhcp server STATEFUL</code> — attach the pool to the interface</li>
+</ul>
+<p>Verify with <code>show ipv6 dhcp pool</code> and <code>show ipv6 dhcp binding</code>.</p>
+<hr />
+<h2 id="address-assignment-methods-dynamic-vs-automatic-vs-static-and-apipa">Address assignment methods — dynamic vs automatic vs static, and APIPA</h2>
+<p>The word "automatic" is overloaded here — two different things hide behind it, and the CCNA expects you to keep them apart:</p>
+<h3 id="the-three-dhcp-allocation-methods-rfc-2131">The three DHCP allocation methods (RFC 2131):</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>How it works</th>
+<th>Lease</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Dynamic allocation</strong></td>
+<td>Server hands out an address from the pool <strong>for a limited lease time</strong>; the client must renew (at 50% of the lease, unicast to the server) or the address returns to the pool for reuse</td>
+<td>Temporary — the normal mode, and what the IOS <code>lease</code> command controls</td>
+</tr>
+<tr>
+<td><strong>Automatic allocation</strong></td>
+<td>Same pool mechanism, but the assignment is <strong>permanent</strong> — once a client gets an address, the server remembers the MAC↔IP binding forever (an infinite lease: <code>lease infinite</code>)</td>
+<td>Permanent, server-chosen</td>
+</tr>
+<tr>
+<td><strong>Static/manual allocation</strong></td>
+<td>The administrator pre-binds a specific IP to a specific client MAC on the server; DHCP merely <em>delivers</em> the admin's choice (a <strong>DHCP reservation</strong>)</td>
+<td>Permanent, admin-chosen</td>
+</tr>
+</tbody>
+</table>
+<p>Static allocation via an IOS host pool:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>ip dhcp pool PRINTER-1
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a> host 192.168.10.50 255.255.255.0
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a> client-identifier 01aa.bbcc.ddee.ff
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a> default-router 192.168.10.1
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><code>host 192.168.10.50 255.255.255.0</code> — a one-address pool: this exact IP, always</li>
+<li><code>client-identifier 01aa.bbcc.ddee.ff</code> — who gets it: <code>01</code> (Ethernet type) prepended to the client's MAC (<code>hardware-address aa.bbcc.ddee.ff</code> is the alternative keyword on many platforms)</li>
+<li>Result: the printer always receives <code>.50</code> but stays a zero-touch DHCP client — reservations beat hand-typed static IPs for anything you may ever re-address</li>
+</ul>
+<h3 id="apipa-automatic-private-ip-addressing">APIPA (Automatic Private IP Addressing)</h3>
+<p><strong>The failure fallback, not a DHCP method:</strong></p>
+<ul>
+<li>When a host is set to DHCP but <strong>gets no answer</strong> (four DISCOVERs go unanswered), Windows/macOS self-assigns a random address from <strong><code>169.254.0.0/16</code></strong> (link-local, RFC 3927), after ARP-probing that it's unused. Hosts keep DISCOVERing in the background and abandon the APIPA address the moment a real server responds.</li>
+<li>The address is <strong>link-local only</strong>: no default gateway, never routed, valid for talking to other APIPA hosts on the same segment at best.</li>
+<li><strong>Diagnostic value — this is the exam point:</strong> a client sitting on <code>169.254.x.x</code> is a symptom, and it means <em>the DHCP process failed end-to-end</em>. Work the chain: is the port up and in the right VLAN? Is the DHCP server/pool alive (<code>show ip dhcp pool</code> — pool exhausted?)? If the server is on another subnet, is <code>ip helper-address</code> present on the client's gateway interface? Is DHCP snooping blocking an untrusted port?</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>See on the client</th>
+<th>Conclusion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Address from your pool's range</td>
+<td>Dynamic/automatic allocation worked</td>
+</tr>
+<tr>
+<td>The exact reserved address, every time</td>
+<td>Static allocation (reservation) — by design</td>
+</tr>
+<tr>
+<td><code>169.254.x.x</code></td>
+<td><strong>APIPA: DHCP failed</strong> — no server reachable, pool empty, relay missing, or snooping drop</td>
+</tr>
+<tr>
+<td><code>0.0.0.0</code> / none</td>
+<td>Interface never completed DHCP and the OS doesn't do APIPA (many Linux configs) — same troubleshooting chain</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../static-routing/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Static Routing">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Static Routing
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../fhrp/" class="md-footer__link md-footer__link--next" aria-label="Next: First Hop Redundancy Protocols">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                First Hop Redundancy Protocols
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Edm0ndDantes" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.footer", "navigation.path", "navigation.indexes", "toc.follow", "navigation.expand", "navigation.sections", "content.code.copy", "content.code.select", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

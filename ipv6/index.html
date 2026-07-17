@@ -1,0 +1,1938 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ccna-commands.example/ipv6/">
+      
+      
+        <link rel="prev" href="../etherchannel/">
+      
+      
+        <link rel="next" href="../static-routing/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/Router-Firewall.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>IPv6 - CCNA Handbook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRed+Hat+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Red Hat Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ipv6" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="CCNA Handbook" class="md-header__button md-logo" aria-label="CCNA Handbook" data-md-component="logo">
+      
+  <img src="../assets/Router-Firewall.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CCNA Handbook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              IPv6
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="CCNA Handbook" class="md-nav__button md-logo" aria-label="CCNA Handbook" data-md-component="logo">
+      
+  <img src="../assets/Router-Firewall.svg" alt="logo">
+
+    </a>
+    CCNA Handbook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basics and Navigation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Basics and Navigation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../navigation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IOS CLI Navigation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic-device-config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Device Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interface-config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interface Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security-hardening/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Security & Hardening
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vlans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VLANs and Trunking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spanning Tree Protocol
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../etherchannel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EtherChannel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IPv6
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IPv6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-address-format-writing-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 Address format &amp; writing rules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-address-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 Address types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-interface-id-generation-eui-64-and-the-alternatives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 Interface ID generation — EUI-64 and the alternatives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ndp-neighbor-discovery-protocol-the-arpdhcp-lite-replacement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 NDP — Neighbor Discovery Protocol (the ARP/DHCP-lite replacement)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-the-four-ways-a-host-gets-an-address" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5 The four ways a host gets an address
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-enabling-and-addressing-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6 Enabling and addressing (configuration)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-ipv6-static-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7 IPv6 static routing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-slaac-ra-control-interface-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8 SLAAC / RA control (interface mode)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9 Verification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-annotated-example-show-ipv6-interface-g00" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 Annotated example — show ipv6 interface g0/0
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../static-routing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Static Routing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dhcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fhrp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    First Hop Redundancy Protocols
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wlan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WLANs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../forwarding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frame Forwarding and Packet Switching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enterprise Networking, Security and Automation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Enterprise Networking, Security and Automation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dynamic-routing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dynamic Routing - OSPF
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wan-tech/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WAN Technologies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enterprise Network Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access Control Lists
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NAT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vpn-tunnels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tunnels and VPNs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dynamic-routing-vpn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dynamic Routing over VPN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../qos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quality of Service (QoS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Management and Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../virt-auto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Virtualization and Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../misc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Miscellaneous
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-address-format-writing-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 Address format &amp; writing rules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-address-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 Address types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-interface-id-generation-eui-64-and-the-alternatives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 Interface ID generation — EUI-64 and the alternatives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ndp-neighbor-discovery-protocol-the-arpdhcp-lite-replacement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 NDP — Neighbor Discovery Protocol (the ARP/DHCP-lite replacement)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-the-four-ways-a-host-gets-an-address" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5 The four ways a host gets an address
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-enabling-and-addressing-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6 Enabling and addressing (configuration)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-ipv6-static-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7 IPv6 static routing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-slaac-ra-control-interface-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8 SLAAC / RA control (interface mode)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9 Verification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-annotated-example-show-ipv6-interface-g00" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 Annotated example — show ipv6 interface g0/0
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ipv6">IPv6</h1>
+<!-- ## Enabling and addressing
+
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>ipv6 unicast-routing
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>interface g0/0
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a> ipv6 address 2001:db8:acad:1::1/64
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a> ipv6 address fe80::1 link-local
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a> no shutdown
+</span></code></pre></div></td></tr></table></div>
+
+- `ipv6 unicast-routing` — **required** on routers to route IPv6 and send Router Advertisements
+- `ipv6 address 2001:db8:acad:1::1/64` — static global unicast address
+- `ipv6 address fe80::1 link-local` — set a memorable link-local address (otherwise auto-generated via EUI-64)
+- Alternatives: `ipv6 address 2001:db8:acad:1::/64 eui-64` builds the host portion automatically from the MAC; `ipv6 enable` enables IPv6 on an interface with only a link-local address
+
+## IPv6 static routing
+
+| Command | Explanation |
+|---|---|
+| `ipv6 route 2001:db8:acad:2::/64 2001:db8:acad:12::2` | Via a global next-hop |
+| `ipv6 route 2001:db8:acad:2::/64 g0/1 fe80::2` | Via a link-local next-hop — the interface is **mandatory** here |
+| `ipv6 route ::/0 2001:db8:acad:12::2` | IPv6 default route |
+
+## SLAAC / RA control (interface mode)
+
+| Command | Explanation |
+|---|---|
+| `ipv6 nd other-config-flag` | RA: use SLAAC for the address, DHCPv6 for other info (DNS etc.) |
+| `ipv6 nd managed-config-flag` | RA: hosts should use stateful DHCPv6 for addressing |
+| `ipv6 nd router-preference high` | Make hosts prefer this router |
+| `ipv6 nd ra suppress` | Stop sending Router Advertisements on this interface |
+
+## Verification
+
+| Command | Explanation |
+|---|---|
+| `show ipv6 interface brief` | IPv6 addresses per interface |
+| `show ipv6 route` | The IPv6 routing table |
+| `show ipv6 neighbors` | IPv6 equivalent of the ARP table (NDP cache) |
+| `ping 2001:db8:acad:2::1` | IPv6 ping |
+
+--- -->
+
+<h2 id="1-address-format-writing-rules">1 Address format &amp; writing rules</h2>
+<p>An IPv6 address is <strong>128 bits</strong>, written as eight 16-bit hextets separated by colons:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>2001:0db8:0000:0000:0000:00ff:fe00:0001
+</span></code></pre></div></td></tr></table></div>
+<p>Two compression rules (CCNA loves testing these):</p>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. Drop leading zeros</strong> in each hextet (trailing zeros stay!)</td>
+<td><code>0db8</code> → <code>db8</code>, <code>00ff</code> → <code>ff</code>, but <code>fe00</code> stays <code>fe00</code></td>
+</tr>
+<tr>
+<td><strong>2. Replace ONE run of consecutive all-zero hextets with <code>::</code></strong></td>
+<td><code>2001:db8:0:0:0:ff:fe00:1</code> → <code>2001:db8::ff:fe00:1</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>::</code> may appear <strong>only once</strong> per address (twice would be ambiguous — you couldn't tell how many zeros each <code>::</code> hides).</li>
+<li>If there are two zero-runs, compress the <strong>longest</strong> one; if equal, compress the <strong>leftmost</strong>.</li>
+<li>Fully applied, the example above becomes <code>2001:db8::ff:fe00:1</code>.</li>
+</ul>
+<p><strong>Prefix structure of a typical global unicast address:</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>| 48 bits                | 16 bits   | 64 bits                    |
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>| Global routing prefix  | Subnet ID | Interface ID               |
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>| (from the ISP/RIR)     | (yours)   | (host portion)             |
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  2001:db8:acad          : 0001      : 0000:0000:0000:0001
+</span></code></pre></div>
+<ul>
+<li>A site typically receives a <strong>/48</strong>, leaving 16 bits of Subnet ID = <strong>65,536 subnets</strong>, each a <code>/64</code>.</li>
+<li><strong>Subnets are always /64</strong> in normal LAN use — SLAAC mathematically requires it (the interface ID is 64 bits). Smaller prefixes (<code>/127</code>) appear only on router point-to-point links.</li>
+<li>There is no broadcast in IPv6 and no NAT requirement — every host can hold a globally unique address (privacy comes from firewalls, not address hiding).</li>
+</ul>
+<h2 id="2-address-types">2 Address types</h2>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Prefix</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Global Unicast (GUA)</strong></td>
+<td><code>2000::/3</code> (starts <code>2</code> or <code>3</code>)</td>
+<td>Public, Internet-routable — the IPv6 "public IP"</td>
+</tr>
+<tr>
+<td><strong>Link-Local (LLA)</strong></td>
+<td><code>fe80::/10</code></td>
+<td>Mandatory on every IPv6 interface, auto-generated, valid <strong>only on that link</strong> — used for next-hops, routing protocol adjacencies, NDP</td>
+</tr>
+<tr>
+<td><strong>Unique Local (ULA)</strong></td>
+<td><code>fc00::/7</code> (in practice <code>fd00::/8</code>)</td>
+<td>Private addressing, not Internet-routable — the RFC1918 analogue</td>
+</tr>
+<tr>
+<td><strong>Multicast</strong></td>
+<td><code>ff00::/8</code></td>
+<td>One-to-many; <strong>replaces broadcast entirely</strong></td>
+</tr>
+<tr>
+<td><strong>Anycast</strong></td>
+<td>(any unicast prefix)</td>
+<td>Same address on multiple devices; routing delivers to the nearest — no special format, just configured as anycast</td>
+</tr>
+<tr>
+<td><strong>Loopback</strong></td>
+<td><code>::1/128</code></td>
+<td>The <code>127.0.0.1</code> analogue</td>
+</tr>
+<tr>
+<td><strong>Unspecified</strong></td>
+<td><code>::/128</code></td>
+<td>"No address yet" — source address during DAD/DHCP solicitation</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Multicast groups worth memorizing:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Who listens</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ff02::1</code></td>
+<td>All nodes on the link (the closest thing to broadcast)</td>
+</tr>
+<tr>
+<td><code>ff02::2</code></td>
+<td>All routers on the link</td>
+</tr>
+<tr>
+<td><code>ff02::5</code> / <code>ff02::6</code></td>
+<td>All OSPFv3 routers / OSPFv3 DRs</td>
+</tr>
+<tr>
+<td><code>ff02::a</code></td>
+<td>All EIGRP routers</td>
+</tr>
+<tr>
+<td><code>ff02::1:2</code></td>
+<td>All DHCPv6 servers/relays</td>
+</tr>
+<tr>
+<td><code>ff02::1:ffxx:xxxx</code></td>
+<td><strong>Solicited-node</strong> multicast — formed from the last 24 bits of a unicast address; how NDP reaches a specific host without broadcasting</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key mental shift from IPv4:</strong> an interface holds <strong>multiple addresses simultaneously</strong> — always a link-local, usually one or more GUAs, plus its solicited-node and group multicasts. Routing protocols peer and set next-hops using <strong>link-local</strong> addresses.</p>
+<h2 id="3-interface-id-generation-eui-64-and-the-alternatives">3 Interface ID generation — EUI-64 and the alternatives</h2>
+<p>Three ways a host/router fills the low 64 bits:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>How it works</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Static</strong></td>
+<td>You type it (<code>::1</code> for routers is conventional)</td>
+</tr>
+<tr>
+<td><strong>EUI-64</strong></td>
+<td>Built from the interface MAC: split the 48-bit MAC in half, insert <code>fffe</code> in the middle, <strong>flip the 7th bit</strong> of the first byte. MAC <code>0c1a.2b3c.4d5e</code> → interface ID <code>0e1a:2bff:fe3c:4d5e</code></td>
+</tr>
+<tr>
+<td><strong>Random</strong></td>
+<td>Modern host default (privacy — a MAC-derived address tracks the device across networks)</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>fffe</code> in the middle of an address is the fingerprint of EUI-64 — recognizing it (and the flipped bit) is a classic exam skill.</p>
+<h2 id="4-ndp-neighbor-discovery-protocol-the-arpdhcp-lite-replacement">4 NDP — Neighbor Discovery Protocol (the ARP/DHCP-lite replacement)</h2>
+<p>NDP is a set of ICMPv6 messages that replaces ARP, router discovery, and parts of DHCP:</p>
+<table>
+<thead>
+<tr>
+<th>Message</th>
+<th>Replaces</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>RS</strong> (Router Solicitation, to <code>ff02::2</code>)</td>
+<td>—</td>
+<td>Host at boot: "any routers here?"</td>
+</tr>
+<tr>
+<td><strong>RA</strong> (Router Advertisement, to <code>ff02::1</code>)</td>
+<td>DHCP's gateway option</td>
+<td>Router announces: the prefix, whether to use SLAAC/DHCPv6 (the <strong>A/O/M flags</strong>), and itself as gateway</td>
+</tr>
+<tr>
+<td><strong>NS</strong> (Neighbor Solicitation, to solicited-node multicast)</td>
+<td>ARP request</td>
+<td>"Who has this IPv6 address?" — also used for <strong>DAD</strong> (Duplicate Address Detection: NS for your <em>own</em> tentative address; silence = address is yours)</td>
+</tr>
+<tr>
+<td><strong>NA</strong> (Neighbor Advertisement)</td>
+<td>ARP reply</td>
+<td>"I have it, here's my MAC"</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-the-four-ways-a-host-gets-an-address">5 The four ways a host gets an address</h2>
+<p>Controlled by flags the router sets in its RA:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>RA flags</th>
+<th>Address from</th>
+<th>Other info (DNS…) from</th>
+<th>Router command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SLAAC only</td>
+<td>A=1, O=0, M=0</td>
+<td>Host builds it: RA prefix + EUI-64/random</td>
+<td>RA (RDNSS, if supported)</td>
+<td><em>(default behavior)</em></td>
+</tr>
+<tr>
+<td>SLAAC + stateless DHCPv6</td>
+<td>A=1, <strong>O=1</strong>, M=0</td>
+<td>SLAAC</td>
+<td>DHCPv6 server</td>
+<td><code>ipv6 nd other-config-flag</code></td>
+</tr>
+<tr>
+<td>Stateful DHCPv6</td>
+<td>A=0, O=1, <strong>M=1</strong></td>
+<td>DHCPv6 server (tracked lease)</td>
+<td>DHCPv6 server</td>
+<td><code>ipv6 nd managed-config-flag</code> (+ suppress SLAAC)</td>
+</tr>
+<tr>
+<td>Static</td>
+<td>—</td>
+<td>You</td>
+<td>You</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>(Full DHCPv6 server recipes are in the DHCP chapter, §11.)</p>
+<h2 id="6-enabling-and-addressing-configuration">6 Enabling and addressing (configuration)</h2>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>ipv6 unicast-routing
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a>interface g0/0
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a> ipv6 address 2001:db8:acad:1::1/64
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a> ipv6 address fe80::1 link-local
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a> no shutdown
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><code>ipv6 unicast-routing</code> — <strong>required</strong> on routers to route IPv6 and send RAs; without it the router is just an IPv6 <em>host</em></li>
+<li><code>ipv6 address 2001:db8:acad:1::1/64</code> — static global unicast address</li>
+<li><code>ipv6 address fe80::1 link-local</code> — set a memorable link-local address (otherwise auto-generated via EUI-64); hosts will use this as their gateway, so <code>fe80::1</code> on every LAN interface is a popular convention</li>
+<li>Alternatives: <code>ipv6 address 2001:db8:acad:1::/64 eui-64</code> builds the interface ID from the MAC; <code>ipv6 enable</code> brings up IPv6 with <em>only</em> a link-local address; <code>ipv6 address dhcp</code> makes the interface a DHCPv6 client; <code>ipv6 address autoconfig</code> makes a router interface use SLAAC like a host</li>
+</ul>
+<h2 id="7-ipv6-static-routing">7 IPv6 static routing</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ipv6 route 2001:db8:acad:2::/64 2001:db8:acad:12::2</code></td>
+<td>Via a global next-hop</td>
+</tr>
+<tr>
+<td><code>ipv6 route 2001:db8:acad:2::/64 g0/1 fe80::2</code></td>
+<td>Via a link-local next-hop — the exit interface is <strong>mandatory</strong> here (link-locals are ambiguous without one; this is the everyday IPv6 idiom)</td>
+</tr>
+<tr>
+<td><code>ipv6 route ::/0 2001:db8:acad:12::2</code></td>
+<td>IPv6 default route</td>
+</tr>
+<tr>
+<td><code>ipv6 route 2001:db8:acad:2::/64 2001:db8:acad:12::2 90</code></td>
+<td>Floating static (AD 90) as backup to a routing protocol</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-slaac-ra-control-interface-mode">8 SLAAC / RA control (interface mode)</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ipv6 nd other-config-flag</code></td>
+<td>RA with O=1: use SLAAC for the address, DHCPv6 for other info (DNS etc.)</td>
+</tr>
+<tr>
+<td><code>ipv6 nd managed-config-flag</code></td>
+<td>RA with M=1: hosts should use stateful DHCPv6 for addressing</td>
+</tr>
+<tr>
+<td><code>ipv6 nd prefix default no-autoconfig</code></td>
+<td>Advertise the prefix with A=0 — suppress SLAAC so DHCPv6 is the only source</td>
+</tr>
+<tr>
+<td><code>ipv6 nd router-preference high</code></td>
+<td>Make hosts prefer this router when several send RAs</td>
+</tr>
+<tr>
+<td><code>ipv6 nd ra interval 30</code></td>
+<td>Send RAs every 30 s (default 200)</td>
+</tr>
+<tr>
+<td><code>ipv6 nd ra suppress</code></td>
+<td>Stop sending RAs on this interface entirely (e.g., toward an ISP)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="9-verification">9 Verification</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>show ipv6 interface brief</code></td>
+<td>All IPv6 addresses per interface (note: multiple per interface is normal)</td>
+</tr>
+<tr>
+<td><code>show ipv6 interface g0/0</code></td>
+<td>Full detail: LLA, GUAs, joined multicast groups, ND timers (see §10.10)</td>
+</tr>
+<tr>
+<td><code>show ipv6 route</code></td>
+<td>The IPv6 routing table (<code>C</code>onnected, <code>L</code>ocal, <code>S</code>tatic, <code>O</code>SPFv3, <code>ND</code> = learned from an RA)</td>
+</tr>
+<tr>
+<td><code>show ipv6 neighbors</code></td>
+<td>The NDP cache — IPv6's ARP table (states: <code>REACH</code>, <code>STALE</code>, <code>INCMP</code>)</td>
+</tr>
+<tr>
+<td><code>show ipv6 routers</code></td>
+<td>RAs <em>received</em> from other routers</td>
+</tr>
+<tr>
+<td><code>ping 2001:db8:acad:2::1</code></td>
+<td>IPv6 ping</td>
+</tr>
+<tr>
+<td><code>ping fe80::2</code></td>
+<td>Ping a link-local — IOS will prompt for the output interface (same ambiguity as static routes)</td>
+</tr>
+<tr>
+<td><code>debug ipv6 nd</code></td>
+<td>Watch NS/NA/RS/RA live (lab use)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="10-annotated-example-show-ipv6-interface-g00">10 Annotated example — <code>show ipv6 interface g0/0</code></h2>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span>
+<span class="normal"><a href="#__codelineno-4-15">15</a></span>
+<span class="normal"><a href="#__codelineno-4-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a>R1# show ipv6 interface g0/0
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a>GigabitEthernet0/0 is up, line protocol is up
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>  IPv6 is enabled, link-local address is FE80::1
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a>  No Virtual link-local address(es):
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a>  Global unicast address(es):
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a>    2001:DB8:ACAD:1::1, subnet is 2001:DB8:ACAD:1::/64
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a>  Joined group address(es):
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a>    FF02::1
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a>    FF02::2
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10"></a>    FF02::1:FF00:1
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11"></a>  MTU is 1500 bytes
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12"></a>  ICMP redirects are enabled
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13"></a>  ND DAD is enabled, number of DAD attempts: 1
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14"></a>  ND reachable time is 30000 milliseconds
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15"></a>  ND advertised default router preference is Medium
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16"></a>  Hosts use stateless autoconfig for addresses.
+</span></code></pre></div></td></tr></table></div>
+<p><strong>How to read it:</strong></p>
+<ul>
+<li>
+<p><code>link-local address is FE80::1</code> — the manually set LLA; hosts on this LAN use it as their default gateway (it's what the RA advertises as the source).</p>
+</li>
+<li>
+<p><code>Joined group address(es)</code> — the multicast memberships prove the interface's roles: <code>FF02::1</code> (all nodes), <code>FF02::2</code> (<strong>all routers</strong> — appears only because <code>ipv6 unicast-routing</code> is on; if it's missing, the router isn't routing!), <code>FF02::1:FF00:1</code> (the solicited-node group derived from the last 24 bits of both <code>::1</code> addresses).</p>
+</li>
+<li>
+<p><code>ND DAD is enabled</code> — duplicate address detection runs on every new address; an address flagged <code>[DUP]</code> in <code>show ipv6 interface brief</code> lost that check and is unusable.</p>
+</li>
+<li>
+<p><code>Hosts use stateless autoconfig</code> — the current A/O/M flag outcome in words; after setting <code>ipv6 nd managed-config-flag</code> this line changes to "Hosts use DHCP to obtain routable addresses" — a quick way to confirm your RA flags without a packet capture.</p>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../etherchannel/" class="md-footer__link md-footer__link--prev" aria-label="Previous: EtherChannel">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                EtherChannel
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../static-routing/" class="md-footer__link md-footer__link--next" aria-label="Next: Static Routing">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Static Routing
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Edm0ndDantes" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.footer", "navigation.path", "navigation.indexes", "toc.follow", "navigation.expand", "navigation.sections", "content.code.copy", "content.code.select", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

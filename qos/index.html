@@ -1,0 +1,1758 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ccna-commands.example/qos/">
+      
+      
+        <link rel="prev" href="../dynamic-routing-vpn/">
+      
+      
+        <link rel="next" href="../management/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/Router-Firewall.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Quality of Service (QoS) - CCNA Handbook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRed+Hat+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Red Hat Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#quality-of-service-qos" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="CCNA Handbook" class="md-header__button md-logo" aria-label="CCNA Handbook" data-md-component="logo">
+      
+  <img src="../assets/Router-Firewall.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CCNA Handbook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Quality of Service (QoS)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="CCNA Handbook" class="md-nav__button md-logo" aria-label="CCNA Handbook" data-md-component="logo">
+      
+  <img src="../assets/Router-Firewall.svg" alt="logo">
+
+    </a>
+    CCNA Handbook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basics and Navigation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Basics and Navigation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../navigation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IOS CLI Navigation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic-device-config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Device Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interface-config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interface Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security-hardening/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Security & Hardening
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vlans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VLANs and Trunking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spanning Tree Protocol
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../etherchannel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EtherChannel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ipv6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IPv6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../static-routing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Static Routing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dhcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fhrp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    First Hop Redundancy Protocols
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wlan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WLANs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../forwarding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frame Forwarding and Packet Switching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enterprise Networking, Security and Automation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Enterprise Networking, Security and Automation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dynamic-routing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dynamic Routing - OSPF
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wan-tech/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WAN Technologies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enterprise Network Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access Control Lists
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NAT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vpn-tunnels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tunnels and VPNs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dynamic-routing-vpn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dynamic Routing over VPN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quality of Service (QoS)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quality of Service (QoS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#q1-why-qos-the-problem-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q.1 Why QoS — the problem statement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q2-classification-marking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q.2 Classification &amp; marking
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q3-queuing-congestion-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q.3 Queuing — congestion management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q4-congestion-avoidance-wred" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q.4 Congestion avoidance — WRED
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q5-policing-shaping-rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q.5 Policing &amp; shaping — rate limiting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q6-configuration-mqc-modular-qos-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q.6 Configuration — MQC (Modular QoS CLI)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q7-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q.7 Verification
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Management and Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../virt-auto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Virtualization and Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../misc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Miscellaneous
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#q1-why-qos-the-problem-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q.1 Why QoS — the problem statement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q2-classification-marking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q.2 Classification &amp; marking
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q3-queuing-congestion-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q.3 Queuing — congestion management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q4-congestion-avoidance-wred" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q.4 Congestion avoidance — WRED
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q5-policing-shaping-rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q.5 Policing &amp; shaping — rate limiting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q6-configuration-mqc-modular-qos-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q.6 Configuration — MQC (Modular QoS CLI)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q7-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q.7 Verification
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href=".." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../dynamic-routing/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Enterprise Networking, Security and Automation
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="quality-of-service-qos">Quality of Service (QoS)</h1>
+<h2 id="q1-why-qos-the-problem-statement">Q.1 Why QoS — the problem statement</h2>
+<p>Without QoS every packet is equal: <strong>FIFO</strong> (first-in, first-out) queuing and, when a queue fills, <strong>tail drop</strong> — whatever arrives next is discarded regardless of importance. That's fine until a link congests; then a backup job can starve a phone call. QoS is the toolset of <strong>per-hop behaviors (PHB)</strong>: each device, independently at each hop, classifies traffic and gives some of it better treatment — there is no end-to-end reservation, just consistent per-hop policy.</p>
+<p>The four impairments QoS manages, and what interactive voice tolerates (the exam numbers):</p>
+<table>
+<thead>
+<tr>
+<th>Characteristic</th>
+<th>Definition</th>
+<th>One-way voice target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bandwidth</strong></td>
+<td>Link capacity available to a class</td>
+<td>~30–100 kb/s per call (codec-dependent)</td>
+</tr>
+<tr>
+<td><strong>Delay (latency)</strong></td>
+<td>Time for a packet to cross the network</td>
+<td>≤ <strong>150 ms</strong></td>
+</tr>
+<tr>
+<td><strong>Jitter</strong></td>
+<td><em>Variation</em> in delay between packets</td>
+<td>≤ <strong>30 ms</strong></td>
+</tr>
+<tr>
+<td><strong>Loss</strong></td>
+<td>Percentage of packets dropped</td>
+<td>≤ <strong>1%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Voice/video are the drivers: TCP data retransmits and survives; real-time UDP streams cannot wait or recover. (Endpoints de-jitter with a small playout buffer — but only within limits.)</p>
+<h2 id="q2-classification-marking">Q.2 Classification &amp; marking</h2>
+<p><strong>Order of operations:</strong> traffic must be <strong>classified</strong> <em>before</em> it can be <strong>marked</strong>. Mark <strong>as close to the source as possible</strong>; the <strong>trust boundary</strong> is where markings start being believed — a Cisco <strong>IP phone is a trusted marking point</strong> (Trust Boundary 1 in the courseware).</p>
+<p><strong>Layer-2 vs Layer-3 marking:</strong>
+| Marking | Layer | Field | Notes |
+|---|---|---|---|
+| <strong>CoS</strong> | L2 | 802.1Q tag, 3 bits (0–7) | Applies to <strong>Ethernet frames</strong>; lost across routed hops |
+| <strong>IP Precedence</strong> | L3 | ToS byte, 3 bits | Legacy |
+| <strong>DSCP</strong> | L3 | ToS byte, 6 bits (0–63) | Survives end-to-end; modern standard |</p>
+<p><strong>Traffic-type characteristics:</strong>
+| | Voice | Video | Data |
+|---|---|---|---|
+| Packets | Small (~200 B), <strong>predictable, smooth</strong> | <strong>Large, bursty, unpredictable, inconsistent</strong> | Varies |
+| Latency budget | ≤ <strong>150 ms</strong> one-way (Cisco design std) | courseware cites ≤ <strong>400 ms</strong> | Not real-time |
+| Loss tolerance | Low; <strong>more</strong> resilient than video | <strong>Less</strong> resilient to loss than voice | Retransmits (TCP) |
+| Bandwidth | ~30–128 kb/s per call | High (≥ 384 kb/s+) | Varies |</p>
+<p><em>(The 400 ms video figure is the ENSA courseware value; real-world/other Cisco material treats interactive video like voice at ~150 ms. Voice's ≤150 ms is the reliable number.)</em></p>
+<p><strong>Congestion tools recap:</strong>
+- <strong>Policing</strong> — <strong>drops</strong> (or re-marks) excess; sawtooth output; in or out.
+- <strong>Shaping</strong> — <strong>buffers</strong> excess and sends later; smooth output; <strong>egress only</strong>.
+- <strong>WRED</strong> — congestion <strong>avoidance</strong>: drops selectively before the queue is full.</p>
+<p><strong>Classification</strong> = identifying which class a packet belongs to (by ACL, protocol/<strong>NBAR</strong> deep inspection, ingress interface, or an existing marking). <strong>Marking</strong> = writing that decision into the header so every later hop can classify by a cheap field lookup instead of re-inspecting:</p>
+<table>
+<thead>
+<tr>
+<th>Marking</th>
+<th>Where</th>
+<th>Bits</th>
+<th>Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CoS</strong> (Class of Service, 802.1p)</td>
+<td>The <strong>802.1Q trunk tag</strong> (L2)</td>
+<td>3</td>
+<td>0–7 — <strong>lost the moment the frame crosses a routed hop or an access port</strong> (the tag is stripped)</td>
+</tr>
+<tr>
+<td><strong>IP Precedence</strong></td>
+<td>IP ToS byte (L3), legacy</td>
+<td>3</td>
+<td>0–7</td>
+</tr>
+<tr>
+<td><strong>DSCP</strong></td>
+<td>The same ToS byte, redefined (L3)</td>
+<td>6</td>
+<td>0–63 — survives end-to-end; the modern standard</td>
+</tr>
+</tbody>
+</table>
+<p><strong>DSCP values to memorize:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Decimal</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>DF / CS0</strong> (default)</td>
+<td>0</td>
+<td>Best effort</td>
+</tr>
+<tr>
+<td><strong>EF</strong> (Expedited Forwarding)</td>
+<td><strong>46</strong></td>
+<td>Voice payload — low loss/latency/jitter, the priority-queue class</td>
+</tr>
+<tr>
+<td><strong>AFxy</strong> (Assured Forwarding)</td>
+<td>e.g. AF41 = 34</td>
+<td>4 classes (x = 1–4, higher = better queue) × 3 drop precedences (y = 1–3, <strong>higher = dropped first</strong>); decimal = 8x + 2y</td>
+</tr>
+<tr>
+<td><strong>CS1–CS7</strong> (Class Selector)</td>
+<td>8, 16, …, 56</td>
+<td>Backward compatible with IP Precedence (top 3 bits); CS1 = scavenger (worse than best effort)</td>
+</tr>
+</tbody>
+</table>
+<p>Convention: voice payload <strong>EF</strong>, interactive video <strong>AF4x</strong>, call signaling <strong>CS3</strong>, bulk/scavenger <strong>CS1</strong>.</p>
+<p><strong>Trust boundary:</strong> markings are just header bits — any host can set DSCP 46 on its torrents. The trust boundary is the point where markings start being believed; everything outside it gets re-marked. Best practice: push it as close to the edge as possible — <strong>trust a Cisco IP phone</strong> (the phone re-marks its attached PC's traffic to 0), <strong>don't trust user PCs</strong>. On switches: <code>mls qos trust dscp</code> / <code>mls qos trust cos</code> / <code>mls qos trust device cisco-phone</code> (platform-dependent; newer platforms trust by default and use ingress policies instead).</p>
+<h2 id="q3-queuing-congestion-management">Q.3 Queuing — congestion management</h2>
+<p>When the interface is congested, queuing decides <strong>what transmits next</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Mechanism</th>
+<th>Behavior</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>FIFO</strong></td>
+<td>One queue, arrival order</td>
+<td>The default on fast interfaces; no differentiation</td>
+</tr>
+<tr>
+<td><strong>CBWFQ</strong> (Class-Based Weighted Fair Queuing)</td>
+<td>Each class gets its own queue with a guaranteed <strong>minimum bandwidth</strong> share during congestion</td>
+<td>The workhorse for data classes</td>
+</tr>
+<tr>
+<td><strong>LLQ</strong> (Low Latency Queuing)</td>
+<td>CBWFQ <strong>plus one strict-priority queue</strong>: packets there always transmit first — but the priority class is <strong>policed to its configured rate</strong>, so it cannot starve the other queues</td>
+<td>The standard design; voice (EF) goes in the priority queue</td>
+</tr>
+</tbody>
+</table>
+<p>Why plain priority queuing needed fixing: an unpoliced strict-priority queue under attack/overload starves everything else — LLQ's built-in policer is the safeguard. Bandwidth guarantees are <em>minimums that matter only during congestion</em>; idle bandwidth is shared freely.</p>
+<h2 id="q4-congestion-avoidance-wred">Q.4 Congestion avoidance — WRED</h2>
+<p>Tail drop has two diseases: it drops indiscriminately, and when a full queue drops many TCP flows at once they all back off and later speed up together — <strong>TCP global synchronization</strong>, a sawtooth of congestion and underuse.</p>
+<p><strong>RED/WRED</strong> (Weighted Random Early Detection) drops <em>early and selectively</em>: as the queue's average depth grows past a minimum threshold, it discards a <strong>random, increasing fraction</strong> of packets <em>before</em> the queue is full — nudging individual TCP flows to slow down at different times. The <strong>W</strong> = drop probability weighted by marking: <strong>higher AF drop precedence (AFx3) is dropped before AFx1</strong>, and EF is typically never WRED-dropped. Useless against UDP (voice/video don't slow down) — which is why voice belongs in the LLQ priority queue, not a WRED-managed data queue.</p>
+<h2 id="q5-policing-shaping-rate-limiting">Q.5 Policing &amp; shaping — rate limiting</h2>
+<p>Both enforce a rate; they differ in what happens to the excess:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>Policing</strong></th>
+<th><strong>Shaping</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Excess traffic</td>
+<td><strong>Dropped</strong> (or re-marked to a worse class)</td>
+<td><strong>Buffered</strong> and sent later — smooths bursts</td>
+</tr>
+<tr>
+<td>Effect on TCP</td>
+<td>Drops → retransmits</td>
+<td>Delay → added latency/jitter</td>
+</tr>
+<tr>
+<td>Direction</td>
+<td>Inbound or outbound</td>
+<td><strong>Outbound only</strong> (you can't buffer what you already received)</td>
+</tr>
+<tr>
+<td>Typical place</td>
+<td><strong>Provider ingress</strong>: enforce the contract; also the LLQ priority-queue limiter</td>
+<td><strong>Customer egress</strong>: slow to the contracted rate <em>before</em> the provider's policer drops the excess</td>
+</tr>
+</tbody>
+</table>
+<p>Classic pairing: ISP sells 200 Mb/s on a 1 Gb/s handoff — the ISP <strong>polices</strong> inbound at 200 Mb/s, so you <strong>shape</strong> outbound to 200 Mb/s and keep the drop decision (and your QoS priorities) on your side.</p>
+<h2 id="q6-configuration-mqc-modular-qos-cli">Q.6 Configuration — MQC (Modular QoS CLI)</h2>
+<p>MQC is a three-step pattern: <strong>class-map</strong> (match traffic) → <strong>policy-map</strong> (act on the classes) → <strong>service-policy</strong> (apply to an interface, per direction).</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>class-map match-any VOICE
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a> match dscp ef
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>class-map match-any SIGNALING
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a> match dscp cs3
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a>class-map match-any VIDEO
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a> match dscp af41
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a>policy-map WAN-EDGE
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a> class VOICE
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a>  priority percent 10
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a> class SIGNALING
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a>  bandwidth percent 5
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a> class VIDEO
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a>  bandwidth percent 30
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a> class class-default
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15"></a>  fair-queue
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16"></a>  random-detect dscp-based
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17"></a>interface g0/1
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18"></a> service-policy output WAN-EDGE
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><code>class-map match-any VOICE</code> — a class matches on one or more criteria; <code>match-any</code> = OR, <code>match-all</code> = AND (alternatives to <code>match dscp</code>: <code>match protocol</code> for NBAR, <code>match access-group</code> for an ACL)</li>
+<li><code>priority percent 10</code> — <strong>LLQ</strong>: strict priority for voice, policed at 10% of interface bandwidth</li>
+<li><code>bandwidth percent 30</code> — <strong>CBWFQ</strong>: guaranteed minimum during congestion for the class</li>
+<li><code>class-default</code> — everything unmatched lands here; <code>fair-queue</code> balances the flows within it, <code>random-detect dscp-based</code> enables WRED honoring drop precedences</li>
+<li><code>service-policy output WAN-EDGE</code> — activate on the congested (usually WAN) interface, egress</li>
+</ul>
+<p>Marking at the trust boundary (ingress) uses the same pattern with <code>set</code>:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span>
+<span class="normal"><a href="#__codelineno-1-7">7</a></span>
+<span class="normal"><a href="#__codelineno-1-8">8</a></span>
+<span class="normal"><a href="#__codelineno-1-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>class-map match-any FROM-PHONES
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a> match protocol rtp
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>policy-map MARK-IN
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a> class FROM-PHONES
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a>  set dscp ef
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a> class class-default
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a>  set dscp default
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a>interface g0/0
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a> service-policy input MARK-IN
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><code>set dscp ef</code> — mark voice at the edge so every later hop just matches DSCP</li>
+<li><code>set dscp default</code> — re-mark everything else to 0: the distrust half of the trust boundary</li>
+</ul>
+<h2 id="q7-verification">Q.7 Verification</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>show policy-map interface g0/1</code></td>
+<td><strong>The</strong> QoS command: per-class packet/byte counters, drops, queue depth, offered vs sent rate — proves classification matches and the policy acts</td>
+</tr>
+<tr>
+<td><code>show class-map</code></td>
+<td>Configured classes and match criteria</td>
+</tr>
+<tr>
+<td><code>show policy-map WAN-EDGE</code></td>
+<td>The policy definition</td>
+</tr>
+<tr>
+<td><code>show mls qos interface g0/1</code></td>
+<td>(Legacy switches) Trust state of a port</td>
+</tr>
+<tr>
+<td><code>show interfaces g0/1</code></td>
+<td><code>Total output drops</code> climbing = congestion exists — the reason to deploy QoS on this interface</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Reading <code>show policy-map interface</code>:</strong> a class showing 0 packets = classification failure (marking not set upstream, wrong match criteria, policy on the wrong direction). Drops inside the <code>priority</code> class = voice exceeding its policer — raise the percent or you're clipping calls.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../dynamic-routing-vpn/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Dynamic Routing over VPN">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Dynamic Routing over VPN
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../management/" class="md-footer__link md-footer__link--next" aria-label="Next: Management and Monitoring">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Management and Monitoring
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Edm0ndDantes" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.footer", "navigation.path", "navigation.indexes", "toc.follow", "navigation.expand", "navigation.sections", "content.code.copy", "content.code.select", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
